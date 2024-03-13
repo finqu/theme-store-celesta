@@ -1,4 +1,5 @@
 {%- assign sectionTitle = 'blog.title' | t -%}
+{%- assign animatedItemsCount = settings.articlePerRow | times: 2 -%}
 
 {%- capture sectionContent -%}
 
@@ -10,7 +11,7 @@
 
 			{%- render 'icon', icon: 'blog', class: 'svg-icon-5x mb-3' -%}
 
-			<h1 class="h5 d-block mb-3">
+			<h1 class="h5 text-title d-block mb-3">
 				{{- sectionTitle -}}
 			</h1>
 
@@ -34,7 +35,7 @@
 
 					{% for article in blog.recent %}
 
-						<div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+						<div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
 							{%- render 'article-card-grid', article: article -%}
 
@@ -48,7 +49,7 @@
 
 					{% for num in (1..itemCount) %}
 
-						<div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"></div>
+						<div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
 							{%- render 'article-card-grid' -%}
 
@@ -80,7 +81,7 @@
 
 {%- endcapture -%}
 
-{% render 'section', section: section, sectionContent: sectionContent, sectionTitle: sectionTitle, sectionHeader: sectionHeader, sectionTitleTag: 'h1', sectionContentAnimation: false %}
+{% render 'section', section: section, sectionContent: sectionContent, sectionTitle: sectionTitle, sectionHeader: sectionHeader, sectionTitleTag: 'h1', sectionContentAnimation: false, sectionHeaderGapScale: 1, sectionInnerGap: '2rem' %}
 
 {% schema %}
 {

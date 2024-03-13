@@ -49,6 +49,7 @@ $sizes-percentage: (
 );
 
 $sizes-px: (
+	30: 30px,
 	40: 40px,
 	50: 50px,
 	60: 60px,
@@ -86,29 +87,62 @@ $sizes-px: (
 );
 
 $sizes-vw: (
+	5: 5vw,
 	10: 10vw,
+	15: 15vw,
 	20: 20vw,
+	25: 25vw,
 	30: 30vw,
+	35: 35vw,
 	40: 40vw,
+	45: 45vw,
 	50: 50vw,
+	55: 55vw,
 	60: 60vw,
+	65: 65vw,
 	70: 70vw,
+	75: 75vw,
 	80: 80vw,
+	85: 85vw,
 	90: 90vw,
+	95: 95vw,
 	100: 100vw
 );
 
 $sizes-vh: (
+	5: 5vh,
 	10: 10vh,
+	15: 15vh,
 	20: 20vh,
+	25: 25vh,
 	30: 30vh,
+	35: 35vh,
 	40: 40vh,
+	45: 45vh,
 	50: 50vh,
+	55: 55vh,
 	60: 60vh,
+	65: 65vh,
 	70: 70vh,
+	75: 75vh,
 	80: 80vh,
+	85: 85vh,
 	90: 90vh,
+	95: 95vh,
 	100: 100vh
+);
+
+// Background
+$background-positions: (
+	"left-top": left top,
+	"left-center": left center,
+	"left-bottom": left bottom,
+	"right-top": right top,
+	"right-center": right center,
+	"right-bottom": right bottom,
+	"center-top": center top,
+	"center-center": center center,
+	"center-bottom": center bottom
 );
 
 // Border
@@ -130,25 +164,35 @@ $border-radius-pill: 50rem;
 
 // Font
 $font-size-root: 14px;
+$font-size-root-rfs: rfs-value($font-size-root);
 $font-size-lg: $font-size-base * 1.15;
 $font-size-sm: $font-size-base * 0.85;
 
 $font-weight-light: 400;
 $font-weight-normal: 400;
-$font-weight-medium: 400;
-$font-weight-semibold: 700;
+$font-weight-medium: 500;
+$font-weight-semibold: 500;
 $font-weight-bold: 700;
 
 $font-weight-base: $font-weight-normal;
 
-$line-height-base: 1.5;
-$line-height-lg: 1.5;
-$line-height-sm: 1.35;
+$line-height-lg: $line-height-base;
+$line-height-sm: $line-height-base * 0.85;
 $line-height-computed: floor(($font-size-base * $line-height-base));
 
 $headings-margin-bottom: 1rem;
-$headings-line-height: 1.2;
+$headings-line-height: $line-height-base * 0.85;
 $headings-color: var(--style-heading-color);
+
+$font-sizes: (
+	1: $h1-font-size,
+	2: $h2-font-size,
+	3: $h3-font-size,
+	4: $h4-font-size,
+	5: $h5-font-size,
+	6: $h6-font-size,
+	'reset': $font-size-root-rfs
+);
 
 $display-font-sizes: (
 	1: 5rem,
@@ -178,6 +222,7 @@ $link-hover-decoration: none;
 $hr-border-width: 1px;
 $hr-border-color: var(--style-border-color);
 $hr-margin-y: $spacer;
+$hr-opacity: 1;
 
 $mark-padding: .2em;
 $mark-color: var(--style-text-color);
@@ -185,7 +230,7 @@ $mark-bg: var(--style-accent-faded-color);
 
 $list-inline-padding: .5rem;
 
-$blockquote-font-size: $font-size-base * 1.25;
+$blockquote-font-size: $font-size-base;
 $blockquote-footer-font-size: 80%;
 $blockquote-margin-y: $spacer;
 $blockquote-footer-color: var(--style-text-color);
@@ -205,8 +250,8 @@ $input-btn-focus-color: none;
 $input-btn-focus-blur: none;
 $input-btn-focus-box-shadow: none;
 
-$input-btn-padding-y-sm: $input-btn-padding-y * 0.85;
-$input-btn-padding-x-sm: $input-btn-padding-y * 0.85;
+$input-btn-padding-y-sm: $input-btn-padding-y * 0.75;
+$input-btn-padding-x-sm: $input-btn-padding-x * 0.85;
 $input-btn-font-size-sm: $font-size-sm;
 
 $input-btn-padding-y-lg: $input-btn-padding-y * 1.15;
@@ -228,7 +273,7 @@ $dropdown-font-size: $font-size-base;
 $dropdown-color: var(--style-form-text-color);
 $dropdown-bg: var(--style-form-bg-color);
 $dropdown-border-color: var(--style-form-border-color);
-$dropdown-border-radius: var(--style-menu-border-radius);
+$dropdown-border-radius: var(--style-component-border-radius);
 $dropdown-border-width: $border-width;
 $dropdown-inner-border-radius: calc(#{$dropdown-border-radius} - #{$dropdown-border-width});
 $dropdown-divider-bg: var(--style-form-border-color);
@@ -302,7 +347,7 @@ $input-line-height: $input-btn-line-height;
 
 $input-padding-y-sm: $input-btn-padding-y-sm;
 $input-padding-x-sm: $input-btn-padding-x-sm;
-$input-font-size-sm: input-btn-font-size-sm;
+$input-font-size-sm: $input-btn-font-size-sm;
 
 $input-padding-y-lg: $input-btn-padding-y-lg;
 $input-padding-x-lg: $input-btn-padding-x-lg;
@@ -349,21 +394,21 @@ $btn-border-radius-lg: var(--style-btn-border-radius);
 $btn-border-radius-sm: var(--style-btn-border-radius);
 
 $btn-border-width: 2px;
-$btn-font-weight: 700;
+$btn-font-weight: $btn-font-weight;
 $btn-disabled-opacity: .65;
 
-$btn-padding-y: $input-btn-padding-y;
-$btn-padding-x: $input-btn-padding-x;
-$btn-font-size: $input-btn-font-size;
-$btn-line-height: $input-btn-line-height;
+$btn-padding-y: 0.8rem;
+$btn-padding-x: 1.6rem;
+$btn-font-size: $font-size-base;
+$btn-line-height: $line-height-base;
 
-$btn-padding-y-sm: $input-btn-padding-y-sm;
-$btn-padding-x-sm: $input-btn-padding-x-sm;
-$btn-font-size-sm: $input-btn-font-size-sm;
+$btn-padding-y-sm: $btn-padding-y * 0.85;
+$btn-padding-x-sm: $btn-padding-x * 0.85;
+$btn-font-size-sm: $font-size-sm;
 
-$btn-padding-y-lg: $input-btn-padding-y-lg;
-$btn-padding-x-lg: $input-btn-padding-x-lg;
-$btn-font-size-lg: $input-btn-font-size-lg;
+$btn-padding-y-lg: $btn-padding-y * 1.15;
+$btn-padding-x-lg: $btn-padding-y * 1.15;
+$btn-font-size-lg: $font-size-lg;
 
 $btn-color: $body-color;
 
@@ -376,8 +421,8 @@ $btn-link-disabled-color: $text-muted;
 $btn-link-focus-shadow-rgb: none;
 
 // Form
-$form-floating-height: add(2.85rem, $input-height-border);
-$form-floating-line-height: 1.5;
+$form-floating-height: add(2.90rem, $input-height-border);
+$form-floating-line-height: 1;
 $form-floating-padding-x: $input-padding-x;
 $form-floating-padding-y: 0.8rem;
 $form-floating-input-padding-t: 1.525rem;
@@ -494,35 +539,63 @@ $progress-height: 0.5rem;
 $progress-box-shadow: none;
 
 // Tooltip
-$tooltip-border-radius: var(--style-border-radius);
+$tooltip-border-radius: var(--style-component-border-radius);
 
 // Popover
-$popover-border-radius: var(--style-border-radius);
+$popover-border-radius: var(--style-component-border-radius);
 $popover-border-width: $border-width;
-$popover-inner-border-radius: calc(var(--style-border-radius) - $popover-border-width);
+$popover-inner-border-radius: calc(var(--style-component-border-radius) - $popover-border-width);
 
 // Toasts
-$toast-border-radius: var(--style-border-radius);
+$toast-border-radius: var(--style-component-border-radius);
 
 // Badge
 $badge-border-radius: var(--style-btn-border-radius);
 
 // Modal
-$modal-content-border-width: $border-width;
-$modal-content-border-radius: var(--style-border-radius);
-$modal-content-inner-border-radius: calc(var(--style-border-radius) - $modal-content-border-width);
+$modal-inner-padding: $spacer;
+$modal-footer-margin-between: 5rem;
+$modal-dialog-margin: .5rem;
+$modal-dialog-margin-y-sm-up: 1.75rem;
+$modal-title-line-height: $line-height-base;
+$modal-content-color: null;
+$modal-content-bg: var(--#{$prefix}body-bg);
+$modal-content-border-color: var(--#{$prefix}border-color-translucent);
+$modal-content-border-width:  $border-width;
+$modal-content-border-radius: var(--style-component-border-radius);
+$modal-content-inner-border-radius: calc(var(--style-component-border-radius) - $modal-content-border-width);
+$modal-content-box-shadow-xs: var(--#{$prefix}box-shadow-sm);
+$modal-content-box-shadow-sm-up: var(--#{$prefix}box-shadow);
+$modal-backdrop-bg: rgba(0,0,0);
+$modal-backdrop-opacity: .5;
+$modal-header-border-color: var(--#{$prefix}border-color);
+$modal-header-border-width: $modal-content-border-width;
+$modal-header-padding-y: $modal-inner-padding;
+$modal-header-padding-x: $modal-inner-padding;
+$modal-header-padding: $modal-header-padding-y $modal-header-padding-x;
+$modal-footer-bg: null;
+$modal-footer-border-color: $modal-header-border-color;
+$modal-footer-border-width: $modal-header-border-width;
+$modal-sm: 300px;
+$modal-md: 500px;
+$modal-lg: 700px;
+$modal-xl: 1140px;
+$modal-fade-transform: translate(0, -50px);
+$modal-show-transform: none;
+$modal-transition: transform .3s ease-out;
+$modal-scale-transform: scale(1.02);
 
 // Alert
-$alert-border-radius: var(--style-border-radius);
+$alert-border-radius: var(--style-component-border-radius);
 
 // List group
-$list-group-border-radius: var(--style-border-radius);
+$list-group-border-radius: var(--style-component-border-radius);
 
 // Image thumbnails
-$thumbnail-border-radius: var(--style-border-radius);
+$thumbnail-border-radius: var(--style-component-border-radius);
 
 // Breadcrumbs
-$breadcrumb-border-radius: var(--style-border-radius);
+$breadcrumb-border-radius: var(--style-component-border-radius);
 
 // Accordion
 $accordion-padding-y: 1rem;
@@ -592,7 +665,7 @@ $awn-toast-margin: 14px;
 $awn-toast-border-width: 1px;
 $awn-toast-border-style: solid;
 $awn-toast-border-color: $awn-primary-border-color;
-$awn-toast-border-radius: var(--style-border-radius);
+$awn-toast-border-radius: var(--style-component-border-radius);
 $awn-border: $awn-toast-border-width $awn-toast-border-style $awn-toast-border-color;
 $awn-progress-bar-height: 6px;
 $awn-toast-font-size: 14px;
@@ -607,7 +680,7 @@ $awn-popup-max-width: 500px;
 $awn-popup-font-size: 14px;
 $awn-popup-icon-size: 44px;
 $awn-popup-padding: 24px;
-$awn-popup-border-radius: var(--style-border-radius);
+$awn-popup-border-radius: var(--style-component-border-radius);
 $awn-popup-btn-height: 32px;
 $awn-popup-btn-color: #fff;
 $awn-popup-btn-border-radius: var(--style-btn-border-radius);

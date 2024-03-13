@@ -2,44 +2,23 @@ import Notify from './notify';
 
 export default class Cart {
 
-    constructor() {
-
-        this.cart = {};
-        this.items = {};
+    constructor(data = {}) {
+        
+        this.cart = data;
         this.queue = [];
         this.processing = false;
         this.initialized = false;
         this.notify = new Notify();
-        this.cartTemplateEl = document.querySelector('#hbs-cart-template');
-        this.cartMiniTemplateEl = document.querySelector('#hbs-cart-mini-template');
-        this.cartOffcanvasTemplateEl = document.querySelector('#hbs-cart-offcanvas-template');
-        this.cartTemplate = null;
-        this.cartMiniTemplate = null;
-        this.cartOffcanvasTemplate = null;
         this.cache = {};
+        this.isInitialRender = true;
     }
 
     init() {
-
-        if (this.cartTemplateEl) {
-            this.cartTemplate = theme.hbs.compile(this.cartTemplateEl.innerHTML);
-        }
-
-        if (this.cartMiniTemplateEl) {
-            this.cartMiniTemplate = theme.hbs.compile(this.cartMiniTemplateEl.innerHTML);
-        }
-
-        if (this.cartOffcanvasTemplateEl) {
-            this.cartOffcanvasTemplate = theme.hbs.compile(this.cartOffcanvasTemplateEl.innerHTML);
-        }
-
         this.bindEvents();
         this.getCart();
     }
 
     bindEvents() {
-
-        let isInitialRender = true;
 
         const add = (e) => {
 
@@ -67,14 +46,14 @@ export default class Cart {
 
                     let itemId = e.target.getAttribute('data-cart-add');
                     let quantity = e.target.getAttribute('data-cart-quantity');
-                    let attributes = [];
+                    let customizations = [];
 
                     formData.delete('form_type');
                     formData.delete('form_id'); 
 
                     for (const entry of formData.entries()) {
 
-                        if (entry[0] === 'product_id') {
+                        if (entry[0] === 'product') {
 
                             itemId = entry[1];
 
@@ -84,7 +63,7 @@ export default class Cart {
 
                         } else {
 
-                            attributes.push({
+                            customizations.push({
                                 name: entry[0],
                                 value: entry[1]
                             });
@@ -93,7 +72,7 @@ export default class Cart {
 
                     let checkboxNames = [];
 
-                    attributes.forEach((obj) => {
+                    customizations.forEach(obj => {
 
                         const name = obj.name.slice(0, -2);
 
@@ -102,14 +81,14 @@ export default class Cart {
                         }
                     });
 
-                    attributes = attributes.filter(obj => obj.name.slice(-2) !== '[]');
+                    customizations = customizations.filter(obj => obj.name.slice(-2) !== '[]');
 
                     checkboxNames.forEach((name, i) => {
 
                         const domName = name+'[]';
                         const checkboxEls = cartFormEl.querySelectorAll('[name="'+domName+'"]');
 
-                        let attribute = {
+                        let customization = {
                             name: name,
                             value: []
                         };
@@ -117,16 +96,16 @@ export default class Cart {
                         checkboxEls.forEach((el) => {
 
                             if (el.checked && (el.offsetWidth || el.offsetHeight || el.getClientRects().length)) {
-                                attribute.value.push(el.value)
+                                customization.value.push(el.value)
                             }
                         });
 
-                        attributes.push(attribute);
+                        customizations.push(customization);
                     });
 
                     try {
 
-                        attributes.forEach((obj) => {
+                        customizations.forEach(obj => {
 
                             const el = cartFormEl.querySelector('[name="'+obj.name+'"]');
 
@@ -139,13 +118,13 @@ export default class Cart {
 
                                     this.notify.warning(null, theme.utils.t('error.attribute_text_min_length'));
 
-                                    throw new Error('Attribute text min length error.');
+                                    throw new Error('Customization text min length error.');
 
                                 } else if (maxlength && obj.value.length > maxlength) {
 
                                     this.notify.warning(null, theme.utils.t('error.attribute_text_max_length'));
 
-                                    throw new Error('Attribute text max length error.');
+                                    throw new Error('Customization text max length error.');
                                 }
                             }
                         });
@@ -159,7 +138,7 @@ export default class Cart {
                         return;
                     }
 
-                    this.addItem(parseInt(itemId, 10), parseInt(quantity, 10), attributes);
+                    this.addItem(parseInt(itemId, 10), parseInt(quantity, 10), customizations, e.target.hasAttribute('data-cart-checkout'));
                 }
 
             } else {
@@ -167,16 +146,16 @@ export default class Cart {
                 const itemId = parseInt(e.target.getAttribute('data-cart-add'), 10);
                 const quantity = parseInt(e.target.getAttribute('data-cart-quantity'), 10);
 
-                this.addItem(itemId, quantity);
+                this.addItem(itemId, quantity, [], e.target.hasAttribute('data-cart-checkout'));
             }
-        }
+        };
 
         const remove = (e) => {
 
             e.preventDefault();
 
             this.removeItem(parseInt(e.target.getAttribute('data-cart-remove'), 10));
-        }
+        };
 
         const update = (e) => {
 
@@ -186,7 +165,7 @@ export default class Cart {
             const quantity = parseInt(e.target.getAttribute('data-cart-quantity'), 10);
 
             this.updateItem(itemId, quantity);
-        }
+        };
 
         const quantityDynamic = (e) => {
 
@@ -204,14 +183,14 @@ export default class Cart {
                     this.updateItem(itemId, quantity);
                 }
             }
-        }
+        };
 
         const quantityDecrease = (e) => {
 
             e.preventDefault();
 
             const itemId = parseInt(e.target.getAttribute('data-cart-quantity-decrease'), 10);
-            const item = this.items.find(item => item.id === itemId);
+            const item = this.cart.items.find(item => item.id === itemId);
             const quantityEl = e.target.parentElement.querySelector('[data-cart-quantity-dynamic]');
 
             if (item) {
@@ -230,33 +209,33 @@ export default class Cart {
 
                 this.updateItem(item.id, item.quantity - 1);
             }
-        }
+        };
 
         const quantityIncrease = (e) => {
 
             e.preventDefault();
 
             const itemId = parseInt(e.target.getAttribute('data-cart-quantity-increase'), 10);
-            const item = this.items.find(item => item.id === itemId);
+            const item = this.cart.items.find(item => item.id === itemId);
 
             if (item) {
                 this.updateItem(item.id, item.quantity + 1);
             }
-        }
+        };
 
         const clear = (e) => {
 
             e.preventDefault();
 
             this.clearItems();
-        }
+        };
 
-        const checkout = () => {
+        const checkout = (e) => {
 
-            document.dispatchEvent(new CustomEvent('theme:cart:initiateCheckout', {
-                detail: this.cart
-            }));
-        }
+            e.preventDefault()
+
+            this.checkout();
+        };
 
         const render = () => {
 
@@ -283,7 +262,7 @@ export default class Cart {
                     el.parentNode.classList.remove('has-items');
                 }
 
-                if (this.initialized) {
+                if (el.dataset.cartItemCount && this.initialized) {
                     theme.utils.animate(el.parentNode, 'bounce');
                 }
 
@@ -304,12 +283,10 @@ export default class Cart {
 
             if (discountsEls && this.cart.discounts) {
 
-                const discountsTemplate = theme.hbs.compile(document.querySelector('#hbs-cart-discounts').innerHTML);
-
                 discountsEls.forEach(el => {
 
                     if (discountsTemplate) {
-                        el.innerHTML = discountsTemplate({
+                        el.innerHTML = theme.renderer.render('cart-discounts', {
                             discounts: this.cart.discounts
                         });
                     }
@@ -330,11 +307,11 @@ export default class Cart {
 
             if (cartContainerEl) {
 
-                cartContainerEl.innerHTML = this.cartTemplate({
+                const data =  {
                     cart: this.cart,
-                    itemCount: this.items.length,
+                    itemCount: this.cart.items.length,
                     taxFreeShopping: theme.store.taxFreeShopping,
-                    isInitialRender: isInitialRender,
+                    isInitialRender: this.isInitialRender,
                     productShowManufacturer: theme.store.product.showManufacturer,
                     productShowPromotion: theme.store.product.showPromotion,
                     productShowPricing: theme.store.product.showPricing,
@@ -349,10 +326,21 @@ export default class Cart {
                     cartUrl: theme.store.routes.cartUrl,
                     checkoutUrl: theme.store.routes.checkoutUrl,
                     rootUrl: theme.store.routes.rootUrl
-                });
+                };
+
+                if (this.isInitialRender || !this.cart.items.length) {
+
+                    cartContainerEl.innerHTML = theme.renderer.render('cart', data);
+
+                } else {
+
+                    cartContainerEl.querySelectorAll('[data-cart-partial]').forEach(el => {
+                        el.innerHTML = theme.renderer.render(el.dataset.cartPartial, data);
+                    });
+                }
 
                 cartContainerEl.querySelectorAll('[data-cart-quantity-dynamic]').forEach(el => {
-
+    
                     theme.utils.filterInput(el, (value) => {
                         return value != 0 && /^\d+$/.test(value);
                     });
@@ -365,11 +353,12 @@ export default class Cart {
 
             if (cartMiniContainerEl) {
 
-                cartMiniContainerEl.innerHTML = this.cartMiniTemplate({
+                const lazyNodeList = cartMiniContainerEl.querySelectorAll('.lazy');
+                const data = {
                     cart: this.cart,
-                    itemCount: this.items.length,
+                    itemCount: this.cart.items.length,
                     taxFreeShopping: theme.store.taxFreeShopping,
-                    isInitialRender: isInitialRender,
+                    isInitialRender: this.isInitialRender,
                     productShowManufacturer: theme.store.product.showManufacturer,
                     productShowPromotion: theme.store.product.showPromotion,
                     productShowPricing: theme.store.product.showPricing,
@@ -384,16 +373,55 @@ export default class Cart {
                     cartUrl: theme.store.routes.cartUrl,
                     checkoutUrl: theme.store.routes.checkoutUrl,
                     rootUrl: theme.store.routes.rootUrl
-                });
+                };
+
+                if (this.isInitialRender || !this.cart.items.length) {
+
+                    this.cache.cartMiniImgEls = [];
+
+                    cartMiniContainerEl.innerHTML = theme.renderer.render('cart-mini', data);
+
+                } else {
+
+                    let cartMiniImgIndex = 0;
+
+                    cartMiniContainerEl.querySelectorAll('[data-cart-partial]').forEach(el => {
+
+                        let templateHtml = theme.renderer.render(el.dataset.cartPartial, data);
+                        const templateDom = new DOMParser().parseFromString(templateHtml, 'text/html');
+                        const newLazyNodeList = templateDom.querySelectorAll('.lazy');
+
+                        if (this.cache.cartMiniImgEls.length && cartMiniImgIndex < this.cache.cartMiniImgEls.length) {
+        
+                            newLazyNodeList.forEach((el) => {
+
+                                el.outerHTML = this.cache.cartMiniImgEls[cartMiniImgIndex];
+
+                                cartMiniImgIndex++;
+                            });
+        
+                            templateHtml = templateDom.body.innerHTML;
+                        }
+
+                        el.innerHTML = templateHtml;
+                    });
+                }
+
+                if (this.cache.cartMiniImgEls.length !== lazyNodeList.length) {
+                    setTimeout(() => {
+                        this.cache.cartMiniImgEls = Array.from(lazyNodeList, node => node.outerHTML);
+                    }, 2000);
+                } 
             }
 
             if (cartOffcanvasContainerEl) {
 
-                let templateHtml = this.cartOffcanvasTemplate({
+                const lazyNodeList = cartOffcanvasContainerEl.querySelectorAll('.lazy');
+                const data = {
                     cart: this.cart,
-                    itemCount: this.items.length,
+                    itemCount: this.cart.items.length,
                     taxFreeShopping: theme.store.taxFreeShopping,
-                    isInitialRender: isInitialRender,
+                    isInitialRender: this.isInitialRender,
                     productShowManufacturer: theme.store.product.showManufacturer,
                     productShowPromotion: theme.store.product.showPromotion,
                     productShowPricing: theme.store.product.showPricing,
@@ -408,71 +436,84 @@ export default class Cart {
                     cartUrl: theme.store.routes.cartUrl,
                     checkoutUrl: theme.store.routes.checkoutUrl,
                     rootUrl: theme.store.routes.rootUrl
-                });
+                };
 
-                if (!this.cache.cartOffcanvasTemplateImgEls) {
-                    this.cache.cartOffcanvasTemplateImgEls = [];
-                }
+                if (this.isInitialRender || !this.cart.items.length) {
 
-                if (this.cache.cartOffcanvasTemplateImgEls.length) {
+                    this.cache.cartOffcanvasImgEls = [];
 
-                    const templateDom = new DOMParser().parseFromString(templateHtml, 'text/html');
+                    cartOffcanvasContainerEl.innerHTML = theme.renderer.render('cart-offcanvas', data);
 
-                    templateDom.querySelectorAll('.lazy').forEach((el, i) => {
-                        el.outerHTML = this.cache.cartOffcanvasTemplateImgEls[i];
+                } else {
+
+                    let cartOffcanvasImgIndex = 0;
+
+                    cartOffcanvasContainerEl.querySelectorAll('[data-cart-partial]').forEach(el => {
+
+                        let templateHtml = theme.renderer.render(el.dataset.cartPartial, data);
+                        const templateDom = new DOMParser().parseFromString(templateHtml, 'text/html');
+                        const newLazyNodeList = templateDom.querySelectorAll('.lazy');
+
+                        if (this.cache.cartOffcanvasImgEls.length && cartOffcanvasImgIndex < this.cache.cartOffcanvasImgEls.length) {
+        
+                            newLazyNodeList.forEach((el) => {
+
+                                el.outerHTML = this.cache.cartOffcanvasImgEls[cartOffcanvasImgIndex];
+
+                                cartOffcanvasImgIndex++;
+                            });
+        
+                            templateHtml = templateDom.body.innerHTML;
+                        }
+
+                        el.innerHTML = templateHtml;
                     });
-
-                    templateHtml = templateDom.body.innerHTML;
                 }
 
-                cartOffcanvasContainerEl.innerHTML = templateHtml;
-
-                const lazyNodeList = cartOffcanvasContainerEl.querySelectorAll('.lazy');
-
-                if (this.cache.cartOffcanvasTemplateImgEls.length !== lazyNodeList.length) {
+                if (this.cache.cartOffcanvasImgEls.length !== lazyNodeList.length) {
                     setTimeout(() => {
-                        this.cache.cartOffcanvasTemplateImgEls = Array.from(lazyNodeList, node => node.outerHTML);
+                        this.cache.cartOffcanvasImgEls = Array.from(lazyNodeList, node => node.outerHTML);
                     }, 2000);
-                }
+                } 
             }
 
             document.dispatchEvent(new CustomEvent('theme:cart:render'));
 
-            isInitialRender = false;
-        }
+            this.isInitialRender = false;
+        };
 
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', e => {
 
             if (e.target.hasAttribute('data-cart-add')) {
-                add(e);
+                return add(e);
             }
 
             if (e.target.hasAttribute('data-cart-remove')) {
-                remove(e);
+                return remove(e);
             }
 
             if (e.target.hasAttribute('data-cart-update')) {
-                update(e);
+                return update(e);
             }
 
             if (e.target.hasAttribute('data-cart-quantity-decrease')) {
-                quantityDecrease(e);
+                return quantityDecrease(e);
             }
 
             if (e.target.hasAttribute('data-cart-quantity-increase')) {
-                quantityIncrease(e);
+                return quantityIncrease(e);
             }
 
             if (e.target.hasAttribute('data-cart-clear')) {
-                clear(e);
+                return clear(e);
             }
 
             if (e.target.hasAttribute('data-cart-checkout')) {
-                checkout();
+                return checkout(e);
             }
         });
 
-        document.addEventListener('theme:cart:update', (e) => {
+        document.addEventListener('theme:cart:update', e => {
 
             render(e)
 
@@ -539,7 +580,7 @@ export default class Cart {
             
             this.processQueue();
 
-        }).catch(async (err) => {
+        }).catch(async () => {
             
             request.reject({});
         });
@@ -630,27 +671,37 @@ export default class Cart {
             return;
         }
 
-        this.addToQueue('GET', '/api/cart').then((res) => {
-            this.updateCart(res);
-        });
+        if (Object.keys(this.cart).length) {
+
+            document.dispatchEvent(new CustomEvent('theme:cart:update', {
+                detail: this.cart
+            }));
+
+        } else {
+
+            this.addToQueue('GET', '/api/cart').then(res => {
+                this.updateCart(res);
+            });
+        }
     }
 
-    updateCart(data = null) {
+    updateCart(data = {}, triggerEvent = true) {
 
-        if (data) {
-            this.cart = data;
-            this.items = data.items || {};
-        } else {
-            this.cart = {};
-            this.items = {};
+        if (!this.cart.items.length && data.items.length || this.cart.items.length && !data.items.length) {
+            this.isInitialRender = true;
         }
 
-        document.dispatchEvent(new CustomEvent('theme:cart:update', {
-            detail: this.cart
-        }));
+        this.cart = data;
+
+        if (triggerEvent) {
+            
+            document.dispatchEvent(new CustomEvent('theme:cart:update', {
+                detail: this.cart
+            }));
+        }
     }
 
-    addItem(id = null, quantity = 1, attributes = []) {
+    addItem(id = null, quantity = 1, customizations = [], checkout = false) {
 
         if (id === null) {
             return;
@@ -676,19 +727,19 @@ export default class Cart {
             quantity,
         };
 
-        attributes.forEach(item => {
+        customizations.forEach(item => {
             data[item.name] = item.value;
         });
 
         this.addToQueue('POST', '/api/cart/items', data).then((res) => {
 
-            this.updateCart(res);
+            this.updateCart(res, !checkout);
 
             const lastItem = res.items.filter((item) => item.product_id === parseInt(id, 10))[0];
 
             if (lastItem) {
 
-                if (theme.store.cart.showAddNotification) {
+                if (theme.store.cart.showAddNotification && !checkout) {
                     this.notify.success(theme.utils.t('cart.product_added_to_cart'), lastItem.name, null, () => {
                         window.location.href = theme.store.routes.cartUrl;
                     });
@@ -701,6 +752,10 @@ export default class Cart {
                 document.dispatchEvent(new CustomEvent('theme:cart:addItem', {
                     detail: eventDetail
                 }));
+
+                if (checkout) {
+                    this.checkout();
+                }
             }
 
         }).catch((res) => {
@@ -721,11 +776,11 @@ export default class Cart {
 
         data.quantity = quantity;
 
-        this.addToQueue('PUT', '/api/cart/items/'+id, data).then((res) => {
+        this.addToQueue('PUT', '/api/cart/items/'+id, data).then(res => {
 
             this.updateCart(res);
 
-            const eventDetail = this.items.filter((item) => item.id === parseInt(id, 10))[0];
+            const eventDetail = this.cart.items.filter((item) => item.id === parseInt(id, 10))[0];
 
             eventDetail.currency = this.cart.currency;
 
@@ -745,9 +800,9 @@ export default class Cart {
             return;
         }
 
-        const itemToBeRemoved = this.items.filter((item) => item.id === parseInt(id, 10))[0];
+        const itemToBeRemoved = this.cart.items.filter((item) => item.id === parseInt(id, 10))[0];
 
-        this.addToQueue('DELETE', '/api/cart/items/'+id).then((res) => {
+        this.addToQueue('DELETE', '/api/cart/items/'+id).then(res => {
 
             this.updateCart(res);
 
@@ -770,7 +825,7 @@ export default class Cart {
 
     clearItems() {
 
-        this.addToQueue('DELETE', '/api/cart').then((res) => {
+        this.addToQueue('DELETE', '/api/cart').then(res => {
 
             this.updateCart(res);
 
@@ -782,5 +837,14 @@ export default class Cart {
 
             this.notify.warning(null, theme.utils.t('error.'+res.error));
         });
+    }
+
+    checkout() {
+
+        document.dispatchEvent(new CustomEvent('theme:cart:initiateCheckout', {
+            detail: this.cart
+        }));
+
+        window.location.href = theme.store.routes.checkoutUrl;
     }
 }

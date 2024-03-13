@@ -13,8 +13,10 @@
 	- sectionBreadcrumbs: {Object} Breadcrumbs Liquid object
 	- sectionHeaderClass: {String}
 	- sectionHeaderContainer {String}
+	- sectionHeaderGapScale: {Float}
 	- sectionHeaderAction: {String}
 	- sectionHeaderSecondaryAction: {String}
+	- sectionHeaderTextAlign: {String}
 	- sectionAnimation: {String}
 	- sectionAnimationRepeat: {Boolean}
 	- sectionHandle: {String}
@@ -34,6 +36,29 @@
 {%- endunless -%}
 
 {% assign sectionAnimationOrder = 0 %}
+
+{%- if sectionHandle -%}
+
+	{%- if sectionHeaderGapScale or sectionHeaderTextAlign -%}
+
+		{%- capture sectionHeaderStyle -%}
+			{{ sectionHandle }} .section-header {
+				{% if sectionHeaderGapScale -%}
+					--section-header-gap-scale: {{ sectionHeaderGapScale }};
+				{%- endif -%}
+				{% if sectionHeaderTextAlign -%}
+					--section-header-text-align: {{ sectionHeaderTextAlign }};
+				{%- endif -%}
+			}
+		{%- endcapture -%}
+
+		{%- assign sectionHeaderStyle = sectionHeaderStyle | strip_newlines -%}
+
+		<style>{{ sectionHeaderStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+
+	{%- endif -%}
+
+{%- endif -%}
 
 <div class="section-header{% if sectionHeaderClass %} {{ sectionHeaderClass }}{% endif %}{% if sectionHeaderContainer == 'none' %} d-block{% endif %}">
 
@@ -71,13 +96,13 @@
 
 								{%- if forloop.last == true -%}
 
-									<a href="{{ breadcrumb | link }}" class="item-link fw-bold">
+									<a href="{{ breadcrumb | link }}" class="item-link fw-medium">
 										{{ breadcrumb.name }}
 									</a>
 
 								{%- else -%}
 
-									<a href="{{ breadcrumb | link }}" class="item-link fw-bold">
+									<a href="{{ breadcrumb | link }}" class="item-link fw-medium">
 										{{ breadcrumb.name }}
 									</a>
 
@@ -186,7 +211,7 @@
 					</div>
 
 					<button type="button"
-						class="btn-text text-underline-indicator fw-bold mt-g"
+						class="btn-text text-underline-indicator fw-medium mt-g"
 						data-bs-toggle="collapse"
 						data-bs-target="#collapse-{{- descriptionCollapseId -}}"
 						aria-expanded="false"

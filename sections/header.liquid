@@ -1,14 +1,12 @@
 {%- assign mobileMenu = linklists[section.settings.mobileMenu] -%}
 {%- assign mobileMenuSecondary = linklists[section.settings.mobileMenuSecondary] -%}
 {%- assign mainMenu = linklists[section.settings.menu] -%}
-{%- assign headerBgColorBrightness = settings.style_header_bg_color | color_brightness -%}
 {%- assign headerContentColorBrightness = settings.style_header_text_color | color_brightness -%}
 {%- assign headerAccentColorBrightness = settings.style_header_accent_color | color_brightness -%}
-{%- assign headerSecondaryContentColorBrightness = section.settings.secondaryContentColor | color_brightness -%}
+{%- assign bgColorBrightness = settings.style_bg_color | color_brightness -%}
 
 {%- capture sectionStyle -%}
     #finqu-section-{{ section.id }} .site-header-items-container,
-    #finqu-section-{{ section.id }} .site-header-nav-container,
     #finqu-section-{{ section.id }} .site-mobile-header-container {
         --style-bg-color: {{ settings.style_header_bg_color }};
         --style-heading-color: {{ settings.style_header_text_color }};
@@ -18,9 +16,15 @@
         --style-btn-bg-color: {{ settings.style_header_text_color }};
         --style-btn-text-color: {{ settings.style_header_bg_color }};
         --style-btn-border-color: {{ settings.style_header_text_color }};
-        --style-form-placeholder-color: {{ settings.style_header_text_color }};
-        --style-form-text-color: {{ settings.style_header_text_color }};
-        --style-form-border-color: {{ settings.style_header_text_color }};
+        --style-form-placeholder-color: {{ settings.style_text_color }};
+        --style-form-text-color: {{ settings.style_text_color }};
+        --style-form-bg-color: {{ settings.style_bg_color }};
+        --style-form-border-color: {{ settings.style_header_text_color | color_mix: settings.style_header_bg_color, 15 }};
+        --style-form-border-focus-color: {{ settings.style_header_text_color | color_mix: settings.style_header_bg_color, 20 }};
+        --style-form-border-disabled-color: {{ settings.style_header_text_color | color_mix: settings.style_header_bg_color, 10 }};
+        --style-border-color: {{ settings.style_header_text_color | color_mix: settings.style_header_bg_color, 15 }};
+        --style-border-focus-color: {{ settings.style_header_text_color | color_mix: settings.style_header_bg_color, 20 }};
+        --style-border-accent-color: {{ settings.style_header_text_color | color_mix: settings.style_header_bg_color, 50 }};
 
         --style-accent-color: {{ settings.style_header_accent_color }};
 
@@ -35,138 +39,91 @@
             --style-btn-bg-hover-color: {{ settings.style_header_text_color | color_darken: 8 }};
             --style-btn-border-hover-color: {{ settings.style_header_text_color | color_darken: 8 }};
             --style-btn-border-active-color: {{ settings.style_header_text_color | color_darken: 13 }};
-            --style-border-accent-color: {{ settings.style_header_text_color | color_darken: 50 }};
-            --style-form-border-focus-color: {{ settings.style_header_text_color | color_darken: 10 }};
-            --style-form-border-disabled-color: {{ settings.style_header_text_color | color_darken: 10 }};
         {%- else -%}
             --style-btn-bg-active-color: {{ settings.style_header_text_color | color_lighten: 10 }};
             --style-btn-bg-hover-color: {{ settings.style_header_text_color | color_lighten: 8 }};
             --style-btn-border-hover-color: {{ settings.style_header_text_color | color_lighten: 8 }};
             --style-btn-border-active-color: {{ settings.style_header_text_color | color_lighten: 13 }};
-            --style-border-accent-color: {{ settings.style_header_text_color | color_lighten: 50 }};
-            --style-form-border-focus-color: {{ settings.style_header_text_color | color_lighten: 10 }};
-            --style-form-border-disabled-color: {{ settings.style_header_text_color | color_lighten: 10 }};
-            --style-border-color: {{ settings.style_header_text_color | color_lighten: 10 }};
-        {%- endif -%}   
+        {%- endif -%}
 
-        {%- if headerBgColorBrightness > 190 -%}
-            --style-border-color: {{ settings.style_header_bg_color | color_darken: 15 }};
-            --style-border-focus-color: {{ settings.style_header_text_color | color_darken: 20 }};
-            --style-form-bg-hover-color: {{ settings.style_header_bg_color | color_darken: 5 }};
-            --style-form-bg-disabled-color: {{ settings.style_header_bg_color | color_darken: 10 }};
+        {%- if bgColorBrightness > 190 -%}
+            --style-form-bg-hover-color: {{ settings.style_bg_color | color_darken: 5 }};
+            --style-form-bg-disabled-color: {{ settings.style_bg_color | color_darken: 10 }};
         {%- else -%}
-            --style-border-color: {{ settings.style_header_bg_color | color_lighten: 15 }};
-            --style-border-focus-color: {{ settings.style_header_bg_color | color_lighten: 20 }};
-            --style-form-bg-hover-color: {{ settings.style_header_bg_color | color_lighten: 5 }};
-            --style-form-bg-disabled-color: {{ settings.style_header_bg_color | color_lighten: 10 }};
+            --style-form-bg-hover-color: {{ settings.style_bg_color | color_lighten: 5 }};
+            --style-form-bg-disabled-color: {{ settings.style_bg_color | color_lighten: 10 }};
         {%- endif -%}
 
         --bs-body-bg: {{ settings.style_header_bg_color }};
-        --bs-body-bg-rgb: {{ settings.style_header_bg_color | color_to_rgb }};
+        --bs-body-bg-rgb: {{ settings.style_header_bg_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
         --bs-body-color: {{ settings.style_header_text_color }};
-        --bs-body-color-rgb: {{ settings.style_header_text_color | color_to_rgb }};
+        --bs-body-color-rgb: {{ settings.style_header_text_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
         --bs-secondary-bg: {{ settings.style_header_bg_color | color_darken: 30 }};
-        --bs-secondary-bg-rgb: {{ settings.style_header_bg_color | color_darken: 30 | color_to_rgb }};
-        --bs-secondary-color: {{ settings.style_header_text_color | color_modify: 'alpha', 0.75 | color_to_hex }};
-        --bs-secondary-color-rgb: {{ settings.style_header_text_color | color_modify: 'alpha', 0.75 }};
-
-        --bs-tertiary-bg: {{ settings.style_header_bg_color | color_darken: 10 }};
-        --bs-tertiary-bg-rgb: {{ settings.style_header_bg_color | color_darken: 10 | color_to_rgb }};
-        --bs-tertiary-color: {{ settings.style_header_text_color | color_modify: 'alpha', 0.5 | color_to_hex }};
-        --bs-tertiary-color-rgb: {{ settings.style_header_text_color | color_modify: 'alpha', 0.5 }};
-
-        --bs-emphasis-color: {{ settings.style_header_accent_color }};
-        --bs-emphasis-color-rgb: {{ settings.style_header_accent_color | color_to_rgb }};
-
-        --bs-link-color: {{ settings.style_header_text_color }};
-        --bs-link-color-rgb: {{ settings.style_header_text_color | color_to_rgb }};--bs-body-bg: {{ settings.style_header_bg_color }};
-        --bs-body-bg-rgb: {{ settings.style_header_bg_color | color_to_rgb }};
-        --bs-body-color: {{ settings.style_header_text_color }};
-        --bs-body-color-rgb: {{ settings.style_header_text_color | color_to_rgb }};
-
-        --bs-body-bg: {{ settings.style_header_bg_color }};
-        --bs-body-bg-rgb: {{ settings.style_header_bg_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-        --bs-body-color: {{ settings.style_header_text_color }};
-        --bs-body-color-rgb: {{ settings.style_header_text_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-
-        --bs-secondary-bg: {{ settings.style_header_bg_color | color_darken: 30 }};
-        --bs-secondary-bg-rgb: {{ settings.style_header_bg_color | color_darken: 30 | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+        --bs-secondary-bg-rgb: {{ settings.style_header_bg_color | color_darken: 30 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
         --bs-secondary-color: {{ settings.style_header_text_color | color_modify: 'alpha', 0.75 }};
-        --bs-secondary-color-rgb: {{ settings.style_header_text_color | color_modify: 'alpha', 0.75 | replace: 'rgba(', '' | replace: ', 0.75)', '' }};
+        --bs-secondary-color-rgb: {{ settings.style_header_text_color | color_desaturate: 25 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
         --bs-tertiary-bg: {{ settings.style_header_bg_color | color_darken: 10 }};
-        --bs-tertiary-bg-rgb: {{ settings.style_header_bg_color | color_darken: 10 | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+        --bs-tertiary-bg-rgb: {{ settings.style_header_bg_color | color_darken: 10 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
         --bs-tertiary-color: {{ settings.style_header_text_color | color_modify: 'alpha', 0.5 }};
-        --bs-tertiary-color-rgb: {{ settings.style_header_text_color | color_modify: 'alpha', 0.5 | replace: 'rgba(', '' | replace: ', 0.5)', '' }};
+        --bs-tertiary-color-rgb: {{ settings.style_header_text_color | color_desaturate: 50 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
         --bs-emphasis-color: {{ settings.style_header_accent_color }};
-        --bs-emphasis-color-rgb: {{ settings.style_header_accent_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+        --bs-emphasis-color-rgb: {{ settings.style_header_accent_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
         --bs-link-color: {{ settings.style_header_text_color }};
-        --bs-link-color-rgb: {{ settings.style_header_text_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+        --bs-link-color-rgb: {{ settings.style_header_text_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
         --bs-link-hover-color: {{ settings.style_header_text_color }};
-        --bs-link-hover-color-rgb: {{ settings.style_header_text_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+        --bs-link-hover-color-rgb: {{ settings.style_header_text_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
         --bs-border-color: var(--style-border-color);
         --bs-heading-color: var(--style-heading-color);
     }
     #finqu-section-{{ section.id }} .site-header-container {
-        {%- if section.settings.logoPosition == 'start'-%}
-            --site-header-template-columns: 1fr auto 1fr;
+        --site-header-items-padding-y: {{ section.settings.headerItemsPaddingY }};
+        {%- if section.settings.menuItemsAlign == 'start' -%}
+            --site-header-template-columns: auto 1fr auto;
+            --site-header-logo-position: items-start;
+            --site-header-logo-items-align: start;
+            --site-header-logo-margin: 0 20px 0 0;
+            --site-header-nav-items-align: start;
+            --site-header-actions-position: items-end;
+            --site-header-actions-items-align: end;
+            --site-header-search-position: items-center;
+            --site-header-search-items-align: center;
+        {%- elsif section.settings.menuItemsAlign == 'center' -%}
+            --site-header-template-columns: auto 1fr auto;
             --site-header-logo-position: items-start;
             --site-header-logo-items-align: start;
             --site-header-logo-margin: 0 20px;
+            --site-header-nav-items-align: center;
             --site-header-actions-position: items-end;
             --site-header-actions-items-align: end;
-        {%- elsif section.settings.logoPosition == 'center'-%}
-            --site-header-template-columns: 1fr auto 1fr;
-            --site-header-logo-position: items-center;
-            --site-header-logo-items-align: center;
-            --site-header-logo-margin: 0 20px;
-            --site-header-actions-position: items-end;
-            --site-header-actions-items-align: end;
+            --site-header-search-position: items-center;
+            --site-header-search-items-align: center;
         {%- endif -%}
     }
-    .template-frontpage #finqu-section-{{ section.id }} .site-header-container:not(.site-header-container-show):not(.site-header-container-hide) .site-header-items-container,
-    .template-frontpage #finqu-section-{{ section.id }} .site-header-container:not(.site-header-container-show):not(.site-header-container-hide) .site-header-nav-container {
-        --style-border-color: transparent;
-        --style-text-color: {{ section.settings.secondaryContentColor }};
-        --style-link-color: {{ section.settings.secondaryContentColor }};
-        --style-icon-color: {{ section.settings.secondaryContentColor }};
-        --style-accent-color: {{ section.settings.secondaryContentColor }};
-
-        {%- if headerSecondaryContentColorBrightness | color_brightness > 190 -%}
-            --style-accent-text-color: #000;
-        {%- else -%}
-            --style-accent-text-color: #fff;
+    #finqu-section-{{ section.id }} .site-mobile-header-container {
+        {%- if section.settings.mobileLogoPosition == 'start' -%}
+            --site-mobile-header-template-columns: auto 1fr auto;
+            --site-mobile-header-logo-position: items-center;
+            --site-mobile-header-logo-items-align: start;
+            --site-mobile-header-logo-margin: 0 20px 0 0;
+            --site-mobile-header-nav-position: items-start;
+            --site-mobile-header-nav-items-align: start;
+            --site-mobile-header-actions-position: items-end;
+            --site-mobile-header-actions-items-align: end;
+        {%- elsif section.settings.mobileLogoPosition == 'center' -%}
+            --site-mobile-header-template-columns: 1fr auto 1fr;
+            --site-mobile-header-logo-position: items-center;
+            --site-mobile-header-logo-items-align: center;
+            --site-mobile-header-header-logo-margin: 0 20px;
+            --site-mobile-header-nav-position: items-start;
+            --site-mobile-header-nav-items-align: start;
+            --site-mobile-header-actions-position: items-end;
+            --site-mobile-header-actions-items-align: end;
         {%- endif -%}
-
-        --bs-body-bg: transparent;
-        --bs-body-bg-rgb: 0, 0, 0;
-        --bs-body-color: {{ section.settings.secondaryContentColor }};
-        --bs-body-color-rgb: {{ section.settings.secondaryContentColor | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-
-        --bs-secondary-bg: transparent;
-        --bs-secondary-bg-rgb: 0, 0, 0;
-        --bs-secondary-color: {{ section.settings.secondaryContentColor | color_modify: 'alpha', 0.75 }};
-        --bs-secondary-color-rgb: {{ section.settings.secondaryContentColor | color_modify: 'alpha', 0.75 | replace: 'rgba(', '' | replace: ', 0.75)', '' }};
-
-        --bs-tertiary-bg: transparent;
-        --bs-tertiary-bg-rgb: 0, 0, 0;
-        --bs-tertiary-color: {{ section.settings.secondaryContentColor | color_modify: 'alpha', 0.5 }};
-        --bs-tertiary-color-rgb: {{ section.settings.secondaryContentColor | color_modify: 'alpha', 0.5 | replace: 'rgba(', '' | replace: ', 0.5)', '' }};
-
-        --bs-emphasis-color: {{ section.settings.secondaryContentColor }};
-        --bs-emphasis-color-rgb: {{ section.settings.secondaryContentColor | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-
-        --bs-link-color: {{ section.settings.secondaryContentColor }};
-        --bs-link-color-rgb: {{ section.settings.secondaryContentColor | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-        --bs-link-hover-color: {{ section.settings.secondaryContentColor }};
-        --bs-link-hover-color-rgb: {{ section.settings.secondaryContentColor | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-
-        --bs-border-color: var(--style-border-color);
-        --bs-heading-color: var(--style-heading-color);
     }
     {%- if settings.styleCartVariant == 2 -%}
 
@@ -202,10 +159,10 @@
 
             {%- if styleTextColorBrightness > 190 -%}
                 --style-text-accent-color: {{ settings.style_text_color | color_darken: 10 }};
-                --style-text-muted-color: {{ settings.style_text_color | color_darken: 40 }};
+                --style-text-muted-color: {{ settings.style_text_color | color_darken: 30 }};
             {%- else -%}
                 --style-text-accent-color: {{ settings.style_text_color | color_lighten: 10 }};
-                --style-text-muted-color: {{ settings.style_text_color | color_lighten: 40 }};
+                --style-text-muted-color: {{ settings.style_text_color | color_lighten: 30 }};
             {%- endif -%}
 
             {%- if styleButtonBgColorColorBrightness > 190 -%}
@@ -229,30 +186,35 @@
             {%- endif -%}
 
             --bs-body-bg: {{ settings.style_bg_color }};
-            --bs-body-bg-rgb: {{ settings.style_bg_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+            --bs-body-bg-rgb: {{ settings.style_bg_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
             --bs-body-color: {{ settings.style_text_color }};
-            --bs-body-color-rgb: {{ settings.style_text_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+            --bs-body-color-rgb: {{ settings.style_text_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
             --bs-secondary-bg: {{ settings.style_bg_color | color_darken: 30 }};
-            --bs-secondary-bg-rgb: {{ settings.style_bg_color | color_darken: 30 | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+            --bs-secondary-bg-rgb: {{ settings.style_bg_color | color_darken: 30 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
             --bs-secondary-color: {{ settings.style_ext_color | color_modify: 'alpha', 0.75 }};
-            --bs-secondary-color-rgb: {{ settings.style_text_color | color_modify: 'alpha', 0.75 | replace: 'rgba(', '' | replace: ', 0.75)', '' }};
+            --bs-secondary-color-rgb: {{ settings.style_text_color| color_desaturate: 25 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
             --bs-tertiary-bg: {{ settings.style_bg_color | color_darken: 10 }};
-            --bs-tertiary-bg-rgb: {{ settings.style_bg_color | color_darken: 10 | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+            --bs-tertiary-bg-rgb: {{ settings.style_bg_color | color_darken: 10 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
             --bs-tertiary-color: {{ settings.style_text_color | color_modify: 'alpha', 0.5 }};
-            --bs-tertiary-color-rgb: {{ settings.style_text_color | color_modify: 'alpha', 0.5 | replace: 'rgba(', '' | replace: ', 0.5)', '' }};
+            --bs-tertiary-color-rgb: {{ settings.style_text_color | color_desaturate: 50 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
             --bs-emphasis-color: {{ settings.style_accent_color }};
-            --bs-emphasis-color-rgb: {{ settings.style_accent_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+            --bs-emphasis-color-rgb: {{ settings.style_accent_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
             --bs-link-color: {{ settings.style_link_color }};
-            --bs-link-color-rgb: {{ settings.style_link_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+            --bs-link-color-rgb: {{ settings.style_link_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
             --bs-link-hover-color: {{ settings.style_link_color }};
-            --bs-link-hover-color-rgb: {{ settings.style_link_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
+            --bs-link-hover-color-rgb: {{ settings.style_link_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
             --bs-border-color: var(--style-border-color);
             --bs-heading-color: var(--style-heading-color);
+        }
+    {%- endif -%}
+    {%- if section.settings.gridContainer == 'fluid' -%}
+        #finqu-section-{{ section.id }} .site-header-container .container-fluid {
+            --style-grid-container-padding-x: 3rem;
         }
     {%- endif -%}
 {%- endcapture -%}
@@ -263,65 +225,69 @@
     <h1 class="text-hidden">{{- store.name -}}</h1>
 {%- endif -%}
 
-<div class="site-search-container site-search-floating">
+{%- if settings.accessibilityShowSearch -%}
 
-    <div class="site-search">
+    <div class="site-search-container site-search-floating">
 
-        <div class="site-search-form-container">
+        <div class="site-search">
 
-            {% form 'search', class: 'site-search-form' %}
+            <div class="site-search-form-container">
 
-                {% if form.posted_successfully? %}
+                {% form 'search', class: 'site-search-form' %}
 
-                    <script type="application/javascript">
-                        document.addEventListener('DOMContentLoaded', function() {
-                            document.dispatchEvent(new CustomEvent('theme:search', {
-                                detail: {
-                                    query: {{ submitted_form.q | json }}
-                                }
-                            }));
-                        });
-                    </script>
+                    {% if form.posted_successfully? %}
 
-                {% endif %}
+                        <script type="application/javascript">
+                            document.addEventListener('DOMContentLoaded', function() {
+                                document.dispatchEvent(new CustomEvent('theme:search', {
+                                    detail: {
+                                        query: {{ submitted_form.q | json }}
+                                    }
+                                }));
+                            });
+                        </script>
 
-                <div class="input-group">
+                    {% endif %}
 
-                    <button type="submit" class="btn pe-0">
+                    <div class="input-group">
 
-                        {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
+                        <button type="submit" class="btn pe-0">
 
-                    </button>
+                            {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
 
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="{{ 'general.search_products' | t }}"
-                        name="q"
-                        value="{{ search.search_term }}"
-                        autocomplete="off">
+                        </button>
 
-                    <button type="reset" class="btn btn-icon ps-0">
+                        <input
+                            class="form-control"
+                            type="search"
+                            placeholder="{{ 'general.search_products' | t }}"
+                            name="q"
+                            value="{{ search.search_term }}"
+                            autocomplete="off">
 
-                        {%- render 'icon', icon: 'close', class: 'svg-icon-fw' -%}
+                        <button type="reset" class="btn btn-icon ps-0">
 
-                    </button>
+                            {%- render 'icon', icon: 'close', class: 'svg-icon-fw' -%}
 
-                </div>
+                        </button>
 
-            {% endform %}
+                    </div>
 
-        </div>
+                {% endform %}
 
-        <div class="site-search-results-container">
+            </div>
 
-            <div class="site-search-results"></div>
+            <div class="site-search-results-container">
+
+                <div class="site-search-results"></div>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+{%- endif -%}
 
 <div class="site-mobile-header-container{% if section.settings.stickyMobileHeader %} site-mobile-header-sticky{% endif %}">
 
@@ -344,11 +310,25 @@
 
                     </div>
 
-                    {% if customer %}
+                    {%- if settings.accessibilityShowSearch and section.settings.mobileShowSearchInNavigation == false and section.settings.mobileLogoPosition == 'center' -%}
+
+                        <div class="site-mobile-header-item site-mobile-header-item-search">
+
+                            <button type="button" class="site-search-toggle btn btn-text">
+
+                                {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
+
+                            </button>
+
+                        </div>
+
+                    {% elsif store.customer_accounts_enabled and settings.accessibilityShowSearch and section.settings.mobileShowSearchInNavigation == true and section.settings.mobileLogoPosition == 'center'  %}
 
                         <div class="site-mobile-header-item site-mobile-header-item-account">
 
-                            <a href="{{ routes.account_url }}" class="btn btn-text">
+                            <a
+                                href="{{ session.logged_in | yepnope: routes.account_url, routes.account_login_url }}"
+                                class="btn btn-text">
 
                                 {%- render 'icon', icon: 'user', class: 'svg-icon-fw' -%}
 
@@ -369,18 +349,18 @@
                             {%- assign imgSizeOnPhone = '200,25' -%}
                             {%- assign imgSizeOnTablet = '400,35' -%}
 
-                            {% if section.settings.logoImgSrc %}
+                            {% if section.settings.logoImg %}
 
                                 <img
                                     alt="{{ store.name }}"
-                                    src="{{ section.settings.logoImgSrc | thumb: imgSizeOnTablet }}"
-                                    srcset="{{ section.settings.logoImgSrc | thumb: imgSizeOnTablet }} 1x, {{ section.settings.logoImgSrc | thumb: imgSizeOnTablet | thumb:'@2x' }} 2x"
+                                    src="{{ section.settings.logoImg | thumb: imgSizeOnTablet }}"
+                                    srcset="{{ section.settings.logoImg | thumb: imgSizeOnTablet }} 1x, {{ section.settings.logoImg | thumb: imgSizeOnTablet | thumb:'@2x' }} 2x"
                                     class="img-fluid site-mobile-header-logo-img d-none d-md-block">
 
                                 <img
                                     alt="{{ store.name }}"
-                                    src="{{ section.settings.logoImgSrc | thumb: imgSizeOnPhone }}"
-                                    srcset="{{ section.settings.logoImgSrc | thumb: imgSizeOnPhone }} 1x, {{ section.settings.logoImgSrc | thumb: imgSizeOnPhone | thumb:'@2x' }} 2x"
+                                    src="{{ section.settings.logoImg | thumb: imgSizeOnPhone }}"
+                                    srcset="{{ section.settings.logoImg | thumb: imgSizeOnPhone }} 1x, {{ section.settings.logoImg | thumb: imgSizeOnPhone | thumb:'@2x' }} 2x"
                                     class="img-fluid site-mobile-header-logo-img d-block d-md-none">
 
                             {% else %}
@@ -399,7 +379,37 @@
 
                 <div class="site-mobile-header-items-actions-container">
 
-                    {% if customer %}
+                    {%- if settings.accessibilityShowSearch and section.settings.mobileShowSearchInNavigation == false and section.settings.mobileLogoPosition == 'start' -%}
+
+                        <div class="site-mobile-header-item site-mobile-header-item-search">
+
+                            <button type="button" class="site-search-toggle btn btn-text">
+
+                                {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
+
+                            </button>
+
+                        </div>
+
+                    {% endif %}
+
+                    {%- if store.customer_accounts_enabled and section.settings.mobileLogoPosition == 'start' -%}
+
+                        <div class="site-mobile-header-item site-mobile-header-item-account">
+
+                            <a
+                                href="{{ session.logged_in | yepnope: routes.account_url, routes.account_login_url }}"
+                                class="btn btn-text">
+
+                                {%- render 'icon', icon: 'user', class: 'svg-icon-fw' -%}
+
+                            </a>
+
+                        </div>
+
+                    {% endif %}
+
+                    {% if settings.accessibilityShowWishlist %}
 
                         <div class="site-mobile-header-item site-mobile-header-item-wishlist">
 
@@ -427,7 +437,7 @@
 
                             <span class="site-mobile-header-item-counter{% if cart.items.size > 0 %} has-items{% endif %}">
 
-                                <span class="site-mobile-header-item-counter-text" data-cart-item-count>
+                                <span class="site-mobile-header-item-counter-text" data-cart-item-count="true">
                                     {{ cart.item_count }}
                                 </span>
 
@@ -449,266 +459,455 @@
 
 </div>
 
-<nav class="site-mobile-navigation-container">
+<nav class="site-mobile-navigation-container{% if section.settings.mobileNavigationSimple %} site-mobile-navigation-simple{% endif %}">
 
-    {%- assign layerIndex = 0 -%}
+    {% unless section.settings.mobileNavigationSimple %}
 
-    {% for item in mobileMenu.links %}
+        {%- assign layerIndex = 0 -%}
 
-        {% if item.links %}
+        {% for item in mobileMenu.links %}
 
-            {%- assign layerIndex = layerIndex | plus: 1 -%}
+            {% if item.links %}
 
-            <div class="site-mobile-navigation-layer site-mobile-navigation-layer-child" data-mobile-navigation-layer-id="{{ layerIndex }}">
+                {%- assign layerIndex = layerIndex | plus: 1 -%}
 
-                <div class="site-mobile-navigation-header">
+                <div class="site-mobile-navigation-layer site-mobile-navigation-layer-child" data-mobile-navigation-layer-id="{{ layerIndex }}">
 
-                    <div class="site-mobile-navigation-header-inner">
+                    <div class="site-mobile-navigation-header">
 
-                        <button
-                            type="button"
-                            name="site-mobile-navigation-hide-layer"
-                            class="btn btn-text"
-                            value="{{ layerIndex }}">
-                            {%- render 'icon', icon: 'angle-left' -%}
-                        </button>
+                        <div class="site-mobile-navigation-header-inner">
 
-                        <span class="site-mobile-navigation-header-text">
-                            {{ item.title }}
-                        </span>
+                            <button
+                                type="button"
+                                name="site-mobile-navigation-hide-layer"
+                                class="btn btn-text"
+                                value="{{ layerIndex }}">
+                                {%- render 'icon', icon: 'angle-left' -%}
+                            </button>
+
+                            <span class="site-mobile-navigation-header-text">
+                                {{ item.title }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <ul class="site-mobile-navigation-menu">
+
+                        {% for item in item.links %}
+
+                            <li class="site-mobile-navigation-menu-item{% if item.links %} site-mobile-navigation-menu-item-parent{% endif %}{% if item.active %} site-mobile-navigation-menu-item-active{% endif %}">
+
+                                {%- if item.url -%}
+
+                                    <a
+                                        href="{{ item.url }}"
+                                        target="{{ item.target | default: '_self' }}"
+                                        class="site-mobile-navigation-menu-item-text">
+                                        {{ item.title }}
+                                    </a>
+
+                                    {%- if item.links -%}
+
+                                        <button
+                                            type="button"
+                                            name="site-mobile-navigation-show-layer"
+                                            class="btn btn-text"
+                                            value="{{ layerIndex }}-{{ forloop.index }}">
+                                            {%- render 'icon', icon: 'angle-right' -%}
+                                        </button>
+
+                                    {% endif %}
+
+                                {%- else -%}
+
+                                    <span class="site-mobile-navigation-menu-item-text">
+                                        {{ item.title }}
+                                    </span>
+
+                                    {%- if item.links -%}
+
+                                        <button
+                                            type="button"
+                                            name="site-mobile-navigation-show-layer"
+                                            class="btn btn-text"
+                                            value="{{ layerIndex }}-{{ forloop.index }}">
+                                            {%- render 'icon', icon: 'angle-right' -%}
+                                        </button>
+
+                                    {% endif %}
+
+                                {%- endif -%}
+
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                {% for item in item.links %}
+
+                    {% if item.links %}
+
+                        <div class="site-mobile-navigation-layer site-mobile-navigation-layer-child" data-mobile-navigation-layer-id="{{ layerIndex }}-{{ forloop.index }}">
+
+                            <div class="site-mobile-navigation-header">
+
+                                <div class="site-mobile-navigation-header-inner">
+
+                                    <button
+                                        type="button"
+                                        name="site-mobile-navigation-hide-layer"
+                                        class="btn btn-text"
+                                        value="{{ layerIndex }}-{{ forloop.index }}">
+                                        {%- render 'icon', icon: 'angle-left' -%}
+                                    </button>
+
+                                    <span class="site-mobile-navigation-header-text">
+                                        {{ item.title }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <ul class="site-mobile-navigation-menu">
+
+                                {% for item in item.links %}
+
+                                    <li class="site-mobile-navigation-menu-item{% if item.links %} site-mobile-navigation-menu-item-parent{% endif %}{% if item.active %} site-mobile-navigation-menu-item-active{% endif %}">
+
+                                        {%- if item.url -%}
+
+                                            <a
+                                                href="{{ item.url }}"
+                                                target="{{ item.target | default: '_self' }}"
+                                                class="site-mobile-navigation-menu-item-text">
+                                                {{ item.title }}
+                                            </a>
+
+                                        {%- else -%}
+
+                                            <span class="site-mobile-navigation-menu-item-text">
+                                                {{ item.title }}
+                                            </span>
+
+                                        {%- endif -%}
+
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endfor %}
+
+    {% endunless %}
+
+    <div class="site-mobile-navigation-layer site-mobile-navigation-layer-root">
+
+        {%- if settings.accessibilityShowSearch and section.settings.mobileShowSearchInNavigation -%}
+
+            <div class="site-search-container">
+
+                <div class="site-search">
+
+                    <div class="site-search-form-container">
+
+                        {% form 'search', class: 'site-search-form' %}
+
+                            <div class="input-group">
+
+                                <button type="submit" class="btn btn-icon pe-0">
+
+                                    {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
+
+                                </button>
+                                                        
+                                <div class="form-floating">
+
+                                    <input id="site-mobile-site-search" class="form-control" type="search" placeholder="{{ 'general.search_products' | t }}" name="q" value="{{ search.search_term }}" autocomplete="off">
+                                    
+                                    <label for="site-mobile-site-search">
+                                        {{- 'general.search_products' | t -}}
+                                    </label>
+
+                                </div>
+
+                                <button type="reset" class="btn btn-icon ps-0">
+
+                                    {%- render 'icon', icon: 'close' -%}
+
+                                </button>
+
+                            </div>
+
+                        {% endform %}
+
+                    </div>
+
+                    <div class="site-search-results-container">
+
+                        <div class="site-search-results"></div>
 
                     </div>
 
                 </div>
 
-                <ul class="site-mobile-navigation-menu">
+            </div>
 
-                    {% for item in item.links %}
+        {%- endif -%}
 
-                        <li class="site-mobile-navigation-menu-item{% if item.links %} site-mobile-navigation-menu-item-parent{% endif %}{% if item.active %} site-mobile-navigation-menu-item-active{% endif %}">
+        {% unless section.settings.mobileNavigationSimple %}
+
+            <ul class="site-mobile-navigation-menu">
+
+                {%- assign layerIndex = 0 -%}
+
+                {% for item in mobileMenu.links %}
+
+                    <li class="site-mobile-navigation-menu-item{% if item.active %} site-mobile-navigation-menu-item-active{% endif %}">
+
+                        {%- if item.url -%}
+
+                            <a
+                                href="{{ item.url }}"
+                                target="{{ item.target | default: '_self' }}"
+                                class="site-mobile-navigation-menu-item-text">
+                                {{ item.title }}
+                            </a>
+
+                            {%- if item.links -%}
+
+                                {%- assign layerIndex = layerIndex | plus: 1 -%}
+
+                                <button
+                                    type="button"
+                                    name="site-mobile-navigation-show-layer"
+                                    class="btn btn-text"
+                                    value="{{ layerIndex }}">
+                                    {%- render 'icon', icon: 'angle-right' -%}
+                                </button>
+
+                            {% endif %}
+
+                        {%- else -%}
+
+                            <span class="site-mobile-navigation-menu-item-text">
+                                {{ item.title }}
+                            </span>
+
+                            {%- if item.links -%}
+
+                                {%- assign layerIndex = layerIndex | plus: 1 -%}
+
+                                <button
+                                    type="button"
+                                    name="site-mobile-navigation-show-layer"
+                                    class="btn btn-text"
+                                    value="{{ layerIndex }}">
+                                    {%- render 'icon', icon: 'angle-right' -%}
+                                </button>
+
+                            {% endif %}
+
+                        {%- endif -%}
+
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            {%- assign levelIndex = 0 -%}
+
+            <div id="site-mobile-navigation-accordion-{{ levelIndex }}" class="accordion accordion-navigation mt-2">
+
+                {% for item in mobileMenu.links %}
+                
+                    <div class="accordion-item">
+
+                        <div id="site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}-header" class="accordion-header">
 
                             {%- if item.url -%}
 
                                 <a
                                     href="{{ item.url }}"
                                     target="{{ item.target | default: '_self' }}"
-                                    class="site-mobile-navigation-menu-item-text">
+                                    class="accordion-header-text">
                                     {{ item.title }}
                                 </a>
 
-                                {%- if item.links -%}
-
-                                    <button
-                                        type="button"
-                                        name="site-mobile-navigation-show-layer"
-                                        class="btn btn-text"
-                                        value="{{ layerIndex }}-{{ forloop.index }}">
-                                        {%- render 'icon', icon: 'angle-right' -%}
-                                    </button>
-
-                                {% endif %}
-
                             {%- else -%}
 
-                                <span class="site-mobile-navigation-menu-item-text">
+                                <span class="accordion-header-text">
                                     {{ item.title }}
                                 </span>
-
-                                {%- if item.links -%}
-
-                                    <button
-                                        type="button"
-                                        name="site-mobile-navigation-show-layer"
-                                        class="btn btn-text"
-                                        value="{{ layerIndex }}-{{ forloop.index }}">
-                                        {%- render 'icon', icon: 'angle-right' -%}
-                                    </button>
-
-                                {% endif %}
 
                             {%- endif -%}
 
-                        </li>
-
-                    {% endfor %}
-
-                </ul>
-
-            </div>
-
-            {% for item in item.links %}
-
-                {% if item.links %}
-
-                    <div class="site-mobile-navigation-layer site-mobile-navigation-layer-child" data-mobile-navigation-layer-id="{{ layerIndex }}-{{ forloop.index }}">
-
-                        <div class="site-mobile-navigation-header">
-
-                            <div class="site-mobile-navigation-header-inner">
+                            {%- if item.links -%}
 
                                 <button
-                                    type="button"
-                                    name="site-mobile-navigation-hide-layer"
-                                    class="btn btn-text"
-                                    value="{{ layerIndex }}-{{ forloop.index }}">
-                                    {%- render 'icon', icon: 'angle-left' -%}
+                                    class="btn btn-text d-flex align-items-center ps-4 py-3"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}"
+                                    aria-controls="site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}"
+                                    aria-expanded="{% if item.child_active %}true{% else %}false{% endif %}">
+
+                                    <span class="accordion-indicator"></span>
+
                                 </button>
 
-                                <span class="site-mobile-navigation-header-text">
-                                    {{ item.title }}
-                                </span>
-
-                            </div>
+                            {% endif %}
 
                         </div>
 
-                        <ul class="site-mobile-navigation-menu">
+                        {%- if item.links -%}
 
-                            {% for item in item.links %}
+                            <div id="site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}" class="accordion-collapse collapse{% if item.child_active %} show{% endif %}">
 
-                                <li class="site-mobile-navigation-menu-item{% if item.links %} site-mobile-navigation-menu-item-parent{% endif %}{% if item.active %} site-mobile-navigation-menu-item-active{% endif %}">
+                                <div class="accordion-body">
 
-                                    {%- if item.url -%}
+                                    {%- assign levelIndex = levelIndex | plus: 1 -%}
 
-                                        <a
-                                            href="{{ item.url }}"
-                                            target="{{ item.target | default: '_self' }}"
-                                            class="site-mobile-navigation-menu-item-text">
-                                            {{ item.title }}
-                                        </a>
+                                    <div id="site-mobile-navigation-accordion-{{ levelIndex }}" class="accordion accordion-navigation">
 
-                                    {%- else -%}
+                                        {% for item in item.links %}
+                                        
+                                            <div class="accordion-item">
 
-                                        <span class="site-mobile-navigation-menu-item-text">
-                                            {{ item.title }}
-                                        </span>
+                                                <div id="site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}-header" class="accordion-header">
 
-                                    {%- endif -%}
+                                                    {%- if item.url -%}
 
-                                </li>
+                                                        <a
+                                                            href="{{ item.url }}"
+                                                            target="{{ item.target | default: '_self' }}"
+                                                            class="accordion-header-text">
+                                                            {{ item.title }}
+                                                        </a>
 
-                            {% endfor %}
+                                                    {%- else -%}
 
-                        </ul>
+                                                        <span class="accordion-header-text">
+                                                            {{ item.title }}
+                                                        </span>
+
+                                                    {%- endif -%}
+
+                                                    {%- if item.links -%}
+
+                                                        {%- assign layerIndex = layerIndex | plus: 1 -%}
+
+                                                        <button
+                                                            class="btn btn-text d-flex align-items-center ps-4 py-3"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}"
+                                                            aria-controls="site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}"
+                                                            aria-expanded="{% if item.child_active %}true{% else %}false{% endif %}">
+
+                                                            <span class="accordion-indicator"></span>
+
+                                                        </button>
+
+                                                    {% endif %}
+
+                                                </div>
+
+                                                {%- if item.links -%}
+
+                                                    <div id="site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}" class="accordion-collapse collapse{% if item.child_active %} show{% endif %}">
+
+                                                        <div class="accordion-body">
+
+                                                            {%- assign levelIndex = levelIndex | plus: 1 -%}
+
+                                                            <div id="site-mobile-navigation-accordion-{{ levelIndex }}" class="accordion accordion-navigation">
+
+                                                                {% for item in item.links %}
+                                                                
+                                                                    <div class="accordion-item">
+
+                                                                        <div id="site-mobile-navigation-accordion-{{ levelIndex }}-{{ forloop.index }}-header" class="accordion-header">
+
+                                                                            {%- if item.url -%}
+
+                                                                                <a
+                                                                                    href="{{ item.url }}"
+                                                                                    target="{{ item.target | default: '_self' }}"
+                                                                                    class="accordion-header-text">
+                                                                                    {{ item.title }}
+                                                                                </a>
+
+                                                                            {%- else -%}
+
+                                                                                <span class="accordion-header-text">
+                                                                                    {{ item.title }}
+                                                                                </span>
+
+                                                                            {%- endif -%}
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                {% endfor %}
+
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                    </div>
+
+                                                {% endif %}
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+
+                        {% endif %}
 
                     </div>
 
-                {% endif %}
-
-            {% endfor %}
-
-        {% endif %}
-
-    {% endfor %}
-
-    <div class="site-mobile-navigation-layer site-mobile-navigation-layer-root">
-
-        <div class="site-search-container">
-
-            <div class="site-search">
-
-                <div class="site-search-form-container">
-
-                    {% form 'search', class: 'site-search-form' %}
-
-                        <div class="input-group">
-
-                            <button type="submit" class="btn btn-icon pe-0">
-
-                                {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
-
-                            </button>
-                                                    
-                            <div class="form-floating">
-
-                                <input id="site-mobile-site-search" class="form-control" type="search" placeholder="{{ 'general.search_products' | t }}" name="q" value="{{ search.search_term }}" autocomplete="off">
-                                
-                                <label for="site-mobile-site-search">
-                                    {{- 'general.search_products' | t -}}
-                                </label>
-
-                            </div>
-
-                            <button type="reset" class="btn btn-icon ps-0">
-
-                                {%- render 'icon', icon: 'close' -%}
-
-                            </button>
-
-                        </div>
-
-                    {% endform %}
-
-                </div>
-
-                <div class="site-search-results-container">
-
-                    <div class="site-search-results"></div>
-
-                </div>
+                {% endfor %}
 
             </div>
 
-        </div>
+        {% endunless %}
 
-        <ul class="site-mobile-navigation-menu">
+        {% if section.settings.mobileMenuSecondary and section.settings.mobileMenuSecondaryTitle %}
 
-            {%- assign layerIndex = 0 -%}
+            <span class="d-block fw-bold fs-4 px-c mt-4 text-title">
+                {{- section.settings.mobileMenuSecondaryTitle -}}
+            </span>
 
-            {% for item in mobileMenu.links %}
+        {% elsif section.settings.mobileMenuSecondary == blank %}
 
-                <li class="site-mobile-navigation-menu-item{% if item.active %} site-mobile-navigation-menu-item-active{% endif %}">
+            <span class="d-block fw-bold fs-4 px-c mt-4 text-title">
+                {{- 'account.title' | t -}}
+            </span>
 
-                    {%- if item.url -%}
-
-                        <a
-                            href="{{ item.url }}"
-                            target="{{ item.target | default: '_self' }}"
-                            class="site-mobile-navigation-menu-item-text">
-                            {{ item.title }}
-                        </a>
-
-                        {%- if item.links -%}
-
-                            {%- assign layerIndex = layerIndex | plus: 1 -%}
-
-                            <button
-                                type="button"
-                                name="site-mobile-navigation-show-layer"
-                                class="btn btn-text"
-                                value="{{ layerIndex }}">
-                                {%- render 'icon', icon: 'angle-right' -%}
-                            </button>
-
-                        {% endif %}
-
-                    {%- else -%}
-
-                        <span class="site-mobile-navigation-menu-item-text">
-                            {{ item.title }}
-                        </span>
-
-                        {%- if item.links -%}
-
-                            {%- assign layerIndex = layerIndex | plus: 1 -%}
-
-                            <button
-                                type="button"
-                                name="site-mobile-navigation-show-layer"
-                                class="btn btn-text"
-                                value="{{ layerIndex }}">
-                                {%- render 'icon', icon: 'angle-right' -%}
-                            </button>
-
-                        {% endif %}
-
-                    {%- endif -%}
-
-                </li>
-
-            {% endfor %}
-
-        </ul>
+        {% endif %}
 
         <ul class="site-mobile-navigation-menu-secondary">
 
@@ -750,7 +949,7 @@
                             class="site-mobile-navigation-menu-secondary-item-text">
 
                             {%- if session.logged_in -%}
-                                {{- 'account.title' | t -}}
+                                {{- 'account.information_title' | t -}}
                             {%- else -%}
                                 {{- 'login.title' | t -}}
                             {%- endif -%}
@@ -759,31 +958,33 @@
 
                     </li>
 
-                    {% if session.logged_in %}
+                {% endif %}
 
-                        <li class="site-mobile-navigation-menu-secondary-item">
+                {% if store.customer_accounts_enabled and session.logged_in %}
 
-                            <a
-                                href="{{ routes.account_wishlist_url }}"
-                                class="site-mobile-navigation-menu-secondary-item-text">
-                                
-                                <span class="site-header-item-counter{% if wishlist.products.size > 0 %} has-items{% endif %}">
+                    <li class="site-mobile-navigation-menu-secondary-item">
 
-                                    <span class="me-2">
-                                        {{- 'general.wishlist' | t -}}
-                                    </span>
+                        <a
+                            href="{{ routes.account_orders_url }}"
+                            class="site-mobile-navigation-menu-secondary-item-text">
 
-                                    <span class="site-header-item-counter-text" data-wishlist-item-count>
-                                        {{- wishlist.products.size -}}
-                                    </span>
+                                {{- 'account.order_plural' | t -}}
 
-                                </span>
+                        </a>
 
-                            </a>
+                    </li>
 
-                        </li>
+                    <li class="site-mobile-navigation-menu-secondary-item">
 
-                    {% endif %}
+                        <a
+                            href="{{ routes.account_logout_url }}"
+                            class="site-mobile-navigation-menu-secondary-item-text">
+
+                                {{- 'account.logout' | t -}}
+
+                        </a>
+
+                    </li>
 
                 {% endif %}
 
@@ -791,9 +992,9 @@
 
         </ul>
 
-        {% if section.settings.socialMediaIconsStatus %}
+        {% if section.settings.mobileShowSocialIconsInNavigation %}
 
-            {% render 'social-media-buttons' class: 'site-mobile-navigation-social-media-buttons-container' %}
+            {% render 'social-media-buttons' class: 'site-mobile-navigation-social-media-buttons-container', preview: request.design_mode %}
 
         {% endif %}
 
@@ -823,7 +1024,7 @@
 
         <div class="site-header-items-container">
 
-            <div class="site-header-items container">
+            <div class="site-header-items container{% if section.settings.gridContainer %}-{{- section.settings.gridContainer -}}{% endif %}">
 
                 <div class="site-header-items-logo-container">
 
@@ -835,32 +1036,21 @@
                                 {{- section.settings.logoSize -}},{{- section.settings.logoSize | times: 0.5 | ceil -}}
                             {%- endcapture -%}
 
-                            {% if section.settings.secondaryLogoImgSrc and request.page_type == 'frontpage' %}
+                            {% if section.settings.logoImg %}
 
                                 <img
                                     alt="{{ store.name }}"
-                                    src="{{ section.settings.secondaryLogoImgSrc | thumb: imgSize }}"
-                                    srcset="{{ section.settings.secondaryLogoImgSrc | thumb: imgSize }} 1x, {{ section.settings.secondaryLogoImgSrc | thumb: imgSize | thumb:'@2x' }} 2x" class="d-block img-fluid site-header-secondary-logo-img{% if section.settings.logoImgSrc %} has-multiple-logos{% endif %}">
-
-                            {% endif %}
-
-                            {% if section.settings.logoImgSrc %}
-
-                                <img
-                                    alt="{{ store.name }}"
-                                    src="{{ section.settings.logoImgSrc | thumb: imgSize }}"
-                                    srcset="{{ section.settings.logoImgSrc | thumb: imgSize }} 1x, {{ section.settings.logoImgSrc | thumb: imgSize | thumb:'@2x' }} 2x"
+                                    src="{{ section.settings.logoImg | thumb: imgSize }}"
+                                    srcset="{{ section.settings.logoImg | thumb: imgSize }} 1x, {{ section.settings.logoImg | thumb: imgSize | thumb:'@2x' }} 2x"
                                     class="d-block img-fluid site-header-logo-img">
 
-                            {% endif %}
-
-                            {% unless section.settings.logoImgSrc or section.settings.secondaryLogoImgSrc %}
+                            {% else %}
 
                                 <span class="site-header-logo-text">
                                     {{ store.name }}
                                 </span>
 
-                            {% endunless %}
+                            {% endif %}
 
                         </a>
 
@@ -868,35 +1058,115 @@
 
                 </div>
 
-                <div class="site-header-items-actions-container">
+                {%- if settings.accessibilityShowSearch -%}
 
-                    <div class="site-header-item site-header-item-search">
+                    <div class="site-header-items-search-container">
 
-                        <button type="button" class="site-search-toggle btn btn-text">
+                        <div class="site-header-item">
 
-                            {%- render 'icon', icon: 'search' -%}
+                            <div class="site-search-container">
 
-                        </button>
+                                <div class="site-search">
+
+                                    <div class="site-search-form-container">
+                            
+                                        {% form 'search', class: 'site-search-form' %}
+                            
+                                            {% if form.posted_successfully? %}
+                            
+                                                <script type="application/javascript">
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        document.dispatchEvent(new CustomEvent('theme:search', {
+                                                            detail: {
+                                                                query: {{ submitted_form.q | json }}
+                                                            }
+                                                        }));
+                                                    });
+                                                </script>
+                            
+                                            {% endif %}
+
+                                            <div class="input-group">
+
+                                                <button type="submit" class="btn pe-0">
+
+                                                    {%- render 'icon', icon: 'search' -%}
+
+                                                </button>
+                
+                                                <input
+                                                        class="form-control"
+                                                        type="search"
+                                                        placeholder="{{ 'general.search_products' | t }}"
+                                                        name="q"
+                                                        value="{{ search.search_term }}"
+                                                        autocomplete="off">
+
+                                                <button type="reset" class="btn btn-icon ps-0">
+
+                                                    {%- render 'icon', icon: 'close' -%}
+
+                                                </button>
+
+                                            </div>
+                            
+                                        {% endform %}
+                            
+                                    </div>
+                            
+                                    <div class="site-search-results-container">
+                            
+                                        <div class="site-search-results"></div>
+                            
+                                    </div>
+                            
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
+                {%- endif -%}
+
+                <div class="site-header-items-actions-container">
+
                     {% if store.customer_accounts_enabled %}
 
-                        <div class="site-header-item site-header-item-account">
+                        <div class="site-header-item site-header-item-account py-0 px-4 border-end">
 
-                            <a href="{{ session.logged_in | yepnope: routes.account_url, routes.account_login_url }}" class="btn btn-text">
+                            <a href="{{ session.logged_in | yepnope: routes.account_url, routes.account_login_url }}" class="d-flex {% if session.logged_in %}align-items-center{% else %}flex-column{% endif %}">
 
-                                {%- render 'icon', icon: 'user' -%}
+                                {% if session.logged_in %}
+
+                                    {%- render 'icon', icon: 'user', class: 'svg-icon-fw' -%}
+
+                                {% else  %}
+
+                                    <small class="d-block">
+                                        {{- 'general.login_or_signup' | t -}}
+                                    </small>
+
+                                {% endif %}
+
+                                <span class="fw-bold">
+                                    {{- 'account.title' | t -}}
+                                </span>
 
                             </a>
 
                         </div>
 
-                        {% if session.logged_in %}
+                    {% endif %}
 
-                            <div class="site-header-item site-header-item-wishlist">
+                    {% if settings.accessibilityShowWishlist %}
 
-                                <a href="{{ routes.account_wishlist_url }}" class="btn btn-text">
+                        <div class="site-header-item site-header-item-wishlist py-0 px-4 border-end">
+
+                            <a href="{{ routes.account_wishlist_url }}" class="d-flex align-items-center">
+
+                                <div class="position-relative">
 
                                     <span class="site-header-item-counter{% if wishlist.products.size > 0 %} has-items{% endif %}">
 
@@ -906,29 +1176,41 @@
 
                                     </span>
 
-                                    {%- render 'icon', icon: 'like' -%}
+                                    {%- render 'icon', icon: 'like', class: 'svg-icon-fw' -%}
+                                
+                                </div>
 
-                                </a>
+                                <span class="fw-bold ms-3">
+                                    {{- 'wishlist.title' | t -}}
+                                </span>
 
-                            </div>
+                            </a>
 
-                        {% endif %}
+                        </div>
 
                     {% endif %}
 
-                    <div class="site-header-item site-header-item-cart">
+                    <div class="site-header-item site-header-item-cart py-0 px-4">
 
-                        <a href="{{ routes.cart_url }}" class="btn btn-text">
+                        <a href="{{ routes.cart_url }}" class="d-flex align-items-center">
 
-                            <span class="site-header-item-counter{% if cart.items.size > 0 %} has-items{% endif %}">
+                            <div class="position-relative">
 
-                                <span class="site-header-item-counter-text" data-cart-item-count>
-                                    {{ cart.item_count }}
+                                <span class="site-header-item-counter{% if cart.items.size > 0 %} has-items{% endif %}">
+
+                                    <span class="site-header-item-counter-text" data-cart-item-count="true">
+                                        {{- cart.item_count -}}
+                                    </span>
+
                                 </span>
 
-                            </span>
+                                {%- render 'icon', icon: 'cart', class: 'svg-icon-fw' -%}
 
-                            {%- render 'icon', icon: 'cart' -%}
+                            </div>
+
+                            <span class="fw-bold ms-3">
+                                {{- 'general.cart' | t -}}
+                            </span>
 
                         </a>
 
@@ -956,18 +1238,29 @@
 
         <nav class="site-header-nav-container">
 
-            <ul class="site-header-menu container">
+            <ul class="site-header-menu container{% if section.settings.gridContainer %}-{{- section.settings.gridContainer -}}{% endif %}">
 
                 {% for item in mainMenu.links %}
 
-                    {%- assign skipindex = false -%}
+                    {%- assign skipIndex = false -%}
                     {%- assign mainMenuIndex = forloop.index %}
+                    {%- assign mainMenuIndexes = '' -%}
 
                     {% for megamenu in section.settings.setting_blocks.megamenus %}
 
                         {% if megamenu.settings.index == mainMenuIndex %}
 
-                            {%- assign skipindex = true -%}
+                            {%- assign mainMenuIndexes = mainMenuIndexes | split: ',' | compact -%}
+
+                            {%- if mainMenuIndexes contains megamenu.settings.index -%}
+                                {%- assign mainMenuIndexes = mainMenuIndexes | join: ',' -%}
+                                {%- continue -%}
+                            {%- else -%}
+                                {%- assign mainMenuIndexes = mainMenuIndexes | join: ',' | append: megamenu.settings.index | append: ',' -%}
+                            {%- endif -%}
+
+                            {%- assign menu = linklists[megamenu.settings.menu] -%}
+                            {%- assign skipIndex = true -%}
 
                             <li class="site-header-menu-item{% if item.current %} site-header-menu-item-active{% endif %}" data-header-menu-child-id="{{ mainMenuIndex }}">
 
@@ -993,7 +1286,7 @@
 
                     {% endfor %}
 
-                    {% if skipindex == false %}
+                    {%if skipIndex == false %}
 
                         <li class="site-header-menu-item{% if item.current %} site-header-menu-item-active{% endif %}"{% if item.links %} data-header-menu-child-id="{{ mainMenuIndex }}"{% endif %}>
 
@@ -1035,10 +1328,20 @@
 
                     {%- assign skipIndex = false -%}
                     {%- assign mainMenuIndex = forloop.index %}
+                    {%- assign mainMenuIndexes = '' -%}
 
                     {% for megamenu in section.settings.setting_blocks.megamenus %}
 
                         {% if megamenu.settings.index == mainMenuIndex %}
+
+                            {%- assign mainMenuIndexes = mainMenuIndexes | split: ',' | compact -%}
+
+                            {%- if mainMenuIndexes contains megamenu.settings.index -%}
+                                {%- assign mainMenuIndexes = mainMenuIndexes | join: ',' -%}
+                                {%- continue -%}
+                            {%- else -%}
+                                {%- assign mainMenuIndexes = mainMenuIndexes | join: ',' | append: megamenu.settings.index | append: ',' -%}
+                            {%- endif -%}
 
                             {%- assign menu = linklists[megamenu.settings.menu] -%}
                             {%- assign skipIndex = true -%}
@@ -1047,7 +1350,7 @@
 
                                 <div class="container">
 
-                                    <div class="row">
+                                    <div class="grid" style="--bs-columns: {{ megamenu.settings.colPerRow }}">
 
                                         {%- assign hasMultipleLevels = false -%}
 
@@ -1063,19 +1366,19 @@
 
                                             {% for item in menu.links %}
 
-                                                <div class="site-header-submenu-column col">
+                                                <div class="site-header-submenu-item">
 
-                                                    <div class="site-header-submenu-column-title">
+                                                    <div class="site-header-submenu-item-title">
 
                                                         {%- if item.url -%}
 
-                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-title-text">
+                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-title-text">
                                                                 {{ item.title }}
                                                             </a>
 
                                                         {%- else -%}
 
-                                                            <span class="site-header-submenu-column-title-text">
+                                                            <span class="site-header-submenu-item-title-text">
                                                                 {{ item.title }}
                                                             </span>
 
@@ -1083,21 +1386,21 @@
 
                                                     </div>
 
-                                                    <ul class="site-header-submenu-column-menu">
+                                                    <ul class="site-header-submenu-item-menu">
 
                                                         {% for item in item.links %}
 
-                                                            <li class="site-header-submenu-column-menu-item{% if item.active %} site-header-submenu-column-menu-item-active{% endif %}">
+                                                            <li class="site-header-submenu-item-menu-item{% if item.active %} site-header-submenu-item-menu-item-active{% endif %}">
 
                                                                 {%- if item.url -%}
 
-                                                                    <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                                    <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                         {{ item.title }}
                                                                     </a>
 
                                                                 {%- else -%}
 
-                                                                    <span class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                                    <span class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                         {{ item.title }}
                                                                     </span>
 
@@ -1115,23 +1418,23 @@
 
                                         {% elsif menu %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
-                                                <ul class="site-header-submenu-column-menu">
+                                                <ul class="site-header-submenu-item-menu">
 
                                                     {% for item in menu.links %}
 
-                                                        <li class="site-header-submenu-column-menu-item{% if item.active %} site-header-submenu-column-menu-item-active{% endif %}">
+                                                        <li class="site-header-submenu-item-menu-item{% if item.active %} site-header-submenu-item-menu-item-active{% endif %}">
 
                                                             {%- if item.url -%}
 
-                                                                <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                                <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                     {{ item.title }}
                                                                 </a>
 
                                                             {%- else -%}
 
-                                                                <span class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                                <span class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                     {{ item.title }}
                                                                 </span>
 
@@ -1147,17 +1450,15 @@
 
                                         {% endif %}
 
-                                        {% if megamenu.settings.promotion1ImgSrc %}
+                                        {% if megamenu.settings.promotion1Img %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
-                                                {% if megamenu.settings.promotion1Link %}
+                                                {% if megamenu.settings.promotion1Link.url %}
                                                     <a
                                                         href="{{- megamenu.settings.promotion1Link.url -}}"
                                                         class="img-indicator-zoom"
-                                                        {% if megamenu.settings.promotion1LinkOpenInNewWindowStatus %}
-                                                        target="_blank"
-                                                        {% endif %}>
+                                                        target="{{ megamenu.settings.promotion2Link.target }}">
                                                 {% endif %}
                                                                     
                                                 {% if megamenu.settings.promotion1ImgAspectRatio == '16:9' %}
@@ -1188,28 +1489,28 @@
                                             
                                                 <div class="aspect-ratio-{{ megamenu.settings.promotion1ImgAspectRatio | replace: ':', '-' }}">
                                             
-                                                    {% if megamenu.settings.promotion1ImgSrc %}
+                                                    {% if megamenu.settings.promotion1Img %}
                                             
                                                         <div class="aspect-ratio-container">
                                             
                                                             <picture>
                                                                 <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                                                    {{- megamenu.settings.promotion1ImgSrc | thumb: imgSizeLg }} 1x,
-                                                                    {{- megamenu.settings.promotion1ImgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion1Img | thumb: imgSizeLg }} 1x,
+                                                                    {{- megamenu.settings.promotion1Img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
                                             
                                                                 <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                                                                    {{- megamenu.settings.promotion1ImgSrc | thumb: imgSizeMd }} 1x,
-                                                                    {{- megamenu.settings.promotion1ImgSrc | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion1Img | thumb: imgSizeMd }} 1x,
+                                                                    {{- megamenu.settings.promotion1Img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
                                             
                                                                 <source data-srcset="
-                                                                    {{- megamenu.settings.promotion1ImgSrc | thumb: imgSizeSm }} 1x,
-                                                                    {{- megamenu.settings.promotion1ImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion1Img | thumb: imgSizeSm }} 1x,
+                                                                    {{- megamenu.settings.promotion1Img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
                                             
                                                                 <img
-                                                                    alt="{{ megamenu.settings.promotion1ImgAlt }}"
-                                                                    data-src="{{ megamenu.settings.promotion1ImgSrc | thumb: imgSizeSm }}"
-                                                                    data-srcset="{{ megamenu.settings.promotion1ImgSrc | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotionImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-column-promotion-img">
+                                                                    alt="{{ megamenu.settings.promotion1Img.alt }}"
+                                                                    data-src="{{ megamenu.settings.promotion1Img | thumb: imgSizeSm }}"
+                                                                    data-srcset="{{ megamenu.settings.promotion1Img | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotion1Img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-item-promotion-img"{% if megamenu.settings.promotion1Img.offset_left or megamenu.settings.promotion1Img.offset_top %} style="--object-position: {{ megamenu.settings.promotion1Img.offset_left }}% {{ megamenu.settings.promotion1Img.offset_top }}%"{% endif %}>
                                                             </picture>
                                             
                                                         </div>
@@ -1218,19 +1519,19 @@
                                             
                                                 </div>
         
-                                                {% if megamenu.settings.promotion1ImgText %}
+                                                {% if megamenu.settings.promotion1Link.text %}
                                                 
-                                                    <div class="site-header-submenu-column-title text-center">
+                                                    <div class="site-header-submenu-item-title text-center">
         
-                                                        <span class="site-header-submenu-column-title-text">
-                                                            {{ megamenu.settings.promotion1ImgText }}
+                                                        <span class="site-header-submenu-item-title-text">
+                                                            {{ megamenu.settings.promotion1Link.text }}
                                                         </span>
         
                                                     </div>
         
                                                 {% endif %}
         
-                                                {% if megamenu.settings.promotion1Link %}
+                                                {% if megamenu.settings.promotion1Link.url %}
                                                     </a>
                                                 {% endif %}
         
@@ -1238,17 +1539,15 @@
 
                                         {% endif %}
 
-                                        {% if megamenu.settings.promotion2ImgSrc %}
+                                        {% if megamenu.settings.promotion2Img %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
-                                                {% if megamenu.settings.promotion2Link %}
+                                                {% if megamenu.settings.promotion2Link.url %}
                                                     <a
                                                         href="{{- megamenu.settings.promotion2Link.url -}}"
                                                         class="img-indicator-zoom"
-                                                        {% if megamenu.settings.promotion2LinkOpenInNewWindowStatus %}
-                                                        target="_blank"
-                                                        {% endif %}>
+                                                        target="{{ megamenu.settings.promotion2Link.target }}">
                                                 {% endif %}
                                                                     
                                                 {% if megamenu.settings.promotion2ImgAspectRatio == '16:9' %}
@@ -1279,28 +1578,28 @@
                                             
                                                 <div class="aspect-ratio-{{ megamenu.settings.promotion2ImgAspectRatio | replace: ':', '-' }}">
                                             
-                                                    {% if megamenu.settings.promotion2ImgSrc %}
+                                                    {% if megamenu.settings.promotion2Img %}
                                             
                                                         <div class="aspect-ratio-container">
                                             
                                                             <picture>
                                                                 <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                                                    {{- megamenu.settings.promotion2ImgSrc | thumb: imgSizeLg }} 1x,
-                                                                    {{- megamenu.settings.promotion2ImgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion2Img | thumb: imgSizeLg }} 1x,
+                                                                    {{- megamenu.settings.promotion2Img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
                                             
                                                                 <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                                                                    {{- megamenu.settings.promotion2ImgSrc | thumb: imgSizeMd }} 1x,
-                                                                    {{- megamenu.settings.promotion2ImgSrc | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion2Img | thumb: imgSizeMd }} 1x,
+                                                                    {{- megamenu.settings.promotion2Img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
                                             
                                                                 <source data-srcset="
-                                                                    {{- megamenu.settings.promotion2ImgSrc | thumb: imgSizeSm }} 1x,
-                                                                    {{- megamenu.settings.promotion2ImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion2Img | thumb: imgSizeSm }} 1x,
+                                                                    {{- megamenu.settings.promotion2Img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
                                             
                                                                 <img
-                                                                    alt="{{ megamenu.settings.promotion2ImgAlt }}"
-                                                                    data-src="{{ megamenu.settings.promotion2ImgSrc | thumb: imgSizeSm }}"
-                                                                    data-srcset="{{ megamenu.settings.promotion2ImgSrc | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotionImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-column-promotion-img">
+                                                                    alt="{{ megamenu.settings.promotion2Img.alt }}"
+                                                                    data-src="{{ megamenu.settings.promotion2Img | thumb: imgSizeSm }}"
+                                                                    data-srcset="{{ megamenu.settings.promotion2Img | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotion2Img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-item-promotion-img"{% if megamenu.settings.promotion2Img.offset_left or megamenu.settings.promotion2Img.offset_top %} style="--object-position: {{ megamenu.settings.promotion2Img.offset_left }}% {{ megamenu.settings.promotion2Img.offset_top }}%"{% endif %}>
                                                             </picture>
                                             
                                                         </div>
@@ -1309,19 +1608,19 @@
                                             
                                                 </div>
         
-                                                {% if megamenu.settings.promotion2ImgText %}
+                                                {% if megamenu.settings.promotion2Link.text %}
                                                 
-                                                    <div class="site-header-submenu-column-title text-center">
+                                                    <div class="site-header-submenu-item-title text-center">
         
-                                                        <span class="site-header-submenu-column-title-text">
-                                                            {{ megamenu.settings.promotion2ImgText }}
+                                                        <span class="site-header-submenu-item-title-text">
+                                                            {{ megamenu.settings.promotion2Link.text }}
                                                         </span>
         
                                                     </div>
         
                                                 {% endif %}
         
-                                                {% if megamenu.settings.promotion2Link %}
+                                                {% if megamenu.settings.promotion2Link.url %}
                                                     </a>
                                                 {% endif %}
         
@@ -1329,17 +1628,15 @@
 
                                         {% endif %}
 
-                                        {% if megamenu.settings.promotion3ImgSrc %}
+                                        {% if megamenu.settings.promotion3Img %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
                                                 {% if megamenu.settings.promotion3Link %}
                                                     <a
                                                         href="{{- megamenu.settings.promotion3Link.url -}}"
                                                         class="img-indicator-zoom"
-                                                        {% if megamenu.settings.promotion3LinkOpenInNewWindowStatus %}
-                                                        target="_blank"
-                                                        {% endif %}>
+                                                        target="{{ megamenu.settings.promotion3Link.target }}">
                                                 {% endif %}
                                                                     
                                                 {% if megamenu.settings.promotion3ImgAspectRatio == '16:9' %}
@@ -1370,28 +1667,28 @@
                                             
                                                 <div class="aspect-ratio-{{ megamenu.settings.promotion3ImgAspectRatio | replace: ':', '-' }}">
                                             
-                                                    {% if megamenu.settings.promotion3ImgSrc %}
+                                                    {% if megamenu.settings.promotion3Img %}
                                             
                                                         <div class="aspect-ratio-container">
                                             
                                                             <picture>
                                                                 <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                                                    {{- megamenu.settings.promotion3ImgSrc | thumb: imgSizeLg }} 1x,
-                                                                    {{- megamenu.settings.promotion3ImgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion3Img | thumb: imgSizeLg }} 1x,
+                                                                    {{- megamenu.settings.promotion3Img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
                                             
                                                                 <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                                                                    {{- megamenu.settings.promotion3ImgSrc | thumb: imgSizeMd }} 1x,
-                                                                    {{- megamenu.settings.promotion3ImgSrc | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion3Img | thumb: imgSizeMd }} 1x,
+                                                                    {{- megamenu.settings.promotion3Img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
                                             
                                                                 <source data-srcset="
-                                                                    {{- megamenu.settings.promotion3ImgSrc | thumb: imgSizeSm }} 1x,
-                                                                    {{- megamenu.settings.promotion3ImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion3Img | thumb: imgSizeSm }} 1x,
+                                                                    {{- megamenu.settings.promotion3Img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
                                             
                                                                 <img
-                                                                    alt="{{ megamenu.settings.promotion3ImgAlt }}"
-                                                                    data-src="{{ megamenu.settings.promotion3ImgSrc | thumb: imgSizeSm }}"
-                                                                    data-srcset="{{ megamenu.settings.promotion3ImgSrc | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotionImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-column-promotion-img">
+                                                                    alt="{{ megamenu.settings.promotion3Img.alt }}"
+                                                                    data-src="{{ megamenu.settings.promotion3Img | thumb: imgSizeSm }}"
+                                                                    data-srcset="{{ megamenu.settings.promotion3Img | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotion3Img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-item-promotion-img"{% if megamenu.settings.promotion3Img.offset_left or megamenu.settings.promotion3Img.offset_top %} style="--object-position: {{ megamenu.settings.promotion3Img.offset_left }}% {{ megamenu.settings.promotion3Img.offset_top }}%"{% endif %}>
                                                             </picture>
                                             
                                                         </div>
@@ -1400,19 +1697,19 @@
                                             
                                                 </div>
         
-                                                {% if megamenu.settings.promotion3ImgText %}
+                                                {% if megamenu.settings.promotion3Link.text %}
                                                 
-                                                    <div class="site-header-submenu-column-title text-center">
+                                                    <div class="site-header-submenu-item-title text-center">
         
-                                                        <span class="site-header-submenu-column-title-text">
-                                                            {{ megamenu.settings.promotion3ImgText }}
+                                                        <span class="site-header-submenu-item-title-text">
+                                                            {{ megamenu.settings.promotion3Link.text }}
                                                         </span>
         
                                                     </div>
         
                                                 {% endif %}
         
-                                                {% if megamenu.settings.promotion3Link %}
+                                                {% if megamenu.settings.promotion3Link.url %}
                                                     </a>
                                                 {% endif %}
         
@@ -1420,17 +1717,15 @@
 
                                         {% endif %}
 
-                                        {% if megamenu.settings.promotion4ImgSrc %}
+                                        {% if megamenu.settings.promotion4Img %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
-                                                {% if megamenu.settings.promotion4Link %}
+                                                {% if megamenu.settings.promotion4Link.url %}
                                                     <a
                                                         href="{{- megamenu.settings.promotion4Link.url -}}"
                                                         class="img-indicator-zoom"
-                                                        {% if megamenu.settings.promotion4LinkOpenInNewWindowStatus %}
-                                                        target="_blank"
-                                                        {% endif %}>
+                                                        target="{{ megamenu.settings.promotion4Link.target }}">
                                                 {% endif %}
                                                                     
                                                 {% if megamenu.settings.promotion4ImgAspectRatio == '16:9' %}
@@ -1461,28 +1756,28 @@
                                             
                                                 <div class="aspect-ratio-{{ megamenu.settings.promotion4ImgAspectRatio | replace: ':', '-' }}">
                                             
-                                                    {% if megamenu.settings.promotion4ImgSrc %}
+                                                    {% if megamenu.settings.promotion4Img %}
                                             
                                                         <div class="aspect-ratio-container">
                                             
                                                             <picture>
                                                                 <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                                                    {{- megamenu.settings.promotion4ImgSrc | thumb: imgSizeLg }} 1x,
-                                                                    {{- megamenu.settings.promotion4ImgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion4Img | thumb: imgSizeLg }} 1x,
+                                                                    {{- megamenu.settings.promotion4Img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
                                             
                                                                 <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                                                                    {{- megamenu.settings.promotion4ImgSrc | thumb: imgSizeMd }} 1x,
-                                                                    {{- megamenu.settings.promotion4ImgSrc | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion4Img | thumb: imgSizeMd }} 1x,
+                                                                    {{- megamenu.settings.promotion4Img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
                                             
                                                                 <source data-srcset="
-                                                                    {{- megamenu.settings.promotion4ImgSrc | thumb: imgSizeSm }} 1x,
-                                                                    {{- megamenu.settings.promotion4ImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                                                                    {{- megamenu.settings.promotion4Img | thumb: imgSizeSm }} 1x,
+                                                                    {{- megamenu.settings.promotion4Img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
                                             
                                                                 <img
-                                                                    alt="{{ megamenu.settings.promotion4ImgAlt }}"
-                                                                    data-src="{{ megamenu.settings.promotion4ImgSrc | thumb: imgSizeSm }}"
-                                                                    data-srcset="{{ megamenu.settings.promotion4ImgSrc | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotionImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-column-promotion-img">
+                                                                    alt="{{ megamenu.settings.promotion4Img.alt }}"
+                                                                    data-src="{{ megamenu.settings.promotion4Img | thumb: imgSizeSm }}"
+                                                                    data-srcset="{{ megamenu.settings.promotion4Img | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotion4Img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-item-promotion-img"{% if megamenu.settings.promotion4Img.offset_left or megamenu.settings.promotion4Img.offset_top %} style="--object-position: {{ megamenu.settings.promotion4Img.offset_left }}% {{ megamenu.settings.promotion4Img.offset_top }}%"{% endif %}>
                                                             </picture>
                                             
                                                         </div>
@@ -1491,19 +1786,19 @@
                                             
                                                 </div>
         
-                                                {% if megamenu.settings.promotion4ImgText %}
+                                                {% if megamenu.settings.promotion4Link.text %}
                                                 
-                                                    <div class="site-header-submenu-column-title text-center">
+                                                    <div class="site-header-submenu-item-title text-center">
         
-                                                        <span class="site-header-submenu-column-title-text">
-                                                            {{ megamenu.settings.promotion4ImgText }}
+                                                        <span class="site-header-submenu-item-title-text">
+                                                            {{ megamenu.settings.promotion4Link.text }}
                                                         </span>
         
                                                     </div>
         
                                                 {% endif %}
         
-                                                {% if megamenu.settings.promotion4Link %}
+                                                {% if megamenu.settings.promotion4Link.url %}
                                                     </a>
                                                 {% endif %}
         
@@ -1521,129 +1816,121 @@
 
                     {% endfor %}
 
-                    {%- if skipIndex == false and item.links -%}
+                    {%-if skipIndex == false and item.links -%}
 
                         <div class="site-header-submenu" data-header-submenu-id="{{ mainMenuIndex }}">
 
-                            <div class="container">
+                            {%- assign hasMultipleLevels = false -%}
 
-                                <div class="row">
+                            {%- for item in item.links -%}
 
-                                    {%- assign hasMultipleLevels = false -%}
+                                {%- if item.links -%}
+                                    {%- assign hasMultipleLevels = true -%}
+                                {%- endif -%}
 
-                                    {%- for item in item.links -%}
+                            {%- endfor -%}
 
-                                        {%- if item.links -%}
-                                            {%- assign hasMultipleLevels = true -%}
-                                        {%- endif -%}
+                            {% if hasMultipleLevels %}
 
-                                    {%- endfor -%}
+                                <div class="site-header-submenu-item">
 
-                                    {% if hasMultipleLevels %}
+                                    <ul class="site-header-submenu-item-menu">
 
-                                        <div class="site-header-submenu-column col">
+                                        {% for item in item.links %}
 
-                                            <ul class="site-header-submenu-column-menu">
+                                            <li class="site-header-submenu-item-menu-item{% if item.active %} site-header-submenu-item-menu-item-active{% endif %}">
 
-                                                {% for item in item.links %}
+                                                {%- if item.url -%}
 
-                                                    <li class="site-header-submenu-column-menu-item{% if item.active %} site-header-submenu-column-menu-item-active{% endif %}">
+                                                    <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-menu-item-text text-underline-indicator">
+                                                        {{ item.title }}
+                                                    </a>
 
-                                                        {%- if item.url -%}
+                                                {%- else -%}
 
-                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-menu-item-text text-underline-indicator">
-                                                                {{ item.title }}
-                                                            </a>
+                                                    <span class="site-header-submenu-item-menu-item-text text-underline-indicator">
+                                                        {{ item.title }}
+                                                    </span>
 
-                                                        {%- else -%}
+                                                {%- endif -%}
 
-                                                            <span class="site-header-submenu-column-menu-item-text text-underline-indicator">
-                                                                {{ item.title }}
-                                                            </span>
+                                                {% if item.links.size > 0 %}
 
-                                                        {%- endif -%}
+                                                    {%- render 'icon', icon: 'angle-right', class: 'site-header-submenu-indicator' -%}
 
-                                                        {% if item.links.size > 0 %}
+                                                    <div class="site-header-sublevel">
 
-                                                            {%- render 'icon', icon: 'angle-right', class: 'site-header-submenu-indicator' -%}
+                                                        <ul class="site-header-sublevel-menu">
 
-                                                            <div class="site-header-sublevel">
+                                                            {% for item in item.links %}
 
-                                                                <ul class="site-header-sublevel-menu col">
+                                                                <li class="site-header-sublevel-menu-item{% if item.active %} site-header-sublevel-menu-item-active{% endif %}">
 
-                                                                    {% for item in item.links %}
+                                                                    {%- if item.url -%}
 
-                                                                        <li class="site-header-sublevel-menu-item{% if item.active %} site-header-sublevel-menu-item-active{% endif %}">
+                                                                        <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-sublevel-menu-item-text text-underline-indicator">
+                                                                            {{ item.title }}
+                                                                        </a>
 
-                                                                            {%- if item.url -%}
+                                                                    {%- else -%}
 
-                                                                                <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-sublevel-menu-item-text text-underline-indicator">
-                                                                                    {{ item.title }}
-                                                                                </a>
+                                                                        <span class="site-header-sublevel-menu-item-text text-underline-indicator">
+                                                                            {{ item.title }}
+                                                                        </span>
 
-                                                                            {%- else -%}
+                                                                    {%- endif -%}
 
-                                                                                <span class="site-header-sublevel-menu-item-text text-underline-indicator">
-                                                                                    {{ item.title }}
-                                                                                </span>
+                                                                </li>
 
-                                                                            {%- endif -%}
+                                                            {% endfor %}
 
-                                                                        </li>
+                                                        </ul>
 
-                                                                    {% endfor %}
+                                                    </div>
 
-                                                                </ul>
+                                                {% endif %}
 
-                                                            </div>
+                                            </li>
 
-                                                        {% endif %}
+                                        {% endfor %}
 
-                                                    </li>
-
-                                                {% endfor %}
-
-                                            </ul>
-
-                                        </div>
-
-                                    {% else %}
-
-                                        <div class="site-header-submenu-column col">
-
-                                            <ul class="site-header-submenu-column-menu">
-
-                                                {% for item in item.links %}
-
-                                                    <li class="site-header-submenu-column-menu-item{% if item.active %} site-header-submenu-column-menu-item-active{% endif %}">
-
-                                                        {%- if item.url -%}
-
-                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-menu-item-text text-underline-indicator">
-                                                                {{ item.title }}
-                                                            </a>
-
-                                                        {%- else -%}
-
-                                                            <span class="site-header-submenu-column-menu-item-text text-underline-indicator">
-                                                                {{ item.title }}
-                                                            </span>
-
-                                                        {%- endif -%}
-
-                                                    </li>
-
-                                                {% endfor %}
-
-                                            </ul>
-
-                                        </div>
-
-                                    {% endif %}
+                                    </ul>
 
                                 </div>
 
-                            </div>
+                            {% else %}
+
+                                <div class="site-header-submenu-item">
+
+                                    <ul class="site-header-submenu-item-menu">
+
+                                        {% for item in item.links %}
+
+                                            <li class="site-header-submenu-item-menu-item{% if item.active %} site-header-submenu-item-menu-item-active{% endif %}">
+
+                                                {%- if item.url -%}
+
+                                                    <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-menu-item-text text-underline-indicator">
+                                                        {{ item.title }}
+                                                    </a>
+
+                                                {%- else -%}
+
+                                                    <span class="site-header-submenu-item-menu-item-text text-underline-indicator">
+                                                        {{ item.title }}
+                                                    </span>
+
+                                                {%- endif -%}
+
+                                            </li>
+
+                                        {% endfor %}
+
+                                    </ul>
+
+                                </div>
+
+                            {% endif %}
 
                         </div>
 
@@ -1679,19 +1966,19 @@
                     },
                     "settings": [
                         {
-                            "id": "logoImgSrc",
+                            "id": "gridContainer",
+                            "type": "hidden"
+                        },
+                        {
+                            "id": "headerItemsPaddingY",
+                            "type": "hidden"
+                        },
+                        {
+                            "id": "logoImg",
                             "type": "image-picker",
                             "label": {
                                 "en": "Logo",
                                 "fi": "Logo"
-                            }
-                        },
-                        {
-                            "id": "secondaryLogoImgSrc",
-                            "type": "image-picker",
-                            "label": {
-                                "en": "Logo for transparent background",
-                                "fi": "Logo läpinäkyvälle taustalle"
                             }
                         },
                         {
@@ -1705,14 +1992,15 @@
                             "max": 200,
                             "step": 10,
                             "default": 100,
-                            "unit": "px"
+                            "unit": "px",
+                            "conditions": ["!logoImg eq false"]
                         },
                         {
-                            "id": "logoPosition",
+                            "id": "mobileLogoPosition",
                             "type": "radio-pill",
                             "label": {
-                                "en": "Logo position",
-                                "fi": "Logon sijainti"
+                                "en": "Logo position on mobile device",
+                                "fi": "Logon sijainti mobiililaitteella"
                             },
                             "default": "center",
                             "options": [
@@ -1733,13 +2021,29 @@
                             ]
                         },
                         {
-                            "id": "secondaryContentColor",
-                            "type": "color",
+                            "id": "menuItemsAlign",
+                            "type": "radio-pill",
                             "label": {
-                                "en": "Content color  for transparent background",
-                                "fi": "Sisällön väri läpinäkyvälle taustalle"
+                                "en": "Menu position",
+                                "fi": "Valikon sijainti"
                             },
-                            "default": "#000000"
+                            "default": "start",
+                            "options": [
+                                {
+                                    "value": "start",
+                                    "label": {
+                                        "en": "Left",
+                                        "fi": "Vasemmalla"
+                                    }
+                                },
+                                {
+                                    "value": "center",
+                                    "label": {
+                                        "en": "Center",
+                                        "fi": "Keskellä"
+                                    }
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1782,20 +2086,48 @@
                             "default": "main"
                         },
                         {
+                            "id": "mobileMenuSecondaryTitle",
+                            "type": "text",
+                            "label": {
+                                "en": "Secondary menu title",
+                                "fi": "Toisisijaisn valikon otsikko"
+                            },
+                            "conditions": ["!mobileMenuSecondary eq blank"]
+                        },
+                        {
                             "id": "mobileMenuSecondary",
                             "type": "menu",
                             "label": {
                                 "en": "Secondary menu",
                                 "fi": "Toisisijainen valikko"
                             },
-                            "default": ""
+                            "default": "",
+                            "allow_empty": true
                         },
                         {
-                            "id": "socialMediaIconsStatus",
+                            "id": "mobileNavigationSimple",
+                            "type": "checkbox",
+                            "label": {
+                                "en": "Simple mobile navigation",
+                                "fi": "Yksinkertainen mobiilinavigaatio"
+                            },
+                            "default": false
+                        },
+                        {
+                            "id": "mobileShowSocialIconsInNavigation",
                             "type": "checkbox",
                             "label": {
                                 "en": "Show social media icons",
                                 "fi": "Näytä sosiaalisen median kuvakkeet"
+                            },
+                            "default": true
+                        },
+                        {
+                            "id": "mobileShowSearchInNavigation",
+                            "type": "checkbox",
+                            "label": {
+                                "en": "Show search in navigation",
+                                "fi": "Näytä näytä haku navigaatiossa"
                             },
                             "default": true
                         }
@@ -1821,20 +2153,13 @@
                             },
                             "settings": [
                                 {
-                                    "type": "title",
-                                    "label": {
-                                        "en": "Navigation",
-                                        "fi": "Navigaatio"
-                                    }
-                                },
-                                {
                                     "id": "index",
                                     "type": "radio-pill",
                                     "label": {
                                         "en": "Mainmenu's link index for megamenu",
                                         "fi": "Päävalikon linkin numero jättivalikolle"
                                     },
-                                    "default": "1",
+                                    "default": "",
                                     "options": [
                                         {
                                             "value": "1",
@@ -1879,28 +2204,64 @@
                                     ]
                                 },
                                 {
+                                    "id": "colPerRow",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Columns per row",
+                                        "fi": "Sarakkeita per rivi"
+                                    },
+                                    "default": "5",
+                                    "options": [
+                                        {
+                                            "value": "2",
+                                            "label": "2"
+                                        },
+                                        {
+                                            "value": "3",
+                                            "label": "3"
+                                        },
+                                        {
+                                            "value": "4",
+                                            "label": "4"
+                                        },
+                                        {
+                                            "value": "5",
+                                            "label": "5"
+                                        }
+                                    ],
+                                    "conditions": ["!index eq blank"]
+                                },
+                                {
                                     "id": "menu",
                                     "type": "menu",
                                     "label": {
                                         "en": "Menu",
                                         "fi": "Valikko"
                                     },
-                                    "default": ""
+                                    "default": "",
+                                    "allow_empty": true,
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
                                     "type": "title",
                                     "label": {
                                         "en": "Promotion 1",
                                         "fi": "Mainos 1"
-                                    }
+                                    },
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
-                                    "id": "promotion1ImgSrc",
+                                    "id": "promotion1Img",
                                     "type": "image-picker",
                                     "label": {
                                         "en": "Image",
                                         "fi": "Kuva"
-                                    }
+                                    },
+                                    "adjustments": true,
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion1Img eq false"
+                                    ]
                                 },
                                 {
                                     "id": "promotion1ImgAspectRatio",
@@ -1922,59 +2283,48 @@
                                         {
                                             "value": "4:3",
                                             "label": "4:3"
-                                        }, {
+                                        },
+                                        {
                                             "value": "1:1",
                                             "label": "1:1"
                                         }
+                                    ],
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion1Img eq false"
                                     ]
-                                },
-                                {
-                                    "id": "promotion1ImgAlt",
-                                    "type": "text",
-                                    "label": {
-                                        "en": "Image alt",
-                                        "fi": "Kuvan alt-teksti"
-                                    }
-                                },
-                                {
-                                    "id": "promotion1ImgText",
-                                    "type": "text",
-                                    "label": {
-                                        "en": "Text",
-                                        "fi": "Teksti"
-                                    }
                                 },
                                 {
                                     "id": "promotion1Link",
                                     "type": "url",
                                     "label": {
-                                        "en": "Link",
-                                        "fi": "Linkki"
-                                    }
-                                },
-                                {
-                                    "id": "promotion1LinkOpenInNewWindowStatus",
-                                    "type": "checkbox",
-                                    "label": {
-                                        "en": "Open link in a new tab",
-                                        "fi": "Avaa linkki uudessa välilehdessä"
+                                        "en": "Text",
+                                        "fi": "Teksti"
                                     },
-                                    "default": false
+                                    "include_target": true,
+                                    "include_text": true,
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion1Img eq false"
+                                    ]
                                 },
                                 {
                                     "type": "title",
                                     "label": {
                                         "en": "Promotion 2",
                                         "fi": "Mainos 2"
-                                    }
+                                    },
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
-                                    "id": "promotion2ImgSrc",
+                                    "id": "promotion2Img",
                                     "type": "image-picker",
                                     "label": {
                                         "en": "Image",
                                         "fi": "Kuva"
-                                    }
+                                    },
+                                    "adjustments": true,
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
                                     "id": "promotion2ImgAspectRatio",
@@ -1996,59 +2346,43 @@
                                         {
                                             "value": "4:3",
                                             "label": "4:3"
-                                        }, {
+                                        },
+                                        {
                                             "value": "1:1",
                                             "label": "1:1"
                                         }
-                                    ]
-                                },
-                                {
-                                    "id": "promotion2ImgAlt",
-                                    "type": "text",
-                                    "label": {
-                                        "en": "Image alt",
-                                        "fi": "Kuvan alt-teksti"
-                                    }
-                                },
-                                {
-                                    "id": "promotion2ImgText",
-                                    "type": "text",
-                                    "label": {
-                                        "en": "Text",
-                                        "fi": "Teksti"
-                                    }
+                                    ],
+                                    "adjustments": true,
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
                                     "id": "promotion2Link",
                                     "type": "url",
                                     "label": {
-                                        "en": "Link",
-                                        "fi": "Linkki"
-                                    }
-                                },
-                                {
-                                    "id": "promotion2LinkOpenInNewWindowStatus",
-                                    "type": "checkbox",
-                                    "label": {
-                                        "en": "Open link in a new tab",
-                                        "fi": "Avaa linkki uudessa välilehdessä"
+                                        "en": "Text",
+                                        "fi": "Teksti"
                                     },
-                                    "default": false
+                                    "include_target": true,
+                                    "include_text": true,
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
                                     "type": "title",
                                     "label": {
                                         "en": "Promotion 3",
                                         "fi": "Mainos 3"
-                                    }
+                                    },
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
-                                    "id": "promotion3ImgSrc",
+                                    "id": "promotion3Img",
                                     "type": "image-picker",
                                     "label": {
                                         "en": "Image",
                                         "fi": "Kuva"
-                                    }
+                                    },
+                                    "adjustments": true,
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
                                     "id": "promotion3ImgAspectRatio",
@@ -2070,59 +2404,48 @@
                                         {
                                             "value": "4:3",
                                             "label": "4:3"
-                                        }, {
+                                        },
+                                        {
                                             "value": "1:1",
                                             "label": "1:1"
                                         }
+                                    ],
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion3Img eq false"
                                     ]
-                                },
-                                {
-                                    "id": "promotion3ImgAlt",
-                                    "type": "text",
-                                    "label": {
-                                        "en": "Image alt",
-                                        "fi": "Kuvan alt-teksti"
-                                    }
-                                },
-                                {
-                                    "id": "promotion3ImgText",
-                                    "type": "text",
-                                    "label": {
-                                        "en": "Text",
-                                        "fi": "Teksti"
-                                    }
                                 },
                                 {
                                     "id": "promotion3Link",
                                     "type": "url",
                                     "label": {
-                                        "en": "Link",
-                                        "fi": "Linkki"
-                                    }
-                                },
-                                {
-                                    "id": "promotion3LinkOpenInNewWindowStatus",
-                                    "type": "checkbox",
-                                    "label": {
-                                        "en": "Open link in a new tab",
-                                        "fi": "Avaa linkki uudessa välilehdessä"
+                                        "en": "Text",
+                                        "fi": "Teksti"
                                     },
-                                    "default": false
+                                    "include_target": true,
+                                    "include_text": true,
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion3Img eq false"
+                                    ]
                                 },
                                 {
                                     "type": "title",
                                     "label": {
                                         "en": "Promotion 4",
                                         "fi": "Mainos 4"
-                                    }
+                                    },
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
-                                    "id": "promotion4ImgSrc",
+                                    "id": "promotion4Img",
                                     "type": "image-picker",
                                     "label": {
                                         "en": "Image",
                                         "fi": "Kuva"
-                                    }
+                                    },
+                                    "adjustments": true,
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
                                     "id": "promotion4ImgAspectRatio",
@@ -2144,44 +2467,30 @@
                                         {
                                             "value": "4:3",
                                             "label": "4:3"
-                                        }, {
+                                        },
+                                        {
                                             "value": "1:1",
                                             "label": "1:1"
                                         }
+                                    ],
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion4Img eq false"
                                     ]
-                                },
-                                {
-                                    "id": "promotion4ImgAlt",
-                                    "type": "text",
-                                    "label": {
-                                        "en": "Image alt",
-                                        "fi": "Kuvan alt-teksti"
-                                    }
-                                },
-                                {
-                                    "id": "promotion4ImgText",
-                                    "type": "text",
-                                    "label": {
-                                        "en": "Text",
-                                        "fi": "Teksti"
-                                    }
                                 },
                                 {
                                     "id": "promotion4Link",
                                     "type": "url",
                                     "label": {
-                                        "en": "Link",
-                                        "fi": "Linkki"
-                                    }
-                                },
-                                {
-                                    "id": "promotion4LinkOpenInNewWindowStatus",
-                                    "type": "checkbox",
-                                    "label": {
-                                        "en": "Open link in a new tab",
-                                        "fi": "Avaa linkki uudessa välilehdessä"
+                                        "en": "Text",
+                                        "fi": "Teksti"
                                     },
-                                    "default": false
+                                    "include_target": true,
+                                    "include_text": true,
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion4Img eq false"
+                                    ]
                                 }
                             ]
                         }

@@ -12,7 +12,7 @@
 	- categoryPerView: {Int} Categories per one slide
 	- categoryTextPosition: {String} Category text position
 	- categoryTextColor: {String} Category text color
-	- categoryImgDimming: {Int} Category image dimming percentage
+	- categoryImgDimming: {Int} Category image dimming percent
     - categoryImgAspectRatio: {Int} Category image aspect ratio
     - categoryImgFit: {Int} Category image fit
     - categoryImgCircle: {String} Show category image as circle shape, works only with 1:1 aspect ratio and fit enabled
@@ -274,23 +274,24 @@
 
             {%- if itemCategory -%}
 
-                {%- if item.settings.imgSrc -%}
-                    {%- assign imgSrc = item.settings.imgSrc-%}
+                {%- if item.settings.img -%}
+                    {%- assign img = item.settings.img-%}
+                    {%- assign imgAlt = item.settings.img.alt -%}
                 {%- else -%}
-                    {%- assign imgSrc = itemCategory.image -%}
+                    {%- assign img = itemCategory.image -%}
+                    {%- assign imgAlt = itemCategory.title -%}
                 {%- endif -%}
-
-                {%- assign imgAlt = item.settings.imgAlt | default: itemCategory.title -%}
+                
                 {%- assign resourceUrl = item.settings.resource.url | default: itemCategory | link -%}
-                {%- assign openResourceInNewWindow = item.settings.resourceOpenInNewTab | default: false -%}
+                {%- assign resourceTarget = item.settings.resource.target | default: '_self' -%}
                 {%- assign text = item.settings.text | default: itemCategory.title -%}
 
             {%- else -%}
 
-                {%- assign imgSrc = item.settings.imgSrc -%}
-                {%- assign imgAlt = item.settings.imgAlt -%}
+                {%- assign img = item.settings.img -%}
+                {%- assign imgAlt = item.settings.img.alt -%}
                 {%- assign resourceUrl = item.settings.resource.url -%}
-                {%- assign openResourceInNewWindow = item.settings.resourceOpenInNewTab -%}
+                {%- assign resourceTarget = item.settings.resource.target | default: '_self' -%}
                 {%- assign text = item.settings.text -%}
 
             {%- endif -%}
@@ -313,26 +314,26 @@
 
                     <div class="aspect-ratio-container">
 
-                        {% if imgSrc %}
+                        {% if img %}
 
                             <picture>
                                 <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                    {{- imgSrc | thumb: imgSizeLg }} 1x,
-                                    {{- imgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                                    {{- img | thumb: imgSizeLg }} 1x,
+                                    {{- img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
 
                                 <source media="(min-width: {{ settings.styleGridBreakpointSm }})" data-srcset="
-                                    {{- imgSrc | thumb: imgSizeMd }} 1x,
-                                    {{- imgSrc | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                                    {{- img | thumb: imgSizeMd }} 1x,
+                                    {{- img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
 
                                 <source data-srcset="
-                                    {{- imgSrc | thumb: imgSizeSm }} 1x,
-                                    {{- imgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                                    {{- img | thumb: imgSizeSm }} 1x,
+                                    {{- img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                                 <img
-                                    alt="{{ imgAlt }}" 
-                                    data-src="{{ imgSrc | thumb: imgSizeSm }}"
-                                    data-srcset="{{ imgSrc | thumb: imgSizeSm }} 1x, {{ imgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                    class="lazy aspect-ratio-item{% if carouselCategoryImgFit %} aspect-ratio-item-cover{% endif %}">
+                                    alt="{{ imgAlt }}"
+                                    data-src="{{ img | thumb: imgSizeSm }}"
+                                    data-srcset="{{ img | thumb: imgSizeSm }} 1x, {{ img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                    class="lazy aspect-ratio-item{% if carouselCategoryImgFit %} aspect-ratio-item-cover{% endif %}"{% if img.offset_left or img.offset_top %}style="--object-position: {{ img.offset_left }}% {{ img.offset_top }}%"{% endif %}>
                             </picture>
 
                         {% else %}
@@ -376,7 +377,7 @@
 
                     {% if resourceUrl %}
 
-                        <a href="{{- resourceUrl -}}" class="img-indicator-zoom"{% if openResourceInNewWindow %} target="_blank"{% endif %}>
+                        <a href="{{- resourceUrl -}}" class="img-indicator-zoom" target="{{ resourceTarget }}"">
 
                             {{ slideContent }}
 

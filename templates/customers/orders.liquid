@@ -1,18 +1,23 @@
-{%- assign sectionTitle = 'account.orders_title' | t -%}
-{%- assign dateFormat = 'general.date_format' | t -%}
+{% if customer.orders.size > 0 %}
 
-{%- capture sectionHeaderSecondaryAction -%}
+    {%- capture sectionHeaderSecondaryAction -%}
 
-	<a href="{{ routes.account_url }}">
+        <a href="{{ routes.account_url }}">
 
-		{%- render 'icon', icon: 'arrow-left', class: 'me-1' -%}
+            {%- render 'icon', icon: 'arrow-left', class: 'me-1' -%}
 
-		<span>
-			{{ 'general.back' | t }}
-		</span>
-	</a>
+            <span>
+                {{ 'general.back' | t }}
+            </span>
+        </a>
 
-{%- endcapture -%}
+    {%- endcapture -%}
+
+    {%- assign sectionTitle = 'account.orders_title' | t -%}
+    {%- assign sectionHeaderSecondaryAction = sectionHeaderSecondaryAction -%}
+    {%- assign dateFormat = 'general.date_format' | t -%}
+
+{% endif %}
 
 {%- capture sectionContent -%}
 
@@ -41,7 +46,7 @@
 
                                             {% if item.image %}
 
-                                                {%- assign imgSrc = item.image -%}
+                                                {%- assign img = item.image -%}
 
                                                 {% if settings.productImageAspectRatio == '9:13' %}
 
@@ -51,6 +56,10 @@
 
                                                     {%- assign imgSize = '110,93' -%}
 
+                                                {% elsif settings.productImageAspectRatio == '3:4' %}
+
+                                                    {%- assign imgSize = '110,147' -%}
+
                                                 {% elsif settings.productImageAspectRatio == '1:1' %}
 
                                                     {%- assign imgSize = '110,110' -%}
@@ -59,22 +68,22 @@
 
                                                 <picture>
                                                     <img
-                                                        alt="{{ item.name }}"
-                                                        data-src="{{ imgSrc | thumb: imgSize }}"
-                                                        data-srcset="{{ imgSrc | thumb: imgSize }} 1x, {{ imgSrc | thumb: imgSize | thumb:'@2x' }} 2x"
+                                                        alt="{{ item.title }}"
+                                                        data-src="{{ img | thumb: imgSize }}"
+                                                        data-srcset="{{ img | thumb: imgSize }} 1x, {{ img | thumb: imgSize | thumb:'@2x' }} 2x"
                                                         class="lazy d-block mx-auto img-fluid aspect-ratio-item">
                                                 </picture>
 
                                             {% else %}
 
-                                                {%- capture imgSrc -%}
+                                                {%- capture img -%}
                                                     {%- render 'placeholder-svg', type: 'image', base64: true -%}
                                                 {%- endcapture -%}
 
                                                 <img
                                                     class="lazy d-block mx-auto img-fluid aspect-ratio-item svg-placeholder"
-                                                    alt="{{ item.name }}"
-                                                    data-src="{{- imgSrc | strip_newlines -}}">
+                                                    alt="{{ item.title }}"
+                                                    data-src="{{- img | strip_newlines -}}">
 
                                             {% endif %}
 
@@ -174,12 +183,28 @@
 
     {% else %}
 
-        {{ 'account.order.no_orders' | t}}
+        <div class="text-center">
+
+            {%- render 'icon', icon: 'order-details', class: 'svg-icon-5x mb-3' -%}
+
+            <span class="h5 d-block mb-3 text-title">
+                {{- 'account.orders_title' | t -}}
+            </span>
+
+            <p class="mb-6">
+                {{- 'account.order.no_orders' | t -}}
+            </p>
+
+            <a href="{{ routes.account_url }}" class="btn btn-primary">
+                {{- 'general.back' | t -}}
+            </a>
+
+        </div>
 
     {% endif %}
 
 {%- endcapture -%}
 
 <section class="section section-account-orders">
-    {% render 'section', sectionHandle: '.section-account-orders', sectionTitle: sectionTitle, sectionHeaderSecondaryAction: sectionHeaderSecondaryAction, sectionContent: sectionContent, sectionContainer: 'compact', sectionContentAnimation: false, sectionOverlay: settings.sectionOverlay %}
+    {% render 'section', sectionHandle: '.section-account-orders', sectionTitle: sectionTitle, sectionHeaderSecondaryAction: sectionHeaderSecondaryAction, sectionContent: sectionContent, sectionContainer: 'compact', sectionContentAnimation: false, sectionOverlay: settings.sectionOverlay, sectionInnerGap: '2rem' %}
 </section>

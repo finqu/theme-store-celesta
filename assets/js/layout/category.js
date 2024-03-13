@@ -12,15 +12,20 @@ export default function() {
     let categoryFiltersFormEl = null;
 
     if (matchMedia.matches) {
-        categoryFiltersFormEl = containerEl.querySelector('#category-filters-form');
-    } else {
-        categoryFiltersFormEl = containerEl.querySelector('#category-filters-mobile-form');
-    }
 
-    const categoryFilterInputEls = categoryFiltersFormEl.querySelectorAll('input');
-    const categoryRangeSliderEls = categoryFiltersFormEl.querySelectorAll('.range-slider');
-    const facetResultCountEls = categoryFiltersFormEl.querySelectorAll('[data-facet-result-count]');
-    const filtersMobileNavigationCtaEl = containerEl.querySelector('.filters-mobile-navigation-container .filters-mobile-navigation-footer-inner-cta');
+        const el = containerEl.querySelector('#category-filters-form');
+        categoryFiltersFormEl = el ? el : false;
+
+    } else {
+
+        const el = containerEl.querySelector('#category-filters-mobile-form');
+        categoryFiltersFormEl = el ? el : false;
+    }
+    
+    const categoryFilterInputEls = categoryFiltersFormEl ? categoryFiltersFormEl.querySelectorAll('input') : [];
+    const categoryRangeSliderEls = categoryFiltersFormEl ? categoryFiltersFormEl.querySelectorAll('.range-slider') : [];
+    const facetResultCountEls = categoryFiltersFormEl ? categoryFiltersFormEl.querySelectorAll('[data-facet-result-count]') : [];
+    const filtersMobileNavigationCtaEl = categoryFiltersFormEl ? containerEl.querySelector('.filters-mobile-navigation-container .filters-mobile-navigation-footer-inner-cta') : null;
     
     let categoryDynamicContentEl = containerEl.querySelector('.category-dynamic-content');
     let categoryResetFiltersEls = categoryDynamicContentEl.querySelectorAll('.category-reset-filters');
@@ -98,9 +103,9 @@ export default function() {
                     });
                 }
 
-                if (itemCountEl) {
+                if (filtersMobileNavigationCtaEl) {
 
-                    const itemCount = itemCountEl.getAttribute('data-category-items-count');
+                    const itemCount = itemCountEl ? itemCountEl.getAttribute('data-category-items-count') : '0';
 
                     if (itemCount == 1) {
 
@@ -114,12 +119,6 @@ export default function() {
                             amount: itemCount
                         });
                     }
-
-                } else {
-
-                    filtersMobileNavigationCtaEl.innerText = theme.utils.t('filters.show_result_plural', {
-                        amount: '0'
-                    });
                 }
 
                 categoryDynamicContentEl.replaceWith(newCategoryDynamicContent);
@@ -239,7 +238,7 @@ export default function() {
 
         if (categoryRemoveFilterEls.length) {
 
-            categoryRemoveFilterEls.forEach(el => { el.addEventListener('click', e => {
+            categoryRemoveFilterEls.forEach(el => { el.addEventListener('click', () => {
 
                 if (isProcessing) {
                     return;
@@ -419,7 +418,7 @@ export default function() {
 
         if (categoryResetFiltersEls.length) {
 
-            categoryResetFiltersEls.forEach(el => { el.addEventListener('click', e => {
+            categoryResetFiltersEls.forEach(el => { el.addEventListener('click', () => {
 
                 if (isProcessing) {
                     return;
@@ -512,6 +511,15 @@ export default function() {
                 categoryFiltersFormEl.dispatchEvent(new Event('submit'));
             })});
         }
+
+        categoryDynamicContentEl.querySelectorAll('[name="filters-mobile-navigation-show"]').forEach(el => { el.addEventListener('click', e => {
+
+            if (isProcessing) {
+                return;
+            }
+
+            containerEl.dispatchEvent(new Event('theme:filters:show'));
+        })});
     };
 
     if (categoryFiltersFormEl) {
@@ -638,7 +646,7 @@ export default function() {
             rangeSliderContainerEl.classList.add('has-pips');
         });
 
-        categoryFilterInputEls.forEach(el => { el.addEventListener('input', e => {
+        categoryFilterInputEls.forEach(el => { el.addEventListener('input', () => {
 
             if (isProcessing) {
                 return;
@@ -647,7 +655,7 @@ export default function() {
             categoryFiltersFormEl.dispatchEvent(new Event('submit'));
         })});
 
-        categoryFiltersFormEl.addEventListener('submit', (e) => {
+        categoryFiltersFormEl.addEventListener('submit', e => {
 
             e.preventDefault();
 
@@ -676,23 +684,24 @@ export default function() {
 
         // Mobile filters menu
         const filtersMobileNavigationContainerEl = containerEl.querySelector('.filters-mobile-navigation-container');
-        const filtersMobileNavigationShowEls = containerEl.querySelectorAll('[name="filters-mobile-navigation-show"]');
-        const filtersMobileNavigationHideEls = containerEl.querySelectorAll('[name="filters-mobile-navigation-hide"]');
 
-        filtersMobileNavigationShowEls.forEach(el => { el.addEventListener('click', (e) => {
-
+        containerEl.addEventListener('theme:filters:show', () => {
+            
             filtersMobileNavigationContainerEl.classList.add('filters-mobile-navigation-visible');
             filtersMobileNavigationContainerEl.classList.add('filters-mobile-navigation-active');
 
             document.body.classList.add('disable-scroll');
-        })});
+        });
 
-        filtersMobileNavigationHideEls.forEach(el => { el.addEventListener('click', (e) => {
-
+        containerEl.addEventListener('theme:filters:hide', () => {
+            
             filtersMobileNavigationContainerEl.classList.remove('filters-mobile-navigation-active');
 
             document.body.classList.remove('disable-scroll');
-        })});
+        });
+
+        containerEl.querySelectorAll('[name="filters-mobile-navigation-show"]').forEach(el => { el.addEventListener('click', (e) => containerEl.dispatchEvent(new Event('theme:filters:show')))});
+        containerEl.querySelectorAll('[name="filters-mobile-navigation-hide"]').forEach(el => { el.addEventListener('click', (e) => containerEl.dispatchEvent(new Event('theme:filters:hide')))});
 
         filtersMobileNavigationContainerEl.addEventListener('transitionend', e => {
 
@@ -723,8 +732,8 @@ export default function() {
             },
             watchSlidesProgress: true,
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
+                nextEl: categorySubcategoriesEl.querySelector('.swiper .swiper-button-next'),
+                prevEl:  categorySubcategoriesEl.querySelector('.swiper .swiper-button-prev')
             }
         });
 
@@ -741,8 +750,8 @@ export default function() {
             slidesPerGroup: 3,
             grabCursor: true,
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
+                nextEl:  categorySubcategoriesEl.querySelector('.swiper .swiper-button-next'),
+                prevEl:  categorySubcategoriesEl.querySelector('.swiper .swiper-button-prev')
             },
             breakpoints: {}
         };

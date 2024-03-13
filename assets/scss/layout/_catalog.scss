@@ -60,6 +60,7 @@ $filters-mobile-navigation-footer-height: 56px;
 
                     .filters-mobile-navigation-header-text {
                         font-weight: $font-weight-bold;
+                        color: var(--style-heading-color);
                         margin-left: auto;
                         margin-right: auto;
                     }
@@ -90,10 +91,11 @@ $filters-mobile-navigation-footer-height: 56px;
                 .filters-mobile-navigation-menu {
                     display: flex;
                     flex-direction: column;
-                    margin-bottom: 0;
                     overflow-y: scroll;
                     overflow-x: hidden;
-                    @include list-unstyled();
+                    margin-bottom: 0;
+                    padding-left: 0;
+                    list-style: none;
 
                     .filters-mobile-navigation-menu-item {
                         display: flex;
@@ -106,14 +108,37 @@ $filters-mobile-navigation-footer-height: 56px;
                         }
 
                         .filters-mobile-navigation-menu-item-header {
-                            margin-bottom: spacer(4);
-
+                            display: flex;
+        
                             .filters-mobile-navigation-menu-item-header-text {
                                 font-weight: $font-weight-bold;
+                                color: var(--style-heading-color);
+                                margin-right: auto;
+                            }
+        
+                            .filters-mobile-navigation-menu-item-collapse-toggle {
+                                display: flex;
+                                justify-content: space-between;
+                                width: 100%;
+            
+                                .svg-icon {
+                                    margin-left: spacer(2);
+                                }
+        
+                                &[aria-expanded="true"] {
+        
+                                    .svg-icon {
+                                        transform: rotate(180deg);
+                                    }
+                                }
                             }
                         }
-
+        
                         .filters-mobile-navigation-menu-item-content {
+
+                            > div:first-of-type {
+                                padding-top: spacer(4);
+                            }
 
                             .form-check {
 
@@ -229,7 +254,8 @@ $filters-mobile-navigation-footer-height: 56px;
             display: flex;
             flex-direction: column;
             margin-bottom: 0;
-            @include list-unstyled();
+            padding-left: 0;
+            list-style: none;
 
             .catalog-filters-list-item {
                 display: flex;
@@ -324,7 +350,8 @@ $filters-mobile-navigation-footer-height: 56px;
 
     .category-list {
         line-height: 20px;
-        @include list-unstyled();
+        padding-left: 0;
+        list-style: none;
 
         &.active-item {
 
