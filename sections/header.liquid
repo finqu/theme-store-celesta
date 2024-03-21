@@ -13,9 +13,9 @@
         --style-text-color: {{ settings.style_header_text_color }};
         --style-link-color: {{ settings.style_header_text_color }};
         --style-icon-color: {{ settings.style_header_text_color }};
-        --style-btn-bg-color: {{ settings.style_header_text_color }};
-        --style-btn-text-color: {{ settings.style_header_bg_color }};
-        --style-btn-border-color: {{ settings.style_header_text_color }};
+        --style-btn-bg-color: {{ settings.style_header_accent_color }};
+        --style-btn-text-color: var(--style-accent-text-color);
+        --style-btn-border-color: {{ settings.style_header_accent_color }};
         --style-form-placeholder-color: {{ settings.style_text_color }};
         --style-form-text-color: {{ settings.style_text_color }};
         --style-form-bg-color: {{ settings.style_bg_color }};
@@ -29,21 +29,21 @@
         --style-accent-color: {{ settings.style_header_accent_color }};
 
         {%- if headerAccentColorBrightness > 190 -%}
-            --style-accent-text-color: #000;
+            --style-accent-text-color: {{ '#000000' | color_min_contrast: settings.style_header_accent_color }};
         {%- else -%}
-            --style-accent-text-color: #fff;
+            --style-accent-text-color: {{ '#ffffff' | color_min_contrast: settings.style_header_accent_color }};
         {%- endif -%}
 
-        {%- if headerContentColorBrightness > 190 -%}
-            --style-btn-bg-active-color: {{ settings.style_header_text_color | color_darken: 10 }};
-            --style-btn-bg-hover-color: {{ settings.style_header_text_color | color_darken: 8 }};
-            --style-btn-border-hover-color: {{ settings.style_header_text_color | color_darken: 8 }};
-            --style-btn-border-active-color: {{ settings.style_header_text_color | color_darken: 13 }};
+        {%- if headerAccentColorBrightness > 190 -%}
+            --style-btn-bg-active-color: {{ settings.style_header_accent_color | color_darken: 10 }};
+            --style-btn-bg-hover-color: {{ settings.style_header_accent_color | color_darken: 8 }};
+            --style-btn-border-hover-color: {{ settings.style_header_accent_color | color_darken: 8 }};
+            --style-btn-border-active-color: {{ settings.style_header_accent_color | color_darken: 13 }};
         {%- else -%}
-            --style-btn-bg-active-color: {{ settings.style_header_text_color | color_lighten: 10 }};
-            --style-btn-bg-hover-color: {{ settings.style_header_text_color | color_lighten: 8 }};
-            --style-btn-border-hover-color: {{ settings.style_header_text_color | color_lighten: 8 }};
-            --style-btn-border-active-color: {{ settings.style_header_text_color | color_lighten: 13 }};
+            --style-btn-bg-active-color: {{ settings.style_header_accent_color | color_lighten: 10 }};
+            --style-btn-bg-hover-color: {{ settings.style_header_accent_color | color_lighten: 8 }};
+            --style-btn-border-hover-color: {{ settings.style_header_accent_color | color_lighten: 8 }};
+            --style-btn-border-active-color: {{ settings.style_header_accent_color | color_lighten: 13 }};
         {%- endif -%}
 
         {%- if bgColorBrightness > 190 -%}
@@ -1032,11 +1032,11 @@
 
                         <a href="{{ routes.root_url }}">
 
-                            {%- capture imgSize -%}
-                                {{- section.settings.logoSize -}},{{- section.settings.logoSize | times: 0.5 | ceil -}}
-                            {%- endcapture -%}
-
                             {% if section.settings.logoImg %}
+
+                                {%- capture imgSize -%}
+                                    {{- section.settings.logoSize -}},{{- section.settings.logoSize | times: 0.5 | ceil -}}
+                                {%- endcapture -%}
 
                                 <img
                                     alt="{{ store.name }}"
@@ -1088,23 +1088,17 @@
 
                                             <div class="input-group">
 
-                                                <button type="submit" class="btn pe-0">
+                                                <input
+                                                    class="form-control"
+                                                    type="search"
+                                                    placeholder="{{ 'general.search_products' | t }}"
+                                                    name="q"
+                                                    value="{{ search.search_term }}"
+                                                    autocomplete="off">
+
+                                                <button type="submit" class="btn btn-primary">
 
                                                     {%- render 'icon', icon: 'search' -%}
-
-                                                </button>
-                
-                                                <input
-                                                        class="form-control"
-                                                        type="search"
-                                                        placeholder="{{ 'general.search_products' | t }}"
-                                                        name="q"
-                                                        value="{{ search.search_term }}"
-                                                        autocomplete="off">
-
-                                                <button type="reset" class="btn btn-icon ps-0">
-
-                                                    {%- render 'icon', icon: 'close' -%}
 
                                                 </button>
 
@@ -1181,7 +1175,7 @@
                                 </div>
 
                                 <span class="fw-bold ms-3">
-                                    {{- 'wishlist.title' | t -}}
+                                    {{- 'general.favourites' | t -}}
                                 </span>
 
                             </a>
@@ -2108,8 +2102,8 @@
                             "id": "mobileNavigationSimple",
                             "type": "checkbox",
                             "label": {
-                                "en": "Simple mobile navigation",
-                                "fi": "Yksinkertainen mobiilinavigaatio"
+                                "en": "Show mobile navigation in a simple design",
+                                "fi": "Näytä mobiilinavigaatio yksinkertaisena"
                             },
                             "default": false
                         },
@@ -2117,8 +2111,8 @@
                             "id": "mobileShowSocialIconsInNavigation",
                             "type": "checkbox",
                             "label": {
-                                "en": "Show social media icons",
-                                "fi": "Näytä sosiaalisen median kuvakkeet"
+                                "en": "Show social media icons in mobile navigation",
+                                "fi": "Näytä mobiilinavigaatiossa sosiaalisen median kuvakkeet"
                             },
                             "default": true
                         },
@@ -2126,8 +2120,8 @@
                             "id": "mobileShowSearchInNavigation",
                             "type": "checkbox",
                             "label": {
-                                "en": "Show search in navigation",
-                                "fi": "Näytä näytä haku navigaatiossa"
+                                "en": "Show search box in mobile navigation",
+                                "fi": "Näytä mobiilinavigaatiossa hakukenttä"
                             },
                             "default": true
                         }
@@ -2258,10 +2252,7 @@
                                         "fi": "Kuva"
                                     },
                                     "adjustments": true,
-                                    "conditions": [
-                                        "!index eq blank",
-                                        "!promotion1Img eq false"
-                                    ]
+                                    "conditions": ["!index eq blank"]
                                 },
                                 {
                                     "id": "promotion1ImgAspectRatio",
