@@ -2343,8 +2343,10 @@
                                             "label": "1:1"
                                         }
                                     ],
-                                    "adjustments": true,
-                                    "conditions": ["!index eq blank"]
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion2Img eq false"
+                                    ]
                                 },
                                 {
                                     "id": "promotion2Link",
@@ -2355,7 +2357,10 @@
                                     },
                                     "include_target": true,
                                     "include_text": true,
-                                    "conditions": ["!index eq blank"]
+                                    "conditions": [
+                                        "!index eq blank",
+                                        "!promotion2Img eq false"
+                                    ]
                                 },
                                 {
                                     "type": "title",

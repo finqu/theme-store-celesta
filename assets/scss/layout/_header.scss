@@ -244,6 +244,17 @@ body {
 
                                         .site-search-form {
 
+                                            .input-group {
+
+                                                .form-control {
+                                                    padding: $input-padding-y * 0.72 $input-padding-x;
+                                                }
+
+                                                .btn {
+                                                    padding: $input-padding-y * 0.72 $input-padding-x;
+                                                }
+                                            }
+
                                             input[type="search"] {
                                                 appearance: none;
                                                 -webkit-appearance: none;
@@ -399,6 +410,7 @@ body {
                 border-bottom: 1px solid var(--style-border-color);
                 padding-top: spacer(2);
                 padding-bottom: spacer(2);
+                --style-icon-stroke-width: var(--style-navigation-icon-stroke-width);
 
                 .site-header-menu {
                     display: flex;
