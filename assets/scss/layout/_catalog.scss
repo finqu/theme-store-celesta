@@ -6,6 +6,11 @@ $filters-mobile-navigation-footer-height: 56px;
 
 .section-catalog {
 
+    .catalog-filters .form-check-label {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .filters-mobile-navigation-container {
         position: fixed;
         left: 0;
