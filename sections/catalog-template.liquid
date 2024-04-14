@@ -246,7 +246,7 @@
 
                 {% render 'pagination', paginate: paginate %}
 
-                {%- if settings.schemaItemList -%}
+                {%- if rendered_partial != 'sections/catalog-template' and settings.schemaItemList -%}
                     {% render 'schemas/itemlist', items: catalog.products, paginate: paginate %}
                 {%- endif -%}
 
@@ -770,7 +770,7 @@
 
 {% render 'section', section: section, sectionContent: sectionContent, sectionTitle: sectionTitle, sectionTitleTag: 'h1', sectionSubtitle: sectionSubtitle, sectionDescription: sectionDescription, sectionBreadcrumbs: sectionBreadcrumbs, sectionContentAnimation: false, sectionHeaderGapScale: 1, sectionInnerGap: '2rem' %}
 
-{%- if settings.schemaBreadcrumbList -%}
+{%- if rendered_partial != 'sections/catalog-template' and settings.schemaBreadcrumbList -%}
     {% render 'schemas/breadcrumblist', breadcrumbs: sectionBreadcrumbs, currentItem: catalog %}
 {%- endif -%}
 

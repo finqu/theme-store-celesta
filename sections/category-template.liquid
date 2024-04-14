@@ -15,13 +15,17 @@
 
 {%- capture categoryContentPlaceholder -%}
 
-    {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
+    {%- if rendered_partial != 'sections/category-template' %}
 
-    <div data-aos="animate__fadeIn" data-aos-anchor="#finqu-section-{{ section.id }}">
+        {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
 
-        {% render 'category-carousel', items: category.categories, carouselNavigation: 'on', sectionHandle: sectionHandle, categoryPerView: 8, categoryTextPosition: 'below', style: 2 %}
+        <div data-aos="animate__fadeIn" data-aos-anchor="#finqu-section-{{ section.id }}">
 
-    </div>
+            {% render 'category-carousel', items: category.categories, carouselNavigation: 'on', sectionHandle: sectionHandle, categoryPerView: 8, categoryTextPosition: 'below', style: 2 %}
+
+        </div>
+
+    {%- endif -%}
 
 {%- endcapture -%}
 
@@ -29,7 +33,7 @@
 
     {%- paginate category.products by 100 -%}
 
-        {% if category.categories %}
+        {%- if rendered_partial != 'sections/category-template' and category.categories -%}
 
             <div class="category-subcategories category-tags mb-4{% if section.settings.showCategoryList %} d-lg-none{% endif %}" data-aos="animate__fadeIn" data-aos-anchor="#finqu-section-{{ section.id }}">
 
@@ -78,7 +82,7 @@
 
             </div>
 
-        {% endif %}
+        {%- endif -%}
   
         <div class="category-dynamic-content" data-aos="animate__fadeIn" data-aos-anchor="#finqu-section-{{ section.id }}">
 
@@ -310,7 +314,7 @@
 
                 {% render 'pagination', paginate: paginate %}
 
-                {%- if settings.schemaItemList -%}
+                {%- if rendered_partial != 'sections/category-template' and settings.schemaItemList -%}
                     {% render 'schemas/itemlist', items: category.products, paginate: paginate %}
                 {%- endif -%}
 
@@ -842,7 +846,7 @@
 
 {% render 'section', section: section, sectionContent: sectionContent, sectionTitle: category.title, sectionTitleTag: 'h1', sectionSubtitle: sectionSubtitle, sectionDescription: category.description, sectionBreadcrumbs: category.breadcrumbs, sectionContentAnimation: false, sectionHeaderGapScale: 1, sectionInnerGap: '2rem' %}
 
-{%- if settings.schemaBreadcrumbList -%}
+{%- if rendered_partial != 'sections/category-template' and settings.schemaBreadcrumbList -%}
     {% render 'schemas/breadcrumblist', breadcrumbs: sectionBreadcrumbs, currentItem: category %}
 {%- endif -%}
 
