@@ -782,7 +782,8 @@
                                 <button
                                     type="button"
                                     id="product-show-reviews"
-                                    class="btn btn-text">
+                                    class="btn btn-text"
+                                    aria-label="{{ 'product.show_reviews' | t }}">
 
                                     <div class="product-review-icons">
 
@@ -924,7 +925,7 @@
 
                                                     {% endif %}
 
-                                                    {% assign itemTaxPercent = settings.taxFreeShopping == true | yepnope: 0, product.default_or_selected_variant.rate | round %}
+                                                    {% assign itemTaxPercent = settings.taxFreeShopping == true | yepnope: 0, product.default_or_selected_variant.rate %}
 
                                                     <span class="product-vat-text text-muted ms-auto">
                                                         {{- 'product.vat_included_dynamic' | t, amount: itemTaxPercent -}}
@@ -996,7 +997,8 @@
                                                         type="button"
                                                         class="btn btn-text ms-1 btn btn-text p-2 product-wishlist-action bordered"
                                                         data-wishlist-toggle="{{ product.id }}"
-                                                        aria-pressed="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'true', 'false' }}">
+                                                        aria-pressed="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'true', 'false' }}"
+                                                        aria-label="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'wishlist.remove', 'wishlist.add' | t }}">
                                                         {%- render 'icon', icon: 'like', class: 'svg-icon-lg svg-icon-fw' -%}
                                                     </button>
 
@@ -1016,7 +1018,7 @@
 
                                                     <div class="product-inline-quantity max-w-px-120 min-h-px-40 d-inline-flex">
 
-                                                        <button type="button" class="btn btn-text product-quantity-decrease">
+                                                        <button type="button" class="btn btn-text product-quantity-decrease" aria-label="{{ 'general.decrease' | t }}">
                                                             {%- render 'icon', icon: 'subtract' -%}
                                                         </button>
 
@@ -1029,7 +1031,7 @@
                                                             min="{% if product.min_quantity %}{{ product.min_quantity }}{% else %}1{% endif %}"
                                                             {% if product.max_quantity %}max="{{ product.max_quantity }}"{% endif %}pattern="[0-9]{1,3}">
 
-                                                        <button type="button" class="btn btn-text product-quantity-increase">
+                                                        <button type="button" class="btn btn-text product-quantity-increase" aria-label="{{ 'general.increase' | t }}">
                                                             {%- render 'icon', icon: 'add' -%}
                                                         </button>
 
@@ -1055,7 +1057,8 @@
                                                         type="button"
                                                         class="btn btn-text ms-1 btn btn-text p-2 product-wishlist-action bordered"
                                                         data-wishlist-toggle="{{ product.id }}"
-                                                        aria-pressed="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'true', 'false' }}">
+                                                        aria-pressed="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'true', 'false' }}"
+                                                        aria-label="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'wishlist.remove', 'wishlist.add' | t }}">
                                                         {%- render 'icon', icon: 'like', class: 'svg-icon-lg svg-icon-fw' -%}
                                                     </button>
 
@@ -1230,7 +1233,7 @@
 
                                                 {% endif %}
 
-                                                {% assign itemTaxPercent = settings.taxFreeShopping == true | yepnope: 0, product.default_or_selected_variant.rate | round %}
+                                                {% assign itemTaxPercent = settings.taxFreeShopping == true | yepnope: 0, product.default_or_selected_variant.rate %}
 
                                                 <span class="product-vat-text text-muted ms-auto">
                                                     {{- 'product.vat_included_dynamic' | t, amount: itemTaxPercent -}}
@@ -1302,7 +1305,8 @@
                                                     type="button"
                                                     class="btn btn-text ms-1 btn btn-text p-2 product-wishlist-action bordered"
                                                     data-wishlist-toggle="{{ product.id }}"
-                                                    aria-pressed="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'true', 'false' }}">
+                                                    aria-pressed="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'true', 'false' }}"
+                                                    aria-label="{{ product.default_or_selected_variant.in_customers_wishlist | yepnope: 'wishlist.remove', 'wishlist.add' | t }}">
                                                     {%- render 'icon', icon: 'like', class: 'svg-icon-lg svg-icon-fw' -%}
                                                 </button>
 
@@ -1831,9 +1835,13 @@
 
                                             <div class="product-review-content">
 
-                                                <p class="mb-0">
-                                                    <strong>{{ review.title }}</strong>
-                                                </p>
+                                                {% if review.title %}
+
+                                                    <p class="mb-0 fw-medium">
+                                                        {{ review.title }}
+                                                    </p>
+
+                                                {% endif %}
 
                                                 {{ review.review }}
 
@@ -1861,11 +1869,11 @@
 
                             {%- assign attachmentsTitle = 'product.attachments' | t -%}
 
-                            {% render 'section-header', sectionTitle: attachmentsTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
+                            {% render 'section-header', sectionTitle: attachmentsTitle, sectionHeaderContainer: 'none', sectionAnimation: false, sectionHeaderClass: 'mb-4' %}
 
                             {% for attachment in product.attachments %}
 
-                                <div class="mt-4 border-top{% unless forloop.last == true %} mb-3{% endunless %}">
+                                <div{% unless forloop.last == true %} class="mb-3"{% endunless %}>
 
                                     <a href="{{ attachment.href }}" class="d-flex align-items-center">
 
@@ -2173,10 +2181,11 @@
                                     document.addEventListener('theme:ready', function() {
                                         document.dispatchEvent(new CustomEvent('theme:contact:sendEmail'));
                                         theme.bs.Modal.getOrCreateInstance('#product-question-modal')?.show();
+                                        setTimeout(() => theme.bs.Modal.getOrCreateInstance('#product-question-modal')?.hide(), 5000);
                                     });
                                 </script>
 
-                                <p class="my-4">
+                                <p class="my-4 text-center">
                                     {{- 'product.question.success' | t -}}
                                 </p>
 
@@ -2513,16 +2522,17 @@
                             <script type="application/javascript">
                                 document.addEventListener('theme:ready', function() {
                                     theme.bs.Modal.getOrCreateInstance('#availability-notification-modal')?.show();
+                                    setTimeout(() => theme.bs.Modal.getOrCreateInstance('#availability-notification-modal')?.hide(), 5000);
                                 });
                             </script>
 
-                            <p class="my-4">
+                            <p class="my-4 text-center">
                                 {{- 'product.availability_notification.success' | t -}}
                             </p>
 
                         {% elsif product.subscribed_to_notifications %}
 
-                            <p class="my-4">
+                            <p class="my-4 text-center">
                                 {{- 'product.availability_notification.already_subscribed' | t -}}
                             </p>
 
