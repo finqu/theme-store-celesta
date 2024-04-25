@@ -2,8 +2,12 @@
 {%- assign mobileMenuSecondary = linklists[section.settings.mobileMenuSecondary] -%}
 {%- assign mainMenu = linklists[section.settings.menu] -%}
 {%- assign headerContentColorBrightness = settings.style_header_text_color | color_brightness -%}
-{%- assign headerAccentColorBrightness = settings.style_header_accent_color | color_brightness -%}
 {%- assign bgColorBrightness = settings.style_bg_color | color_brightness -%}
+{%- assign accentColor = settings.style_header_accent_color | color_min_contrast: settings.style_header_bg_color, 2 -%}
+{%- assign secondaryAccentColor = settings.style_header_accent_color | color_min_contrast: settings.style_bg_color, 5 -%}
+{%- assign headerAccentColorBrightness = accentColor | color_brightness -%}
+{%- assign searchBtnColor = settings.style_header_accent_color | color_min_contrast: settings.style_header_bg_color, 2 -%}
+{%- assign searchBtnColorBrightness = searchBtnColor | color_brightness -%}
 
 {%- capture sectionStyle -%}
     #finqu-section-{{ section.id }} .site-header-items-container,
@@ -13,9 +17,6 @@
         --style-text-color: {{ settings.style_header_text_color }};
         --style-link-color: {{ settings.style_header_text_color }};
         --style-icon-color: {{ settings.style_header_text_color }};
-        --style-btn-bg-color: {{ settings.style_header_accent_color }};
-        --style-btn-text-color: var(--style-accent-text-color);
-        --style-btn-border-color: {{ settings.style_header_accent_color }};
         --style-form-placeholder-color: {{ settings.style_text_color }};
         --style-form-text-color: {{ settings.style_text_color }};
         --style-form-bg-color: {{ settings.style_bg_color }};
@@ -26,24 +27,28 @@
         --style-border-focus-color: {{ settings.style_header_text_color | color_mix: settings.style_header_bg_color, 20 }};
         --style-border-accent-color: {{ settings.style_header_text_color | color_mix: settings.style_header_bg_color, 50 }};
 
-        --style-accent-color: {{ settings.style_header_accent_color }};
+        --style-accent-color: {{ accentColor }};
 
         {%- if headerAccentColorBrightness > 190 -%}
-            --style-accent-text-color: {{ '#000000' | color_min_contrast: settings.style_header_accent_color }};
+            --style-accent-text-color: {{ '#000000' | color_min_contrast: accentColor }};
         {%- else -%}
-            --style-accent-text-color: {{ '#ffffff' | color_min_contrast: settings.style_header_accent_color }};
+            --style-accent-text-color: {{ '#ffffff' | color_min_contrast: accentColor }};
         {%- endif -%}
 
+        --style-btn-bg-color: {{ accentColor }};
+        --style-btn-text-color: var(--style-accent-text-color);
+        --style-btn-border-color: {{ accentColor }};
+
         {%- if headerAccentColorBrightness > 190 -%}
-            --style-btn-bg-active-color: {{ settings.style_header_accent_color | color_darken: 10 }};
-            --style-btn-bg-hover-color: {{ settings.style_header_accent_color | color_darken: 8 }};
-            --style-btn-border-hover-color: {{ settings.style_header_accent_color | color_darken: 8 }};
-            --style-btn-border-active-color: {{ settings.style_header_accent_color | color_darken: 13 }};
+            --style-btn-bg-active-color: {{ accentColor | color_darken: 10 }};
+            --style-btn-bg-hover-color: {{ accentColor | color_darken: 8 }};
+            --style-btn-border-hover-color: {{ accentColor | color_darken: 8 }};
+            --style-btn-border-active-color: {{ accentColor | color_darken: 13 }};
         {%- else -%}
-            --style-btn-bg-active-color: {{ settings.style_header_accent_color | color_lighten: 10 }};
-            --style-btn-bg-hover-color: {{ settings.style_header_accent_color | color_lighten: 8 }};
-            --style-btn-border-hover-color: {{ settings.style_header_accent_color | color_lighten: 8 }};
-            --style-btn-border-active-color: {{ settings.style_header_accent_color | color_lighten: 13 }};
+            --style-btn-bg-active-color: {{ accentColor | color_lighten: 10 }};
+            --style-btn-bg-hover-color: {{ accentColor | color_lighten: 8 }};
+            --style-btn-border-hover-color: {{ accentColor | color_lighten: 8 }};
+            --style-btn-border-active-color: {{ accentColor | color_lighten: 13 }};
         {%- endif -%}
 
         {%- if bgColorBrightness > 190 -%}
@@ -69,8 +74,8 @@
         --bs-tertiary-color: {{ settings.style_header_text_color | color_modify: 'alpha', 0.5 }};
         --bs-tertiary-color-rgb: {{ settings.style_header_text_color | color_desaturate: 50 | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
-        --bs-emphasis-color: {{ settings.style_header_accent_color }};
-        --bs-emphasis-color-rgb: {{ settings.style_header_accent_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
+        --bs-emphasis-color: {{ accentColor }};
+        --bs-emphasis-color-rgb: {{ accentColor | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
 
         --bs-link-color: {{ settings.style_header_text_color }};
         --bs-link-color-rgb: {{ settings.style_header_text_color | color_to_rgb | color_extract: 'rgb' | join: ', ' }};
@@ -79,6 +84,36 @@
 
         --bs-border-color: var(--style-border-color);
         --bs-heading-color: var(--style-heading-color);
+
+        .site-search-form-container {
+
+            --style-btn-bg-color: {{ searchBtnColor }};
+            --style-btn-border-color: {{ searchBtnColor }};
+
+            {%- if searchBtnColorBrightness > 190 -%}
+                --style-btn-text-color: {{ '#000000' | color_min_contrast: searchBtnColor }};
+                --style-btn-bg-active-color: {{ searchBtnColor | color_darken: 10 }};
+                --style-btn-bg-hover-color: {{ searchBtnColor | color_darken: 8 }};
+                --style-btn-border-hover-color: {{ searchBtnColor | color_darken: 8 }};
+                --style-btn-border-active-color: {{ searchBtnColor | color_darken: 13 }};
+            {%- else -%}
+                --style-btn-text-color: {{ '#ffffff' | color_min_contrast: searchBtnColor }};
+                --style-btn-bg-active-color: {{ searchBtnColor | color_lighten: 10 }};
+                --style-btn-bg-hover-color: {{ searchBtnColor | color_lighten: 8 }};
+                --style-btn-border-hover-color: {{ searchBtnColor | color_lighten: 8 }};
+                --style-btn-border-active-color: {{ searchBtnColor | color_lighten: 13 }};
+            {%- endif -%}
+        }
+    }
+    #finqu-section-{{ section.id }} .site-header-nav-container,
+    #finqu-section-{{ section.id }} .site-header-subnav-container {
+        --style-accent-color: {{ secondaryAccentColor }};
+
+        {%- if headerAccentColorBrightness > 190 -%}
+            --style-accent-text-color: {{ '#000000' | color_min_contrast: secondaryAccentColor }};
+        {%- else -%}
+            --style-accent-text-color: {{ '#ffffff' | color_min_contrast: secondaryAccentColor }};
+        {%- endif -%}
     }
     #finqu-section-{{ section.id }} .site-header-container {
         --site-header-items-padding-y: {{ section.settings.headerItemsPaddingY }};
@@ -342,26 +377,21 @@
 
                 <div class="site-mobile-header-items-logo-container">
 
-                    <div class="site-mobile-header-item site-mobile-header-logo">
+                    <div class="site-mobile-header-item site-mobile-header-item-logo">
 
                         <a href="{{ routes.root_url }}">
 
-                            {%- assign imgSizeOnPhone = '200,25' -%}
-                            {%- assign imgSizeOnTablet = '400,35' -%}
-
                             {% if section.settings.logoImg %}
 
-                                <img
-                                    alt="{{ store.name }}"
-                                    src="{{ section.settings.logoImg | thumb: imgSizeOnTablet }}"
-                                    srcset="{{ section.settings.logoImg | thumb: imgSizeOnTablet }} 1x, {{ section.settings.logoImg | thumb: imgSizeOnTablet | thumb:'@2x' }} 2x"
-                                    class="img-fluid site-mobile-header-logo-img d-none d-md-block">
+                                {%- capture imgSize -%}
+                                    {{- section.settings.mobileLogoSize -}},{{- section.settings.mobileLogoSize | times: 0.5 | ceil -}}
+                                {%- endcapture -%}
 
                                 <img
                                     alt="{{ store.name }}"
-                                    src="{{ section.settings.logoImg | thumb: imgSizeOnPhone }}"
-                                    srcset="{{ section.settings.logoImg | thumb: imgSizeOnPhone }} 1x, {{ section.settings.logoImg | thumb: imgSizeOnPhone | thumb:'@2x' }} 2x"
-                                    class="img-fluid site-mobile-header-logo-img d-block d-md-none">
+                                    src="{{ section.settings.logoImg | thumb: imgSize }}"
+                                    srcset="{{ section.settings.logoImg | thumb: imgSize }} 1x, {{ section.settings.logoImg | thumb: imgSize | thumb:'@2x' }} 2x"
+                                    class="img-fluid site-mobile-header-logo-img">
 
                             {% else %}
 
@@ -1983,6 +2013,20 @@
                         },
                         "type": "range",
                         "min": 80,
+                        "max": 200,
+                        "step": 10,
+                        "default": 100,
+                        "unit": "px",
+                        "conditions": ["!logoImg eq false"]
+                    },
+                    {
+                        "id": "mobileLogoSize",
+                        "label": {
+                            "en": "Logo size on mobile device",
+                            "fi": "Logon koko mobiililaitteella"
+                        },
+                        "type": "range",
+                        "min": 60,
                         "max": 200,
                         "step": 10,
                         "default": 100,

@@ -41,30 +41,32 @@
             "sectionTextAlign": "start",
             "sectionQuickLinkStyle": "primary",
             "sectionAnimation": "animate__fadeInUp",
-            "style_link_color": "#000000",
             "style_accent_color": "#00badb",
             "style_btn_bg_color": "#00badb",
             "style_btn_text_color": "#ffffff",
-            "style_icon_color": "#000000",
-            "style_header_bg_color": "#1e2d7d",
-            "style_header_text_color": "#ffffff",
-            "style_header_accent_color": "#00badb",
-            "style_footer_bg_color": "#f3f5f6",
-            "style_footer_text_color": "#677279",
-            "style_footer_accent_color": "#00badb",
             "style_bg_color": "#ffffff",
             "style_secondary_bg_color": "#f3f5f6",
-            "style_border_color": "#e1e3e4",
-            "style_heading_color": "#1e2d7d",
+            "style_header_accent_color": "#00badb",
+            "style_header_bg_color": "#1f4383",
+            "style_header_text_color": "#ffffff",
+            "style_footer_accent_color": "#00badb",
+            "style_footer_bg_color": "#f3f5f6",
+            "style_footer_text_color": "#677279",
+            "style_announcement_bg_color": "#1f4383",
+            "style_announcement_text_color": "#ffffff",
+            "style_heading_color": "#000000",
             "style_subheading_color": "#000000",
-            "style_overline_color": "#000000",
+            "style_overline_color": "",
             "style_text_color": "#000000",
-            "style_product_title_color": "#1e2d7d",
+            "style_link_color": "#000000",
+            "style_icon_color": "#000000",
+            "style_border_color": "#e1e3e4",
+            "style_product_title_color": "#000000",
             "style_price_color": "#00badb",
             "style_sale_price_color": "#00badb",
             "style_badge_bg_color": "#1a1a1a",
             "style_badge_text_color": "#ffffff",
-            "style_new_badge_bg_color": "#008a00",
+            "style_new_badge_bg_color": "#2bb22b",
             "style_new_badge_text_color": "#ffffff",
             "style_discount_badge_bg_color": "#00badb",
             "style_discount_badge_text_color": "#ffffff",
@@ -75,160 +77,6 @@
             "style_form_bg_color": "#ffffff",
             "style_form_text_color": "#333333",
             "style_form_border_color": "#cccccc",
-            "style_announcement_bg_color": "#1e2d7d",
-            "style_announcement_text_color": "#ffffff",
-            "styles": {
-                "1": {
-                    "bg_color": "#ffffff",
-                    "secondary_bg_color": "#f1f1f1",
-                    "border_color": "#e0e0e0",
-                    "heading_color": "#000000",
-                    "subheading_color": "#000000",
-                    "overline_color": "#000000",
-                    "text_color": "#000000",
-                    "link_color": "#000000",
-                    "accent_color": "#000000",
-                    "icon_color": "#000000",
-                    "btn_bg_color": "#000000",
-                    "btn_text_color": "#ffffff",
-                    "product_title_color": "#000000",
-                    "price_color": "#000000",
-                    "sale_price_color": "#000000",
-                    "badge_bg_color": "",
-                    "badge_text_color": "",
-                    "new_badge_bg_color": "",
-                    "new_badge_text_color": "",
-                    "discount_badge_bg_color": "",
-                    "discount_badge_text_color": "",
-                    "review_icon_color": "#000000",
-                    "table_bg_color": "#ffffff",
-                    "table_text_color": "#000000",
-                    "table_border_color": "#bdbdbd",
-                    "form_bg_color": "#ffffff",
-                    "form_text_color": "#000000",
-                    "form_border_color": "#bdbdbd"
-                },
-                "2": {
-                    "bg_color": "#f5f5f5",
-                    "secondary_bg_color": "#ebebeb",
-                    "border_color": "#bdbdbd",
-                    "heading_color": "#000000",
-                    "subheading_color": "#000000",
-                    "overline_color": "#000000",
-                    "text_color": "#000000",
-                    "link_color": "#000000",
-                    "accent_color": "#000000",
-                    "icon_color": "#000000",
-                    "btn_bg_color": "#000000",
-                    "btn_text_color": "#ffffff",
-                    "product_title_color": "#000000",
-                    "price_color": "#000000",
-                    "sale_price_color": "#000000",
-                    "badge_bg_color": "",
-                    "badge_text_color": "",
-                    "new_badge_bg_color": "",
-                    "new_badge_text_color": "",
-                    "discount_badge_bg_color": "",
-                    "discount_badge_text_color": "",
-                    "review_icon_color": "",
-                    "table_bg_color": "#ffffff",
-                    "table_text_color": "#000000",
-                    "table_border_color": "#bdbdbd",
-                    "form_bg_color": "#ffffff",
-                    "form_text_color": "#000000",
-                    "form_border_color": "#bdbdbd"
-                },
-                "3": {
-                    "bg_color": "#343434",
-                    "secondary_bg_color": "#464646",
-                    "border_color": "#575757",
-                    "heading_color": "#ffffff",
-                    "subheading_color": "#ffffff",
-                    "overline_color": "#ffffff",
-                    "text_color": "#ffffff",
-                    "link_color": "#ffffff",
-                    "accent_color": "#ffffff",
-                    "icon_color": "#ffffff",
-                    "btn_bg_color": "#ffffff",
-                    "btn_text_color": "#000000",
-                    "product_title_color": "#ffffff",
-                    "price_color": "#ffffff",
-                    "sale_price_color": "#ffffff",
-                    "badge_bg_color": "",
-                    "badge_text_color": "",
-                    "new_badge_bg_color": "",
-                    "new_badge_text_color": "",
-                    "discount_badge_bg_color": "",
-                    "discount_badge_text_color": "",
-                    "review_icon_color": "#ffffff",
-                    "table_bg_color": "#ffffff",
-                    "table_text_color": "#000000",
-                    "table_border_color": "#575757",
-                    "form_bg_color": "#ffffff",
-                    "form_text_color": "#000000",
-                    "form_border_color": "#575757"
-                },
-                "4": {
-                    "bg_color": "#212121",
-                    "secondary_bg_color": "#292929",
-                    "border_color": "#393939",
-                    "heading_color": "#ffffff",
-                    "subheading_color": "#ffffff",
-                    "overline_color": "#ffffff",
-                    "text_color": "#ffffff",
-                    "link_color": "#ffffff",
-                    "accent_color": "#ffffff",
-                    "icon_color": "#ffffff",
-                    "btn_bg_color": "#ffffff",
-                    "btn_text_color": "#000000",
-                    "product_title_color": "#ffffff",
-                    "price_color": "#ffffff",
-                    "sale_price_color": "#ffffff",
-                    "badge_bg_color": "",
-                    "badge_text_color": "",
-                    "new_badge_bg_color": "",
-                    "new_badge_text_color": "",
-                    "discount_badge_bg_color": "",
-                    "discount_badge_text_color": "",
-                    "review_icon_color": "#ffffff",
-                    "table_bg_color": "#ffffff",
-                    "table_text_color": "#000000",
-                    "table_border_color": "#393939",
-                    "form_bg_color": "#ffffff",
-                    "form_text_color": "#333333",
-                    "form_border_color": "#393939"
-                },
-                "5": {
-                    "bg_color": "#000000",
-                    "secondary_bg_color": "#212121",
-                    "border_color": "#393939",
-                    "heading_color": "#ffffff",
-                    "subheading_color": "#ffffff",
-                    "overline_color": "#ffffff",
-                    "text_color": "#ffffff",
-                    "link_color": "#ffffff",
-                    "accent_color": "#ffffff",
-                    "icon_color": "#ffffff",
-                    "btn_bg_color": "#ffffff",
-                    "btn_text_color": "#000000",
-                    "product_title_color": "#ffffff",
-                    "price_color": "#ffffff",
-                    "sale_price_color": "#ffffff",
-                    "badge_bg_color": "",
-                    "badge_text_color": "",
-                    "new_badge_bg_color": "",
-                    "new_badge_text_color": "",
-                    "discount_badge_bg_color": "",
-                    "discount_badge_text_color": "",
-                    "review_icon_color": "#ffffff",
-                    "table_bg_color": "#ffffff",
-                    "table_text_color": "#000000",
-                    "table_border_color": "#393939",
-                    "form_bg_color": "#ffffff",
-                    "form_text_color": "#000000",
-                    "form_border_color": "#393939"
-                }
-            },
             "textScale": "1",
             "textLineHeight": "1.85",
             "bodyTextFont": "Barlow",
@@ -262,7 +110,7 @@
             "navigationFont": "Barlow",
             "navigationFontScale": "1",
             "navigationLetterSpacing": "0",
-            "navigationFontWeight": "400",
+            "navigationFontWeight": "500",
             "navigationFontStyle": "normal",
             "navigationTextTransform": "none",
             "accessibilityShowAnimations": true,
@@ -291,9 +139,9 @@
             "productShowPromotionBadge": true,
             "productShowDiscountBadge": true,
             "productShowOutOfStockBadge": true,
-            "productShowDiscountPercentage": false,
+            "productShowDiscountPercentage": true,
             "productWrapName": false,
-            "productShowAddToCart": false,
+            "productShowAddToCart": true,
             "productShowStockBalance": true,
             "articleImageAspectRatio": "1:1",
             "articleImageAspectRatioFit": "cover",
@@ -324,8 +172,8 @@
                 "src": "https:\/\/images.unsplash.com\/photo-1469334031218-e382a71b716b",
                 "offset_top": "50",
                 "offset_left": "50",
-                "width": "800",
-                "height": "800"
+                "width": "",
+                "height": ""
             },
             "schemaWebsite": true,
             "schemaOrganization": true,
@@ -438,31 +286,132 @@
             "frontpage": {
                 "sections": [
                     {
-                        "id": "8475dd8224ae26e72fe61f2a4269c429",
-                        "title": "Hero split images",
-                        "name": "hero-split-images",
+                        "id": "111130909097d2a5ee76a0b7f05fd334",
+                        "title": "Hero-karuselli",
+                        "name": "hero-carousel",
                         "settings": {
-                            "sectionTitle": "Uusi mahtava Hero-otsikko!",
-                            "sectionSubtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                            "imgDimming": "15",
+                            "carouselEffect": "fade",
                             "sectionColorScheme": "dark",
-                            "btnLink": {
-                                "text": "Shoppaile nyt"
-                            },
-                            "imgStart": {
-                                "string_value": "https:\/\/images.unsplash.com\/photo-1586158291800-2665f07bba79",
-                                "src": "https:\/\/images.unsplash.com\/photo-1586158291800-2665f07bba79",
-                                "offset_top": "50",
-                                "offset_left": "50",
-                                "width": "1080",
-                                "height": "1080"
-                            },
-                            "imgEnd": {
-                                "string_value": "https:\/\/images.unsplash.com\/photo-1617104424032-b9bd6972d0e4",
-                                "src": "https:\/\/images.unsplash.com\/photo-1617104424032-b9bd6972d0e4",
-                                "offset_top": "50",
-                                "offset_left": "50",
-                                "width": "1080",
-                                "height": "1080"
+                            "setting_blocks": {
+                                "items": [
+                                    {
+                                        "type": "image",
+                                        "settings": {
+                                            "title": "Uusi mahtava Hero-otsikko!",
+                                            "subtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Shoppaile nyt",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1491933382434-500287f9b54b",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1491933382434-500287f9b54b",
+                                                "offset_top": "37",
+                                                "offset_left": "48",
+                                                "width": "",
+                                                "height": ""
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "image",
+                                        "settings": {
+                                            "title": "Uusi mahtava Hero-otsikko!",
+                                            "subtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Shoppaile nyt",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1609334761848-77b4d1994040",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1609334761848-77b4d1994040",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
+                                                "width": "",
+                                                "height": ""
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "image",
+                                        "settings": {
+                                            "title": "Uusi mahtava Hero-otsikko!",
+                                            "subtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Shoppaile nyt",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1616353270262-10dc0de0fd4d",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1616353270262-10dc0de0fd4d",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
+                                                "width": "",
+                                                "height": ""
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "3a4a7cfc9a87334ffe863a6471911673",
+                        "title": "Kuvakkeet tekstin kanssa",
+                        "name": "icons-with-text",
+                        "settings": {
+                            "orientation": "vertical",
+                            "sectionColorScheme": "light",
+                            "setting_blocks": {
+                                "items": [
+                                    {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><g><path d=\"M19.67,14.87h1.51c.52-.04.91-.49.88-1.01v-7.47c.09-1.56-1.08-2.9-2.64-3.03h-5.27v11.5\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.67,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16h0c0,1.19.97,2.16,2.16,2.16,1.19,0,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16.97,2.16,2.16,2.16,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M17.03,3.37v3.47s0,.03,0,.04c.01.45.38.81.83.79h4.2\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87h6.95\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.71,11.03h2.36\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,1.94c0-.79.64-1.44,1.44-1.44h10.78c.79,0,1.44.64,1.44,1.44v8.14s-13.66,0-13.66,0V1.94Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,10.07v3.35c0,.79.64,1.44,1.44,1.44h2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><\/g><\/svg>",
+                                            "title": "Toimitus",
+                                            "richtext": "<p>Kirjoita t\u00e4h\u00e4n lyhyt kuvaus.<\/p>"
+                                        }
+                                    },
+                                    {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"m5.03125 20.840875 -4.3125 -4.3125 4.3125 -4.3125\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M0.71875 16.528375h14.375a7.1875 7.1875 0 0 0 0 -14.375h-5.75\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Palautus",
+                                            "richtext": "<p>Kirjoita t\u00e4h\u00e4n lyhyt kuvaus.<\/p>"
+                                        }
+                                    },
+                                    {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M4.3125 17.25h-0.71875a2.875 2.875 0 0 1 -2.875 -2.875v-2.875a2.875 2.875 0 0 1 2.875 -2.875h0.71875a0.71875 0.71875 0 0 1 0.71875 0.71875v7.1875a0.71875 0.71875 0 0 1 -0.71875 0.71875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M19.40625 17.25h-0.71875a0.71875 0.71875 0 0 1 -0.71875 -0.71875v-7.1875A0.71875 0.71875 0 0 1 18.6875 8.625h0.71875a2.875 2.875 0 0 1 2.875 2.875v2.875a2.875 2.875 0 0 1 -2.875 2.875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M3.59375 8.625A7.90625 7.90625 0 0 1 11.5 0.71875h0A7.90625 7.90625 0 0 1 19.40625 8.625\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M14.375 20.84375h2.15625a2.875 2.875 0 0 0 2.875 -2.875h0V17.25\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M12.9375 22.28125H11.5a1.4375 1.4375 0 0 1 -1.4375 -1.4375h0a1.4375 1.4375 0 0 1 1.4375 -1.4375h1.4375a1.4375 1.4375 0 0 1 1.4375 1.4375h0a1.4375 1.4375 0 0 1 -1.4375 1.4375Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Asiakaspalvelu",
+                                            "richtext": "<p>Kirjoita t\u00e4h\u00e4n lyhyt kuvaus.<\/p>"
+                                        }
+                                    },
+                                    {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M2.15625 3.59375h18.6875s1.4375 0 1.4375 1.4375v12.9375s0 1.4375 -1.4375 1.4375H2.15625s-1.4375 0 -1.4375 -1.4375V5.03125s0 -1.4375 1.4375 -1.4375\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m0.71875 7.90625 21.5625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 12.21875 7.90625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 15.09375 5.03125 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Maksutavat",
+                                            "richtext": "<p>Kirjoita t\u00e4h\u00e4n lyhyt kuvaus.<\/p>"
+                                        }
+                                    }
+                                ]
                             }
                         },
                         "blocks": []
@@ -472,45 +421,145 @@
                         "title": "Product list",
                         "name": "product-list",
                         "settings": {
-                            "sectionTitle": "Suosituimmat tuotteet"
+                            "sectionTitle": "Uutuudet",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "3",
+                            "sectionPaddingBottom": "3"
                         },
                         "blocks": []
                     },
                     {
-                        "id": "27f9db39c466c7bac217b098989cd0f7",
-                        "title": "Text columns",
+                        "id": "3fc05d5c99a7b660573a074dc02801dc",
+                        "title": "Mainoskollaasi",
+                        "name": "promotion-collage",
+                        "settings": {
+                            "collageLayout": "4",
+                            "sectionTitle": "Suosituimmat kategoriat",
+                            "imgAspectRatio": "1:1",
+                            "sectionHeaderTextAlign": "start",
+                            "textHorizontalAlign": "center",
+                            "textVerticalAlign": "center",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "3",
+                            "sectionPaddingBottom": "3",
+                            "setting_blocks": {
+                                "items": [
+                                    {
+                                        "type": "image",
+                                        "settings": {
+                                            "title": "Otsikko",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Shoppaile nyt",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "colorScheme": "#ffffff"
+                                        }
+                                    },
+                                    {
+                                        "type": "image",
+                                        "settings": {
+                                            "title": "Otsikko",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Shoppaile nyt",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "colorScheme": "#ffffff"
+                                        }
+                                    },
+                                    {
+                                        "type": "image",
+                                        "settings": {
+                                            "title": "Otsikko",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Shoppaile nyt",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "colorScheme": "#ffffff"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "id": "e4229aadc0c8a34215752e7eaef4e694",
+                        "title": "Tuotekaruselli",
+                        "name": "product-carousel",
+                        "settings": {
+                            "sectionTitle": "Kuumat diilit",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "3",
+                            "sectionPaddingBottom": "6"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "4b4c20946125568a503da68463413a6d",
+                        "title": "Kampanjabanneri",
+                        "name": "promotion-banner",
+                        "settings": {
+                            "bannerLayout": 2,
+                            "discountCode": "KES\u00c420",
+                            "title": "Uusi mahtava kampanja",
+                            "btnLink": {
+                                "text": "Shoppaile nyt"
+                            },
+                            "sectionTextAlign": "center",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "1.5",
+                            "sectionPaddingBottom": "1.5",
+                            "sectionColorScheme": "accent"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "f23b81d4d06b44ae05d7ef10108917b1",
+                        "title": "Tekstisarakkeet",
                         "name": "text-columns",
                         "settings": {
                             "orientation": "horizontal",
-                            "sectionOverline": "",
-                            "sectionTitle": "",
-                            "sectionSubtitle": "",
-                            "colPerRow": "2",
-                            "sectionHighlightItems": "nil",
+                            "colPerRow": "3",
                             "sectionTextAlign": "center",
-                            "btnStyle": "nil",
                             "imgAspectRatio": "1:1",
                             "imgScaleRatio": "1",
                             "imgAlign": "center",
                             "imgFit": true,
-                            "sectionOverlineTag": "h3",
-                            "sectionTitleTag": "h2",
-                            "sectionSubtitleTag": "h3",
-                            "sectionColorScheme": false,
-                            "sectionAdditionalTitles": false,
-                            "sectionPaddingMode": "auto",
-                            "sectionPaddingTop": "0",
-                            "sectionPaddingBottom": "0",
-                            "sectionBgImg": {
-                                "string_value": "",
-                                "src": "",
-                                "offset_top": "",
-                                "offset_left": "",
-                                "width": "",
-                                "height": ""
-                            },
-                            "sectionBgImgDimming": "0",
-                            "sectionBgImgBlur": "0",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "6",
+                            "sectionPaddingBottom": "6",
                             "setting_blocks": {
                                 "items": [
                                     {
@@ -526,10 +575,10 @@
                                                 "target": "_self"
                                             },
                                             "img": {
-                                                "string_value": "",
-                                                "src": "",
-                                                "offset_top": "",
-                                                "offset_left": "",
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1603946877690-d410437c29aa",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1603946877690-d410437c29aa",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
                                                 "width": "",
                                                 "height": ""
                                             }
@@ -548,10 +597,32 @@
                                                 "target": "_self"
                                             },
                                             "img": {
-                                                "string_value": "",
-                                                "src": "",
-                                                "offset_top": "",
-                                                "offset_left": "",
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1612690669207-fed642192c40",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1612690669207-fed642192c40",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
+                                                "width": "",
+                                                "height": ""
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "text",
+                                        "settings": {
+                                            "title": "Otsikko",
+                                            "richtext": "<p>Lis\u00e4\u00e4 sopiva teksti jolla voit esimerkiksi keskitty\u00e4 valitsemaasi tuotteeseen, artikkeliin tai tuotemerkkiin.<\/p>",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Linkki",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1598061403733-a0d8eb6bd569",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1598061403733-a0d8eb6bd569",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
                                                 "width": "",
                                                 "height": ""
                                             }
@@ -559,6 +630,17 @@
                                     }
                                 ]
                             }
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "427b81d211de99adb983d075493ef2dc",
+                        "title": "Yhteystiedot ja sijainti",
+                        "name": "contact-information-with-location",
+                        "settings": {
+                            "sectionTitle": "Yhteystiedot",
+                            "richtext": "<p>Kerro lis\u00e4\u00e4 liiketoiminnastasi, ainutlaatuisista palveluistasi tai tuotteistasi. Auta asiakkaita ymm\u00e4rt\u00e4m\u00e4\u00e4n, miksi juuri sinun yrityksesi on heille oikea valinta.<\/p><p><strong>Osoite:<\/strong><br>Esimerkkitie 123, 00100 Helsinki, Suomi<\/p><p><strong>Puhelinnumero:<\/strong><br>+358 12 345 6789<\/p><p><strong>S\u00e4hk\u00f6posti:<\/strong><br>myynti@esimerkkikauppa.fi<\/p><p><strong>Aukioloajat:<\/strong><br>Maanantaista perjantaihin: 9:00-17:00<\/p>",
+                            "sectionColorScheme": "light"
                         },
                         "blocks": []
                     }
@@ -613,30 +695,32 @@
                 "sectionTextAlign": "start",
                 "sectionQuickLinkStyle": "primary",
                 "sectionAnimation": "animate__fadeInUp",
-                "style_link_color": "#000000",
                 "style_accent_color": "#00badb",
                 "style_btn_bg_color": "#00badb",
                 "style_btn_text_color": "#ffffff",
-                "style_icon_color": "#000000",
-                "style_header_bg_color": "#1e2d7d",
-                "style_header_text_color": "#ffffff",
-                "style_header_accent_color": "#00badb",
-                "style_footer_bg_color": "#f3f5f6",
-                "style_footer_text_color": "#677279",
-                "style_footer_accent_color": "#00badb",
                 "style_bg_color": "#ffffff",
                 "style_secondary_bg_color": "#f3f5f6",
-                "style_border_color": "#e1e3e4",
-                "style_heading_color": "#1e2d7d",
+                "style_header_accent_color": "#00badb",
+                "style_header_bg_color": "#1f4383",
+                "style_header_text_color": "#ffffff",
+                "style_footer_accent_color": "#00badb",
+                "style_footer_bg_color": "#f3f5f6",
+                "style_footer_text_color": "#677279",
+                "style_announcement_bg_color": "#1f4383",
+                "style_announcement_text_color": "#ffffff",
+                "style_heading_color": "#000000",
                 "style_subheading_color": "#000000",
-                "style_overline_color": "#000000",
+                "style_overline_color": "",
                 "style_text_color": "#000000",
-                "style_product_title_color": "#1e2d7d",
+                "style_link_color": "#000000",
+                "style_icon_color": "#000000",
+                "style_border_color": "#e1e3e4",
+                "style_product_title_color": "#000000",
                 "style_price_color": "#00badb",
                 "style_sale_price_color": "#00badb",
                 "style_badge_bg_color": "#1a1a1a",
                 "style_badge_text_color": "#ffffff",
-                "style_new_badge_bg_color": "#008a00",
+                "style_new_badge_bg_color": "#2bb22b",
                 "style_new_badge_text_color": "#ffffff",
                 "style_discount_badge_bg_color": "#00badb",
                 "style_discount_badge_text_color": "#ffffff",
@@ -647,160 +731,6 @@
                 "style_form_bg_color": "#ffffff",
                 "style_form_text_color": "#333333",
                 "style_form_border_color": "#cccccc",
-                "style_announcement_bg_color": "#1e2d7d",
-                "style_announcement_text_color": "#ffffff",
-                "styles": {
-                    "1": {
-                        "bg_color": "#ffffff",
-                        "secondary_bg_color": "#f1f1f1",
-                        "border_color": "#e0e0e0",
-                        "heading_color": "#000000",
-                        "subheading_color": "#000000",
-                        "overline_color": "#000000",
-                        "text_color": "#000000",
-                        "link_color": "#000000",
-                        "accent_color": "#000000",
-                        "icon_color": "#000000",
-                        "btn_bg_color": "#000000",
-                        "btn_text_color": "#ffffff",
-                        "product_title_color": "#000000",
-                        "price_color": "#000000",
-                        "sale_price_color": "#000000",
-                        "badge_bg_color": "",
-                        "badge_text_color": "",
-                        "new_badge_bg_color": "",
-                        "new_badge_text_color": "",
-                        "discount_badge_bg_color": "",
-                        "discount_badge_text_color": "",
-                        "review_icon_color": "#000000",
-                        "table_bg_color": "#ffffff",
-                        "table_text_color": "#000000",
-                        "table_border_color": "#bdbdbd",
-                        "form_bg_color": "#ffffff",
-                        "form_text_color": "#000000",
-                        "form_border_color": "#bdbdbd"
-                    },
-                    "2": {
-                        "bg_color": "#f5f5f5",
-                        "secondary_bg_color": "#ebebeb",
-                        "border_color": "#bdbdbd",
-                        "heading_color": "#000000",
-                        "subheading_color": "#000000",
-                        "overline_color": "#000000",
-                        "text_color": "#000000",
-                        "link_color": "#000000",
-                        "accent_color": "#000000",
-                        "icon_color": "#000000",
-                        "btn_bg_color": "#000000",
-                        "btn_text_color": "#ffffff",
-                        "product_title_color": "#000000",
-                        "price_color": "#000000",
-                        "sale_price_color": "#000000",
-                        "badge_bg_color": "",
-                        "badge_text_color": "",
-                        "new_badge_bg_color": "",
-                        "new_badge_text_color": "",
-                        "discount_badge_bg_color": "",
-                        "discount_badge_text_color": "",
-                        "review_icon_color": "",
-                        "table_bg_color": "#ffffff",
-                        "table_text_color": "#000000",
-                        "table_border_color": "#bdbdbd",
-                        "form_bg_color": "#ffffff",
-                        "form_text_color": "#000000",
-                        "form_border_color": "#bdbdbd"
-                    },
-                    "3": {
-                        "bg_color": "#343434",
-                        "secondary_bg_color": "#464646",
-                        "border_color": "#575757",
-                        "heading_color": "#ffffff",
-                        "subheading_color": "#ffffff",
-                        "overline_color": "#ffffff",
-                        "text_color": "#ffffff",
-                        "link_color": "#ffffff",
-                        "accent_color": "#ffffff",
-                        "icon_color": "#ffffff",
-                        "btn_bg_color": "#ffffff",
-                        "btn_text_color": "#000000",
-                        "product_title_color": "#ffffff",
-                        "price_color": "#ffffff",
-                        "sale_price_color": "#ffffff",
-                        "badge_bg_color": "",
-                        "badge_text_color": "",
-                        "new_badge_bg_color": "",
-                        "new_badge_text_color": "",
-                        "discount_badge_bg_color": "",
-                        "discount_badge_text_color": "",
-                        "review_icon_color": "#ffffff",
-                        "table_bg_color": "#ffffff",
-                        "table_text_color": "#000000",
-                        "table_border_color": "#575757",
-                        "form_bg_color": "#ffffff",
-                        "form_text_color": "#000000",
-                        "form_border_color": "#575757"
-                    },
-                    "4": {
-                        "bg_color": "#212121",
-                        "secondary_bg_color": "#292929",
-                        "border_color": "#393939",
-                        "heading_color": "#ffffff",
-                        "subheading_color": "#ffffff",
-                        "overline_color": "#ffffff",
-                        "text_color": "#ffffff",
-                        "link_color": "#ffffff",
-                        "accent_color": "#ffffff",
-                        "icon_color": "#ffffff",
-                        "btn_bg_color": "#ffffff",
-                        "btn_text_color": "#000000",
-                        "product_title_color": "#ffffff",
-                        "price_color": "#ffffff",
-                        "sale_price_color": "#ffffff",
-                        "badge_bg_color": "",
-                        "badge_text_color": "",
-                        "new_badge_bg_color": "",
-                        "new_badge_text_color": "",
-                        "discount_badge_bg_color": "",
-                        "discount_badge_text_color": "",
-                        "review_icon_color": "#ffffff",
-                        "table_bg_color": "#ffffff",
-                        "table_text_color": "#000000",
-                        "table_border_color": "#393939",
-                        "form_bg_color": "#ffffff",
-                        "form_text_color": "#333333",
-                        "form_border_color": "#393939"
-                    },
-                    "5": {
-                        "bg_color": "#000000",
-                        "secondary_bg_color": "#212121",
-                        "border_color": "#393939",
-                        "heading_color": "#ffffff",
-                        "subheading_color": "#ffffff",
-                        "overline_color": "#ffffff",
-                        "text_color": "#ffffff",
-                        "link_color": "#ffffff",
-                        "accent_color": "#ffffff",
-                        "icon_color": "#ffffff",
-                        "btn_bg_color": "#ffffff",
-                        "btn_text_color": "#000000",
-                        "product_title_color": "#ffffff",
-                        "price_color": "#ffffff",
-                        "sale_price_color": "#ffffff",
-                        "badge_bg_color": "",
-                        "badge_text_color": "",
-                        "new_badge_bg_color": "",
-                        "new_badge_text_color": "",
-                        "discount_badge_bg_color": "",
-                        "discount_badge_text_color": "",
-                        "review_icon_color": "#ffffff",
-                        "table_bg_color": "#ffffff",
-                        "table_text_color": "#000000",
-                        "table_border_color": "#393939",
-                        "form_bg_color": "#ffffff",
-                        "form_text_color": "#000000",
-                        "form_border_color": "#393939"
-                    }
-                },
                 "textScale": "1",
                 "textLineHeight": "1.85",
                 "bodyTextFont": "Barlow",
@@ -834,7 +764,7 @@
                 "navigationFont": "Barlow",
                 "navigationFontScale": "1",
                 "navigationLetterSpacing": "0",
-                "navigationFontWeight": "400",
+                "navigationFontWeight": "500",
                 "navigationFontStyle": "normal",
                 "navigationTextTransform": "none",
                 "accessibilityShowAnimations": true,
@@ -863,9 +793,9 @@
                 "productShowPromotionBadge": true,
                 "productShowDiscountBadge": true,
                 "productShowOutOfStockBadge": true,
-                "productShowDiscountPercentage": false,
+                "productShowDiscountPercentage": true,
                 "productWrapName": false,
-                "productShowAddToCart": false,
+                "productShowAddToCart": true,
                 "productShowStockBalance": true,
                 "articleImageAspectRatio": "1:1",
                 "articleImageAspectRatioFit": "cover",
@@ -896,8 +826,8 @@
                     "src": "https:\/\/images.unsplash.com\/photo-1469334031218-e382a71b716b",
                     "offset_top": "50",
                     "offset_left": "50",
-                    "width": "800",
-                    "height": "800"
+                    "width": "",
+                    "height": ""
                 },
                 "schemaWebsite": true,
                 "schemaOrganization": true,
@@ -1010,31 +940,132 @@
                 "frontpage": {
                     "sections": [
                         {
-                            "id": "8475dd8224ae26e72fe61f2a4269c429",
-                            "title": "Hero split images",
-                            "name": "hero-split-images",
+                            "id": "111130909097d2a5ee76a0b7f05fd334",
+                            "title": "Hero-karuselli",
+                            "name": "hero-carousel",
                             "settings": {
-                                "sectionTitle": "Uusi mahtava Hero-otsikko!",
-                                "sectionSubtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                                "imgDimming": "15",
+                                "carouselEffect": "fade",
                                 "sectionColorScheme": "dark",
-                                "btnLink": {
-                                    "text": "Shoppaile nyt"
-                                },
-                                "imgStart": {
-                                    "string_value": "https:\/\/images.unsplash.com\/photo-1586158291800-2665f07bba79",
-                                    "src": "https:\/\/images.unsplash.com\/photo-1586158291800-2665f07bba79",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                },
-                                "imgEnd": {
-                                    "string_value": "https:\/\/images.unsplash.com\/photo-1617104424032-b9bd6972d0e4",
-                                    "src": "https:\/\/images.unsplash.com\/photo-1617104424032-b9bd6972d0e4",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
+                                "setting_blocks": {
+                                    "items": [
+                                        {
+                                            "type": "image",
+                                            "settings": {
+                                                "title": "Uusi mahtava Hero-otsikko!",
+                                                "subtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Shoppaile nyt",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1491933382434-500287f9b54b",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1491933382434-500287f9b54b",
+                                                    "offset_top": "37",
+                                                    "offset_left": "48",
+                                                    "width": "",
+                                                    "height": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "settings": {
+                                                "title": "Uusi mahtava Hero-otsikko!",
+                                                "subtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Shoppaile nyt",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1609334761848-77b4d1994040",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1609334761848-77b4d1994040",
+                                                    "offset_top": "50",
+                                                    "offset_left": "50",
+                                                    "width": "",
+                                                    "height": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "settings": {
+                                                "title": "Uusi mahtava Hero-otsikko!",
+                                                "subtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Shoppaile nyt",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1616353270262-10dc0de0fd4d",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1616353270262-10dc0de0fd4d",
+                                                    "offset_top": "50",
+                                                    "offset_left": "50",
+                                                    "width": "",
+                                                    "height": ""
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "blocks": []
+                        },
+                        {
+                            "id": "3a4a7cfc9a87334ffe863a6471911673",
+                            "title": "Kuvakkeet tekstin kanssa",
+                            "name": "icons-with-text",
+                            "settings": {
+                                "orientation": "vertical",
+                                "sectionColorScheme": "light",
+                                "setting_blocks": {
+                                    "items": [
+                                        {
+                                            "type": "text",
+                                            "settings": {
+                                                "iconFormat": "svg",
+                                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><g><path d=\"M19.67,14.87h1.51c.52-.04.91-.49.88-1.01v-7.47c.09-1.56-1.08-2.9-2.64-3.03h-5.27v11.5\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.67,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16h0c0,1.19.97,2.16,2.16,2.16,1.19,0,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16.97,2.16,2.16,2.16,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M17.03,3.37v3.47s0,.03,0,.04c.01.45.38.81.83.79h4.2\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87h6.95\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.71,11.03h2.36\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,1.94c0-.79.64-1.44,1.44-1.44h10.78c.79,0,1.44.64,1.44,1.44v8.14s-13.66,0-13.66,0V1.94Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,10.07v3.35c0,.79.64,1.44,1.44,1.44h2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><\/g><\/svg>",
+                                                "title": "Toimitus",
+                                                "richtext": "<p>Kirjoita t\u00e4h\u00e4n lyhyt kuvaus.<\/p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "settings": {
+                                                "iconFormat": "svg",
+                                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"m5.03125 20.840875 -4.3125 -4.3125 4.3125 -4.3125\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M0.71875 16.528375h14.375a7.1875 7.1875 0 0 0 0 -14.375h-5.75\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                                "title": "Palautus",
+                                                "richtext": "<p>Kirjoita t\u00e4h\u00e4n lyhyt kuvaus.<\/p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "settings": {
+                                                "iconFormat": "svg",
+                                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M4.3125 17.25h-0.71875a2.875 2.875 0 0 1 -2.875 -2.875v-2.875a2.875 2.875 0 0 1 2.875 -2.875h0.71875a0.71875 0.71875 0 0 1 0.71875 0.71875v7.1875a0.71875 0.71875 0 0 1 -0.71875 0.71875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M19.40625 17.25h-0.71875a0.71875 0.71875 0 0 1 -0.71875 -0.71875v-7.1875A0.71875 0.71875 0 0 1 18.6875 8.625h0.71875a2.875 2.875 0 0 1 2.875 2.875v2.875a2.875 2.875 0 0 1 -2.875 2.875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M3.59375 8.625A7.90625 7.90625 0 0 1 11.5 0.71875h0A7.90625 7.90625 0 0 1 19.40625 8.625\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M14.375 20.84375h2.15625a2.875 2.875 0 0 0 2.875 -2.875h0V17.25\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M12.9375 22.28125H11.5a1.4375 1.4375 0 0 1 -1.4375 -1.4375h0a1.4375 1.4375 0 0 1 1.4375 -1.4375h1.4375a1.4375 1.4375 0 0 1 1.4375 1.4375h0a1.4375 1.4375 0 0 1 -1.4375 1.4375Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                                "title": "Asiakaspalvelu",
+                                                "richtext": "<p>Kirjoita t\u00e4h\u00e4n lyhyt kuvaus.<\/p>"
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "settings": {
+                                                "iconFormat": "svg",
+                                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M2.15625 3.59375h18.6875s1.4375 0 1.4375 1.4375v12.9375s0 1.4375 -1.4375 1.4375H2.15625s-1.4375 0 -1.4375 -1.4375V5.03125s0 -1.4375 1.4375 -1.4375\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m0.71875 7.90625 21.5625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 12.21875 7.90625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 15.09375 5.03125 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                                "title": "Maksutavat",
+                                                "richtext": "<p>Kirjoita t\u00e4h\u00e4n lyhyt kuvaus.<\/p>"
+                                            }
+                                        }
+                                    ]
                                 }
                             },
                             "blocks": []
@@ -1044,45 +1075,145 @@
                             "title": "Product list",
                             "name": "product-list",
                             "settings": {
-                                "sectionTitle": "Suosituimmat tuotteet"
+                                "sectionTitle": "Uutuudet",
+                                "sectionPaddingMode": "custom",
+                                "sectionPaddingTop": "3",
+                                "sectionPaddingBottom": "3"
                             },
                             "blocks": []
                         },
                         {
-                            "id": "27f9db39c466c7bac217b098989cd0f7",
-                            "title": "Text columns",
+                            "id": "3fc05d5c99a7b660573a074dc02801dc",
+                            "title": "Mainoskollaasi",
+                            "name": "promotion-collage",
+                            "settings": {
+                                "collageLayout": "4",
+                                "sectionTitle": "Suosituimmat kategoriat",
+                                "imgAspectRatio": "1:1",
+                                "sectionHeaderTextAlign": "start",
+                                "textHorizontalAlign": "center",
+                                "textVerticalAlign": "center",
+                                "sectionPaddingMode": "custom",
+                                "sectionPaddingTop": "3",
+                                "sectionPaddingBottom": "3",
+                                "setting_blocks": {
+                                    "items": [
+                                        {
+                                            "type": "image",
+                                            "settings": {
+                                                "title": "Otsikko",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Shoppaile nyt",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                                    "offset_top": "50",
+                                                    "offset_left": "50",
+                                                    "width": "",
+                                                    "height": ""
+                                                },
+                                                "colorScheme": "#ffffff"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "settings": {
+                                                "title": "Otsikko",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Shoppaile nyt",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
+                                                    "offset_top": "50",
+                                                    "offset_left": "50",
+                                                    "width": "",
+                                                    "height": ""
+                                                },
+                                                "colorScheme": "#ffffff"
+                                            }
+                                        },
+                                        {
+                                            "type": "image",
+                                            "settings": {
+                                                "title": "Otsikko",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Shoppaile nyt",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                                    "offset_top": "50",
+                                                    "offset_left": "50",
+                                                    "width": "",
+                                                    "height": ""
+                                                },
+                                                "colorScheme": "#ffffff"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "id": "e4229aadc0c8a34215752e7eaef4e694",
+                            "title": "Tuotekaruselli",
+                            "name": "product-carousel",
+                            "settings": {
+                                "sectionTitle": "Kuumat diilit",
+                                "sectionPaddingMode": "custom",
+                                "sectionPaddingTop": "3",
+                                "sectionPaddingBottom": "6"
+                            },
+                            "blocks": []
+                        },
+                        {
+                            "id": "4b4c20946125568a503da68463413a6d",
+                            "title": "Kampanjabanneri",
+                            "name": "promotion-banner",
+                            "settings": {
+                                "bannerLayout": 2,
+                                "discountCode": "KES\u00c420",
+                                "title": "Uusi mahtava kampanja",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
+                                "sectionTextAlign": "center",
+                                "sectionPaddingMode": "custom",
+                                "sectionPaddingTop": "1.5",
+                                "sectionPaddingBottom": "1.5",
+                                "sectionColorScheme": "accent"
+                            },
+                            "blocks": []
+                        },
+                        {
+                            "id": "f23b81d4d06b44ae05d7ef10108917b1",
+                            "title": "Tekstisarakkeet",
                             "name": "text-columns",
                             "settings": {
                                 "orientation": "horizontal",
-                                "sectionOverline": "",
-                                "sectionTitle": "",
-                                "sectionSubtitle": "",
-                                "colPerRow": "2",
-                                "sectionHighlightItems": "nil",
+                                "colPerRow": "3",
                                 "sectionTextAlign": "center",
-                                "btnStyle": "nil",
                                 "imgAspectRatio": "1:1",
                                 "imgScaleRatio": "1",
                                 "imgAlign": "center",
                                 "imgFit": true,
-                                "sectionOverlineTag": "h3",
-                                "sectionTitleTag": "h2",
-                                "sectionSubtitleTag": "h3",
-                                "sectionColorScheme": false,
-                                "sectionAdditionalTitles": false,
-                                "sectionPaddingMode": "auto",
-                                "sectionPaddingTop": "0",
-                                "sectionPaddingBottom": "0",
-                                "sectionBgImg": {
-                                    "string_value": "",
-                                    "src": "",
-                                    "offset_top": "",
-                                    "offset_left": "",
-                                    "width": "",
-                                    "height": ""
-                                },
-                                "sectionBgImgDimming": "0",
-                                "sectionBgImgBlur": "0",
+                                "sectionPaddingMode": "custom",
+                                "sectionPaddingTop": "6",
+                                "sectionPaddingBottom": "6",
                                 "setting_blocks": {
                                     "items": [
                                         {
@@ -1098,10 +1229,10 @@
                                                     "target": "_self"
                                                 },
                                                 "img": {
-                                                    "string_value": "",
-                                                    "src": "",
-                                                    "offset_top": "",
-                                                    "offset_left": "",
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1603946877690-d410437c29aa",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1603946877690-d410437c29aa",
+                                                    "offset_top": "50",
+                                                    "offset_left": "50",
                                                     "width": "",
                                                     "height": ""
                                                 }
@@ -1120,10 +1251,32 @@
                                                     "target": "_self"
                                                 },
                                                 "img": {
-                                                    "string_value": "",
-                                                    "src": "",
-                                                    "offset_top": "",
-                                                    "offset_left": "",
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1612690669207-fed642192c40",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1612690669207-fed642192c40",
+                                                    "offset_top": "50",
+                                                    "offset_left": "50",
+                                                    "width": "",
+                                                    "height": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "settings": {
+                                                "title": "Otsikko",
+                                                "richtext": "<p>Lis\u00e4\u00e4 sopiva teksti jolla voit esimerkiksi keskitty\u00e4 valitsemaasi tuotteeseen, artikkeliin tai tuotemerkkiin.<\/p>",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Linkki",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1598061403733-a0d8eb6bd569",
+                                                    "src": "https:\/\/images.unsplash.com\/photo-1598061403733-a0d8eb6bd569",
+                                                    "offset_top": "50",
+                                                    "offset_left": "50",
                                                     "width": "",
                                                     "height": ""
                                                 }
@@ -1131,6 +1284,17 @@
                                         }
                                     ]
                                 }
+                            },
+                            "blocks": []
+                        },
+                        {
+                            "id": "427b81d211de99adb983d075493ef2dc",
+                            "title": "Yhteystiedot ja sijainti",
+                            "name": "contact-information-with-location",
+                            "settings": {
+                                "sectionTitle": "Yhteystiedot",
+                                "richtext": "<p>Kerro lis\u00e4\u00e4 liiketoiminnastasi, ainutlaatuisista palveluistasi tai tuotteistasi. Auta asiakkaita ymm\u00e4rt\u00e4m\u00e4\u00e4n, miksi juuri sinun yrityksesi on heille oikea valinta.<\/p><p><strong>Osoite:<\/strong><br>Esimerkkitie 123, 00100 Helsinki, Suomi<\/p><p><strong>Puhelinnumero:<\/strong><br>+358 12 345 6789<\/p><p><strong>S\u00e4hk\u00f6posti:<\/strong><br>myynti@esimerkkikauppa.fi<\/p><p><strong>Aukioloajat:<\/strong><br>Maanantaista perjantaihin: 9:00-17:00<\/p>",
+                                "sectionColorScheme": "light"
                             },
                             "blocks": []
                         }
