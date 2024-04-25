@@ -106,7 +106,7 @@ body {
 
                     .input-group {
 
-                        &.input-group-focus {
+                        &:focus-within {
 
                             button[type="reset"] {
                                 pointer-events: auto;
@@ -282,7 +282,7 @@ body {
                         
                                             .input-group {
                         
-                                                &.input-group-focus {
+                                                &:focus-within {
                         
                                                     button[type="reset"] {
                                                         pointer-events: auto;
@@ -1016,7 +1016,7 @@ body {
 
                     .input-group {
 
-                        &.input-group-focus {
+                        &:focus-within {
 
                             button[type="reset"] {
                                 pointer-events: auto;

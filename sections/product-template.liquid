@@ -2136,6 +2136,27 @@
             {% endif %}
 
             <script type="application/javascript">
+                const productContainerEl = document.querySelector('.product-container');
+                const productContainerChildEl = document.querySelector('.product-container > .row');
+                const productInfoEl = document.querySelector('.product-info');
+
+                const adjustHeight = () => {
+                    const productContainerChildHeight = productContainerChildEl.getBoundingClientRect().height;
+                    const productInfoHeight = productInfoEl.getBoundingClientRect().height;
+
+                    if (productContainerChildHeight < productInfoHeight) {
+                        productContainerEl.style.setProperty('--product-container-height', productInfoHeight+'px');
+                    } else {
+                        productContainerEl.style.removeProperty('--product-container-height');
+                    }
+                };
+
+                window.addEventListener('resize', () => {
+                    requestAnimationFrame(() => {
+                        adjustHeight();
+                    });
+                });
+
                 document.addEventListener('DOMContentLoaded', function() {
                     document.dispatchEvent(new CustomEvent('theme:product:view', {
                         detail: {
