@@ -653,8 +653,7 @@
                         "name": "contact-information-with-location",
                         "settings": {
                             "sectionTitle": "Yhteystiedot",
-                            "richtext": "<p>Kerro lis\u00e4\u00e4 liiketoiminnastasi, ainutlaatuisista palveluistasi tai tuotteistasi. Auta asiakkaita ymm\u00e4rt\u00e4m\u00e4\u00e4n, miksi juuri sinun yrityksesi on heille oikea valinta.<\/p><p><strong>Osoite:<\/strong><br>Esimerkkitie 123, 00100 Helsinki, Suomi<\/p><p><strong>Puhelinnumero:<\/strong><br>+358 12 345 6789<\/p><p><strong>S\u00e4hk\u00f6posti:<\/strong><br>myynti@esimerkkikauppa.fi<\/p><p><strong>Aukioloajat:<\/strong><br>Maanantaista perjantaihin: 9:00-17:00<\/p>",
-                            "sectionColorScheme": "light"
+                            "richtext": "<p>Kerro lis\u00e4\u00e4 liiketoiminnastasi, ainutlaatuisista palveluistasi tai tuotteistasi. Auta asiakkaita ymm\u00e4rt\u00e4m\u00e4\u00e4n, miksi juuri sinun yrityksesi on heille oikea valinta.<\/p><p><strong>Osoite:<\/strong><br>Esimerkkitie 123, 00100 Helsinki, Suomi<\/p><p><strong>Puhelinnumero:<\/strong><br>+358 12 345 6789<\/p><p><strong>S\u00e4hk\u00f6posti:<\/strong><br>myynti@esimerkkikauppa.fi<\/p><p><strong>Aukioloajat:<\/strong><br>Maanantaista perjantaihin: 9:00-17:00<\/p>"
                         },
                         "blocks": []
                     }
@@ -1321,8 +1320,7 @@
                             "name": "contact-information-with-location",
                             "settings": {
                                 "sectionTitle": "Yhteystiedot",
-                                "richtext": "<p>Kerro lis\u00e4\u00e4 liiketoiminnastasi, ainutlaatuisista palveluistasi tai tuotteistasi. Auta asiakkaita ymm\u00e4rt\u00e4m\u00e4\u00e4n, miksi juuri sinun yrityksesi on heille oikea valinta.<\/p><p><strong>Osoite:<\/strong><br>Esimerkkitie 123, 00100 Helsinki, Suomi<\/p><p><strong>Puhelinnumero:<\/strong><br>+358 12 345 6789<\/p><p><strong>S\u00e4hk\u00f6posti:<\/strong><br>myynti@esimerkkikauppa.fi<\/p><p><strong>Aukioloajat:<\/strong><br>Maanantaista perjantaihin: 9:00-17:00<\/p>",
-                                "sectionColorScheme": "light"
+                                "richtext": "<p>Kerro lis\u00e4\u00e4 liiketoiminnastasi, ainutlaatuisista palveluistasi tai tuotteistasi. Auta asiakkaita ymm\u00e4rt\u00e4m\u00e4\u00e4n, miksi juuri sinun yrityksesi on heille oikea valinta.<\/p><p><strong>Osoite:<\/strong><br>Esimerkkitie 123, 00100 Helsinki, Suomi<\/p><p><strong>Puhelinnumero:<\/strong><br>+358 12 345 6789<\/p><p><strong>S\u00e4hk\u00f6posti:<\/strong><br>myynti@esimerkkikauppa.fi<\/p><p><strong>Aukioloajat:<\/strong><br>Maanantaista perjantaihin: 9:00-17:00<\/p>"
                             },
                             "blocks": []
                         }
