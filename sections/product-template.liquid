@@ -184,7 +184,7 @@
 
                     <div class="section-highlight-item product-media-container">
 
-                        <div class="product-media row g-0">
+                        <div class="product-media row g-0" data-dynamic-partial="media">
 
                             <div id="product-thumb-media-swiper" class="swiper swiper-vertical d-none d-lg-block col max-w-15 me-5 p-0">
 
@@ -203,7 +203,7 @@
                                         {%- assign imgSize = '132,132' -%}
                                     {% endif %}
 
-                                    {% if product.default_or_selected_variant.image %}
+                                    {% if product.default_or_selected_variant.image and product.has_only_default_variant == false %}
 
                                         {%- unless hasImg -%}
                                             {%- assign hasImg = true -%}
@@ -432,7 +432,7 @@
 
                                     {% endif %}
 
-                                    {% if product.default_or_selected_variant.image %}
+                                    {% if product.default_or_selected_variant.image and product.has_only_default_variant == false %}
 
                                         {%- unless hasImg -%}
                                             {%- assign hasImg = true -%}
@@ -727,7 +727,7 @@
 
                 <div class="col product-info-container w-md-50" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
 
-                    <div class="section-highlight-item product-info mt-4 mt-md-0">
+                    <div class="section-highlight-item product-info mt-4 mt-md-0" data-dynamic-partial="info">
 
                         <div class="product-name">
 
@@ -839,6 +839,16 @@
                                                     name="quantity"
                                                     value="{{ product.min_quantity }}">
                                             {% endunless %}
+
+                                            {% if section.settings.showRelatedProductsAsOptions and product.related.size > 0 or product.combined_listing.options_with_values.size > 0 %}
+
+                                                <div class="product-combined">
+
+                                                    {% render 'product-combined-options', product: product, showAsDropdown: section.settings.showVariantSelectionAsDropdown, showRelatedProductsAsOptions: section.settings.showRelatedProductsAsOptions %}
+
+                                                </div>
+
+                                            {% endif %}
 
                                             {% unless product.has_only_default_variant %}
 
@@ -1160,7 +1170,7 @@
 
                                                     {% endif %}
 
-                                                    {% if settings.accessibilityShowWishlist and section.settings.showBuyNowButton %}
+                                                    {% if settings.accessibilityShowWishlist and section.settings.showBuyNowButton and product.default_or_selected_variant.notifications_supported == false %}
 
                                                         <button
                                                             type="button"
@@ -1567,53 +1577,320 @@
 
                 </div>
 
-                {% if product.default_or_selected_variant.in_preview == false %}
+                <div data-dynamic-partial="info-additional">
 
-                    {% if product.description %}
+                    {% if product.default_or_selected_variant.in_preview == false %}
 
-                        <div class="col mt-4 mt-md-g">
+                        {% if product.description %}
 
-                            <div class="section-highlight-item product-description" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
+                            <div class="col mt-4 mt-md-g">
 
-                                {%- assign descriptionTitle = 'product.description' | t -%}
+                                <div class="section-highlight-item product-description" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
 
-                                {% render 'section-header', sectionTitle: descriptionTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
+                                    {%- assign descriptionTitle = 'product.description' | t -%}
 
-                                <div class="mt-4 text-richtext">
-                                    {{ product.description }}
+                                    {% render 'section-header', sectionTitle: descriptionTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
+
+                                    <div class="mt-4 text-richtext">
+                                        {{ product.description }}
+                                    </div>
+
                                 </div>
 
                             </div>
 
-                        </div>
+                        {% endif %}
 
-                    {% endif %}
+                        {% if product.reviews_are_enabled %}
 
-                    {% if product.reviews_are_enabled %}
+                            <div class="col mt-4 mt-md-g">
 
-                        <div class="col mt-4 mt-md-g">
+                                <div class="section-highlight-item product-reviews" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
 
-                            <div class="section-highlight-item product-reviews" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
+                                    {%- assign reviewsTitle = 'product.reviews' | t -%}
 
-                                {%- assign reviewsTitle = 'product.reviews' | t -%}
+                                    {% render 'section-header', sectionTitle: reviewsTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
 
-                                {% render 'section-header', sectionTitle: reviewsTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
+                                    <div class="d-flex align-items-center mt-1">
 
-                                <div class="d-flex align-items-center mt-1">
+                                        <div class="product-review-icons">
 
-                                    <div class="product-review-icons">
+                                            {% for rating in (1..product.max_rating) %}
 
-                                        {% for rating in (1..product.max_rating) %}
+                                                <div class="product-review-icon">
 
-                                            <div class="product-review-icon">
+                                                    {% if product.rating >= rating %}
 
-                                                {% if product.rating >= rating %}
+                                                        {%- render 'icon', icon: 'rating', class: 'text-review-icon' -%}
 
-                                                    {%- render 'icon', icon: 'rating', class: 'text-review-icon' -%}
+                                                    {% else %}
+
+                                                        {%- render 'icon', icon: 'rating-empty', class: 'text-muted' -%}
+
+                                                    {% endif %}
+
+                                                </div>
+
+                                            {% endfor %}
+
+                                        </div>
+
+                                        <span class="ms-2">
+                                            {%- if product.review_count == 1 -%}
+                                                {{- 'product.review_count_dynamic' | t: amount: product.review_count -}}
+                                            {%- else -%}
+                                                {{- 'product.review_count_plural_dynamic' | t: amount: product.review_count -}}
+                                            {%- endif -%}
+                                        </span>
+
+                                    </div>
+
+                                    {% if product.reviews_are_enabled %}
+
+                                        <div class="mt-4 mt-md-g" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
+
+                                            {% if product.default_or_selected_variant.customer_can_review %}
+
+                                                <button id="product-review-create" class="btn btn-sm btn-secondary{% if submitted_form.id == 'product-review-form' and submitted_form.error %} d-none{% endif %}">
+                                                    {{- 'product.write_review' | t -}}
+                                                </button>
+
+                                                <div class="product-review-form{% unless submitted_form.id == 'product-review-form' and submitted_form.error %} d-none{% endunless %}">
+
+                                                    {% form 'review', product id: 'product-review-form' %}
+
+                                                        <div class="mb-4 form-floating">
+
+                                                            <input
+                                                                name="name"
+                                                                type="text"
+                                                                id="product-review-name"
+                                                                class="form-control"
+                                                                placeholder="{{ 'general.name' | t }}"
+                                                                value="{{ form.submitted.name | escape }}"
+                                                                required>
+
+                                                            <label for="product-review-name">
+                                                                {{- 'general.name' | t -}}
+                                                            </label>
+
+                                                        </div>
+
+                                                        <div class="mb-4 form-floating">
+
+                                                            <input
+                                                                name="title"
+                                                                type="text"
+                                                                id="product-review-title"
+                                                                class="form-control"
+                                                                placeholder="{{ 'general.title' | t }}"
+                                                                value="{{ form.submitted.title | escape }}"
+                                                                required>
+
+                                                            <label for="product-review-title">
+                                                                {{- 'general.title' | t -}}
+                                                            </label>
+
+                                                        </div>
+
+                                                        <div class="mb-4 form-floating">
+
+                                                            <textarea
+                                                                id="product-review-comment"
+                                                                name="comment"
+                                                                class="form-control"
+                                                                placeholder="{{ 'product.write_review' | t }}"
+                                                                value="{{ form.submitted.comment | escape }}"
+                                                                required></textarea>
+
+                                                            <label for="product-review-comment">
+                                                                {{- 'product.write_review' | t -}}
+                                                            </label>
+
+                                                        </div>
+
+                                                        <div class="mb-4 d-flex justify-content-between align-items-center">
+
+                                                            <span class="h5 mb-0 text-title">
+                                                                {{- 'product.review_grade' | t -}}
+                                                            </span>
+
+                                                            <fieldset class="product-review-rating ms-2">
+
+                                                                <input
+                                                                    type="radio"
+                                                                    id="product-review-rating-5"
+                                                                    name="rating"
+                                                                    value="5"
+                                                                    {% if form.submitted.rating | escape == '5' %}checked{% endif %}>
+                                                                <label for="product-review-rating-5" title="5">
+                                                                    {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
+                                                                </label>
+
+                                                                <input
+                                                                    type="radio"
+                                                                    id="product-review-rating-4"
+                                                                    name="rating"
+                                                                    value="4"
+                                                                    {% if form.submitted.rating | escape == '4' %}checked{% endif %}>
+                                                                <label for="product-review-rating-4" title="4">
+                                                                    {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
+                                                                </label>
+
+                                                                <input
+                                                                    type="radio"
+                                                                    id="product-review-rating-3"
+                                                                    name="rating"
+                                                                    value="3"
+                                                                    {% if form.submitted.rating | escape == '3' %}checked{% endif %}>
+                                                                <label for="product-review-rating-3" title="3">
+                                                                    {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
+                                                                </label>
+
+                                                                <input
+                                                                    type="radio"
+                                                                    id="product-review-rating-2"
+                                                                    name="rating"
+                                                                    value="2"
+                                                                    {% if form.submitted.rating | escape == '2' %}checked{% endif %}>
+                                                                <label for="product-review-rating-2" title="2">
+                                                                    {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
+                                                                </label>
+
+                                                                <input
+                                                                    type="radio"
+                                                                    id="product-review-rating-1"
+                                                                    name="rating"
+                                                                    value="1"
+                                                                    {% if form.submitted.rating | escape == '1' %}checked{% endif %}>
+                                                                <label for="product-review-rating-1" title="1">
+                                                                    {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
+                                                                </label>
+
+                                                            </fieldset>
+
+                                                        </div>
+
+                                                        {% render 'form-error', error: form.error, class: 'mb-4' %}
+
+                                                        <div class="mb-4 text-end">
+
+                                                            <button
+                                                                type="button"
+                                                                id="product-review-cancel"
+                                                                class="btn btn-secondary">{{ 'general.cancel' | t }}</button>
+
+                                                            <button type="submit" class="btn btn-primary">{{ 'general.submit' | t }}</button>
+
+                                                        </div>
+
+                                                    {% endform %}
+
+                                                </div>
+
+                                            {% elsif session.logged_in == false and product.reviews_require_account %}
+
+                                                {%- capture loginLink -%}<a href="{{ 'login' | link }}" class="fw-bold text-underline-indicator">
+                                                    {{- 'product.review_account_required_link_text' | t -}}
+                                                </a>{%- endcapture -%}
+
+                                                <span>
+                                                    {{- 'product.review_account_required' | t, link: loginLink -}}
+                                                </span>
+
+                                            {% elsif product.default_or_selected_variant.customer_has_purchased == false and product.reviews_require_purchase %}
+
+                                                <span>
+                                                    {{- 'product.review_purchase_required' | t -}}
+                                                </span>
+
+                                            {% elsif product.default_or_selected_variant.customer_has_reviewed %}
+
+                                                {% if product.reviews_require_approval %}
+
+                                                    <span>
+                                                        {{- 'product.review_publish_pending' | t -}}
+                                                    </span>
 
                                                 {% else %}
 
-                                                    {%- render 'icon', icon: 'rating-empty', class: 'text-muted' -%}
+                                                    <span>
+                                                        {{- 'product.review_already_given' | t -}}
+                                                    </span>
+
+                                                {% endif %}
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    {% endif %}
+
+                                    <div class="product-reviews-content{% if product.reviews.size > 0 %} has-content{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
+
+                                        {% for review in product.reviews %}
+
+                                            <div class="product-review pt-4 border-top">
+
+                                                <div class="product-review-title mb-0">
+
+                                                    <span class="product-review-title">
+                                                        {{ review.name }}
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="product-review-date">
+
+                                                    {%- assign dateFormat = 'general.date_format' | t -%}
+
+                                                    <i>
+                                                        <time datetime="{{ review.created_at | date: "%F" }}">{{ review.created_at | date: dateFormat }}</time>
+                                                    </i>
+
+                                                </div>
+
+                                                <div class="product-review-rating">
+
+                                                    <div class="product-review-icons">
+
+                                                        {% for rating in (1..product.max_rating) %}
+
+                                                            <div class="product-review-icon">
+
+                                                                {% if review.rating >= rating %}
+
+                                                                    {%- render 'icon', icon: 'rating', class: 'text-review-icon' -%}
+
+                                                                {% else %}
+
+                                                                    {%- render 'icon', icon: 'rating-empty', class: 'text-muted' -%}
+
+                                                                {% endif %}
+
+                                                            </div>
+
+                                                        {% endfor %}
+
+                                                    </div>
+
+                                                </div>
+
+                                                {%- if review.title or review.review -%}
+
+                                                    <div class="product-review-content">
+
+                                                        {% if review.title %}
+
+                                                            <p class="mb-0 fw-medium">
+                                                                {{ review.title }}
+                                                            </p>
+
+                                                        {% endif %}
+
+                                                        {{ review.review }}
+
+                                                    </div>
 
                                                 {% endif %}
 
@@ -1622,263 +1899,199 @@
                                         {% endfor %}
 
                                     </div>
+                                    
+                                </div>
 
-                                    <span class="ms-2">
-                                        {%- if product.review_count == 1 -%}
-                                            {{- 'product.review_count_dynamic' | t: amount: product.review_count -}}
-                                        {%- else -%}
-                                            {{- 'product.review_count_plural_dynamic' | t: amount: product.review_count -}}
-                                        {%- endif -%}
-                                    </span>
+                            </div>
+
+                        {% endif %}
+
+                        {% if product.attachments.size %}
+
+                            <div class="col mt-4 mt-md-g">
+
+                                <div class="section-highlight-item product-attachments" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
+
+                                    {%- assign attachmentsTitle = 'product.attachments' | t -%}
+
+                                    {% render 'section-header', sectionTitle: attachmentsTitle, sectionHeaderContainer: 'none', sectionAnimation: false, sectionHeaderClass: 'mb-4' %}
+
+                                    {% for attachment in product.attachments %}
+
+                                        <div{% unless forloop.last == true %} class="mb-3"{% endunless %}>
+
+                                            <a href="{{ attachment.href }}" class="d-flex align-items-center">
+
+                                                {%- render 'icon', icon: 'download', class: 'svg-icon-fw' -%}
+
+                                                <span>{{ attachment.name }}</span>
+
+                                            </a>
+
+                                        </div>
+
+                                    {% endfor %}
 
                                 </div>
 
-                                {% if product.reviews_are_enabled %}
+                            </div>
 
-                                    <div class="mt-4 mt-md-g" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
+                        {% endif %}
 
-                                        {% if product.default_or_selected_variant.customer_can_review %}
+                    {% endif %}
 
-                                            <button id="product-review-create" class="btn btn-sm btn-secondary{% if submitted_form.id == 'product-review-form' and submitted_form.error %} d-none{% endif %}">
-                                                {{- 'product.write_review' | t -}}
-                                            </button>
+                    {% if section.settings.detailsShippingAndReturnRichtext %}
 
-                                            <div class="product-review-form{% unless submitted_form.id == 'product-review-form' and submitted_form.error %} d-none{% endunless %}">
+                        <div class="col mt-4 mt-md-g">
 
-                                                {% form 'review', product id: 'product-review-form' %}
+                            <div class="section-highlight-item product-shipping-and-return" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
 
-                                                    <div class="mb-4 form-floating">
+                                {%- assign shippingAndReturnTitle = 'product.shipping_and_return' | t -%}
 
-                                                        <input
-                                                            name="name"
-                                                            type="text"
-                                                            id="product-review-name"
-                                                            class="form-control"
-                                                            placeholder="{{ 'general.name' | t }}"
-                                                            value="{{ form.submitted.name | escape }}"
-                                                            required>
+                                {% render 'section-header', sectionTitle: shippingAndReturnTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
 
-                                                        <label for="product-review-name">
-                                                            {{- 'general.name' | t -}}
-                                                        </label>
+                                <div class="mt-4 text-richtext">
+                                    {{- section.settings.detailsShippingAndReturnRichtext -}}
+                                </div>
 
-                                                    </div>
+                            </div>
 
-                                                    <div class="mb-4 form-floating">
+                        </div>
 
-                                                        <input
-                                                            name="title"
-                                                            type="text"
-                                                            id="product-review-title"
-                                                            class="form-control"
-                                                            placeholder="{{ 'general.title' | t }}"
-                                                            value="{{ form.submitted.title | escape }}"
-                                                            required>
+                    {% endif %}
 
-                                                        <label for="product-review-title">
-                                                            {{- 'general.title' | t -}}
-                                                        </label>
+                    {% if section.settings.detailsPaymentRichtext %}
 
-                                                    </div>
+                        <div class="col mt-4 mt-md-g">
 
-                                                    <div class="mb-4 form-floating">
+                            <div class="section-highlight-item product-payment" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
 
-                                                        <textarea
-                                                            id="product-review-comment"
-                                                            name="comment"
-                                                            class="form-control"
-                                                            placeholder="{{ 'product.write_review' | t }}"
-                                                            value="{{ form.submitted.comment | escape }}"
-                                                            required></textarea>
+                                {%- assign paymentTitle = 'product.payment' | t -%}
 
-                                                        <label for="product-review-comment">
-                                                            {{- 'product.write_review' | t -}}
-                                                        </label>
+                                {% render 'section-header', sectionTitle: paymentTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
 
-                                                    </div>
+                                <div class="mt-4 text-richtext">
+                                    {{- section.settings.detailsPaymentRichtext -}}
+                                </div>
 
-                                                    <div class="mb-4 d-flex justify-content-between align-items-center">
+                            </div>
 
-                                                        <span class="h5 mb-0 text-title">
-                                                            {{- 'product.review_grade' | t -}}
-                                                        </span>
+                        </div>
 
-                                                        <fieldset class="product-review-rating ms-2">
+                    {% endif %}
 
-                                                            <input
-                                                                type="radio"
-                                                                id="product-review-rating-5"
-                                                                name="rating"
-                                                                value="5"
-                                                                {% if form.submitted.rating | escape == '5' %}checked{% endif %}>
-                                                            <label for="product-review-rating-5" title="5">
-                                                                {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
-                                                            </label>
+                    {% if product.related.size > 0 %}
 
-                                                            <input
-                                                                type="radio"
-                                                                id="product-review-rating-4"
-                                                                name="rating"
-                                                                value="4"
-                                                                {% if form.submitted.rating | escape == '4' %}checked{% endif %}>
-                                                            <label for="product-review-rating-4" title="4">
-                                                                {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
-                                                            </label>
+                        <div class="col mt-4 mt-md-g">
 
-                                                            <input
-                                                                type="radio"
-                                                                id="product-review-rating-3"
-                                                                name="rating"
-                                                                value="3"
-                                                                {% if form.submitted.rating | escape == '3' %}checked{% endif %}>
-                                                            <label for="product-review-rating-3" title="3">
-                                                                {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
-                                                            </label>
+                            <div class="section-highlight-item product-related-items" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
 
-                                                            <input
-                                                                type="radio"
-                                                                id="product-review-rating-2"
-                                                                name="rating"
-                                                                value="2"
-                                                                {% if form.submitted.rating | escape == '2' %}checked{% endif %}>
-                                                            <label for="product-review-rating-2" title="2">
-                                                                {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
-                                                            </label>
+                                {%- assign relatedProductsTitle = 'product.related_products' | t -%}
 
-                                                            <input
-                                                                type="radio"
-                                                                id="product-review-rating-1"
-                                                                name="rating"
-                                                                value="1"
-                                                                {% if form.submitted.rating | escape == '1' %}checked{% endif %}>
-                                                            <label for="product-review-rating-1" title="1">
-                                                                {%- render 'icon', icon: 'rating', class: 'svg-icon-fill' -%}
-                                                            </label>
+                                {% render 'section-header', sectionTitle: relatedProductsTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
 
-                                                        </fieldset>
+                                {% if settings.productImageAspectRatio == '9:13' %}
+                                    {%- assign imgSize = '79,108' -%}
+                                {% elsif settings.productImageAspectRatio == '4:3' %}
+                                    {%- assign imgSize = '79,62' -%}
+                                {% elsif settings.productImageAspectRatio == '3:4' %}
+                                    {%- assign imgSize = '79,105' -%}
+                                {% elsif settings.productImageAspectRatio == '1:1' %}
+                                    {%- assign imgSize = '90,90' -%}
+                                {% endif %}
+
+                                <div class="row gx-0 gy-g">
+
+                                    {% for relatedItem in product.related %}
+
+                                        {%- assign relatedItemImg = relatedItem.first_available_variant.image | default: relatedItem.image -%}
+
+                                        <div class="d-flex align-items-center gap-g pt-g {% unless forloop.first %} border-top{% endunless %}">
+
+                                            <a href="{{ relatedItem | link }}">
+
+                                                <div class="aspect-ratio-product w-px-80">
+
+                                                    <div class="aspect-ratio-container">
+
+                                                        {% if relatedItemImg %}
+
+                                                            <picture>
+                                                                <img
+                                                                    alt="{{ relatedItem.title }}"
+                                                                    data-src="{{ relatedItemImg | thumb: imgSize }}"
+                                                                    data-srcset="{{ relatedItemImg | thumb: imgSize }} 1x, {{ relatedItemImg | thumb: imgSize | thumb: '@2x' }} 2x"
+                                                                    class="lazy d-block mx-auto img-fluid aspect-ratio-item">
+                                                            </picture>
+
+                                                        {% else %}
+
+                                                            {%- capture imgSrc -%}
+                                                                {% render 'placeholder-svg', type: 'image', base64: true %}
+                                                            {%- endcapture -%}
+
+                                                            <img
+                                                                class="lazy d-block mx-auto img-fluid aspect-ratio-item svg-placeholder"
+                                                                alt="{{ relatedItem.title }}"
+                                                                data-src="{{ imgSrc }}">
+
+                                                        {% endif %}
 
                                                     </div>
 
-                                                    {% render 'form-error', error: form.error, class: 'mb-4' %}
+                                                </div>
 
-                                                    <div class="mb-4 text-end">
+                                            </a>
 
-                                                        <button
-                                                            type="button"
-                                                            id="product-review-cancel"
-                                                            class="btn btn-secondary">{{ 'general.cancel' | t }}</button>
+                                            <div class="flex-grow-1">
 
-                                                        <button type="submit" class="btn btn-primary">{{ 'general.submit' | t }}</button>
+                                                <a href="{{ relatedItem | link }}" class="fw-bold d-block mt-3">
+                                                    {{ relatedItem.title }}
+                                                </a>
 
+                                                {% if store.customer_has_purchase_right and relatedItem.default_or_selected_variant.in_preview == false %}
+
+                                                    <div>
+
+                                                        {% if relatedItem.default_or_selected_variant.price != relatedItem.default_or_selected_variant.original_price %}
+
+                                                            <span class="text-sale-price me-1">
+                                                                {{- settings.taxFreeShopping == true | yepnope: relatedItem.default_or_selected_variant.net_price, relatedItem.default_or_selected_variant.price | money_with_currency -}}
+                                                            </span>
+
+                                                            <span class="text-decoration-line-through text-muted" data-product-original-price-dynamic>
+                                                                {{- settings.taxFreeShopping == true | yepnope: relatedItem.default_or_selected_variant.original_net_price, relatedItem.default_or_selected_variant.original_price | money_with_currency -}}
+                                                            </span>
+
+                                                        {% else %}
+
+                                                            <span class="text-price">
+                                                                {{- settings.taxFreeShopping == true | yepnope: relatedItem.default_or_selected_variant.net_price, relatedItem.default_or_selected_variant.price | money_with_currency -}}
+                                                            </span>
+
+                                                        {% endif %}
+                                                        
                                                     </div>
 
-                                                {% endform %}
+                                                {% endif %}
 
                                             </div>
 
-                                        {% elsif session.logged_in == false and product.reviews_require_account %}
+                                            {% if store.customer_has_purchase_right and relatedItem.is_directly_buyable %}
 
-                                            {%- capture loginLink -%}<a href="{{ 'login' | link }}" class="fw-bold text-underline-indicator">
-                                                {{- 'product.review_account_required_link_text' | t -}}
-                                            </a>{%- endcapture -%}
-
-                                            <span>
-                                                {{- 'product.review_account_required' | t, link: loginLink -}}
-                                            </span>
-
-                                        {% elsif product.default_or_selected_variant.customer_has_purchased == false and product.reviews_require_purchase %}
-
-                                            <span>
-                                                {{- 'product.review_purchase_required' | t -}}
-                                            </span>
-
-                                        {% elsif product.default_or_selected_variant.customer_has_reviewed %}
-
-                                            {% if product.reviews_require_approval %}
-
-                                                <span>
-                                                    {{- 'product.review_publish_pending' | t -}}
-                                                </span>
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-secondary btn-sm"
+                                                    data-cart-add="{{ relatedItem.id }}"
+                                                    data-cart-quantity="{{ relatedItem.min_quantity }}">
+                                                    {{- 'cart.quick_add' | t -}}
+                                                </button>
 
                                             {% else %}
 
-                                                <span>
-                                                    {{- 'product.review_already_given' | t -}}
-                                                </span>
-
-                                            {% endif %}
-
-                                        {% endif %}
-
-                                    </div>
-
-                                {% endif %}
-
-                                <div class="product-reviews-content{% if product.reviews.size > 0 %} has-content{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
-
-                                    {% for review in product.reviews %}
-
-                                        <div class="product-review pt-4 border-top">
-
-                                            <div class="product-review-title mb-0">
-
-                                                <span class="product-review-title">
-                                                    {{ review.name }}
-                                                </span>
-
-                                            </div>
-
-                                            <div class="product-review-date">
-
-                                                {%- assign dateFormat = 'general.date_format' | t -%}
-
-                                                <i>
-                                                    <time datetime="{{ review.created_at | date: "%F" }}">{{ review.created_at | date: dateFormat }}</time>
-                                                </i>
-
-                                            </div>
-
-                                            <div class="product-review-rating">
-
-                                                <div class="product-review-icons">
-
-                                                    {% for rating in (1..product.max_rating) %}
-
-                                                        <div class="product-review-icon">
-
-                                                            {% if review.rating >= rating %}
-
-                                                                {%- render 'icon', icon: 'rating', class: 'text-review-icon' -%}
-
-                                                            {% else %}
-
-                                                                {%- render 'icon', icon: 'rating-empty', class: 'text-muted' -%}
-
-                                                            {% endif %}
-
-                                                        </div>
-
-                                                    {% endfor %}
-
-                                                </div>
-
-                                            </div>
-
-                                            {%- if review.title or review.review -%}
-
-                                                <div class="product-review-content">
-
-                                                    {% if review.title %}
-
-                                                        <p class="mb-0 fw-medium">
-                                                            {{ review.title }}
-                                                        </p>
-
-                                                    {% endif %}
-
-                                                    {{ review.review }}
-
-                                                </div>
+                                                <a href="{{ relatedItem | link }}" class="btn btn-secondary btn-sm">
+                                                    {{- 'general.product_view' | t -}}
+                                                </a>
 
                                             {% endif %}
 
@@ -1887,38 +2100,6 @@
                                     {% endfor %}
 
                                 </div>
-                                
-                            </div>
-
-                        </div>
-
-                    {% endif %}
-
-                    {% if product.attachments.size %}
-
-                        <div class="col mt-4 mt-md-g">
-
-                            <div class="section-highlight-item product-attachments" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
-
-                                {%- assign attachmentsTitle = 'product.attachments' | t -%}
-
-                                {% render 'section-header', sectionTitle: attachmentsTitle, sectionHeaderContainer: 'none', sectionAnimation: false, sectionHeaderClass: 'mb-4' %}
-
-                                {% for attachment in product.attachments %}
-
-                                    <div{% unless forloop.last == true %} class="mb-3"{% endunless %}>
-
-                                        <a href="{{ attachment.href }}" class="d-flex align-items-center">
-
-                                            {%- render 'icon', icon: 'download', class: 'svg-icon-fw' -%}
-
-                                            <span>{{ attachment.name }}</span>
-
-                                        </a>
-
-                                    </div>
-
-                                {% endfor %}
 
                             </div>
 
@@ -1926,180 +2107,13 @@
 
                     {% endif %}
 
-                {% endif %}
-
-                {% if section.settings.detailsShippingAndReturnRichtext %}
-
-                    <div class="col mt-4 mt-md-g">
-
-                        <div class="section-highlight-item product-shipping-and-return" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
-
-                            {%- assign shippingAndReturnTitle = 'product.shipping_and_return' | t -%}
-
-                            {% render 'section-header', sectionTitle: shippingAndReturnTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
-
-                            <div class="mt-4 text-richtext">
-                                {{- section.settings.detailsShippingAndReturnRichtext -}}
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                {% endif %}
-
-                {% if section.settings.detailsPaymentRichtext %}
-
-                    <div class="col mt-4 mt-md-g">
-
-                        <div class="section-highlight-item product-payment" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
-
-                            {%- assign paymentTitle = 'product.payment' | t -%}
-
-                            {% render 'section-header', sectionTitle: paymentTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
-
-                            <div class="mt-4 text-richtext">
-                                {{- section.settings.detailsPaymentRichtext -}}
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                {% endif %}
-
-                {% if product.related.size > 0 %}
-
-                    <div class="col mt-4 mt-md-g">
-
-                        <div class="section-highlight-item product-related-items" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}">
-
-                            {%- assign relatedProductsTitle = 'product.related_products' | t -%}
-
-                            {% render 'section-header', sectionTitle: relatedProductsTitle, sectionHeaderContainer: 'none', sectionAnimation: false %}
-
-                            {% if settings.productImageAspectRatio == '9:13' %}
-                                {%- assign imgSize = '79,108' -%}
-                            {% elsif settings.productImageAspectRatio == '4:3' %}
-                                {%- assign imgSize = '79,62' -%}
-                            {% elsif settings.productImageAspectRatio == '3:4' %}
-                                {%- assign imgSize = '79,105' -%}
-                            {% elsif settings.productImageAspectRatio == '1:1' %}
-                                {%- assign imgSize = '90,90' -%}
-                            {% endif %}
-
-                            <div class="row gx-0 gy-g">
-
-                                {% for relatedItem in product.related %}
-
-                                    {%- assign relatedItemImg = relatedItem.first_available_variant.image | default: relatedItem.image -%}
-
-                                    <div class="d-flex align-items-center gap-g pt-g {% unless forloop.first %} border-top{% endunless %}">
-
-                                        <a href="{{ relatedItem | link }}">
-
-                                            <div class="aspect-ratio-product w-px-80">
-
-                                                <div class="aspect-ratio-container">
-
-                                                    {% if relatedItemImg %}
-
-                                                        <picture>
-                                                            <img
-                                                                alt="{{ relatedItem.title }}"
-                                                                data-src="{{ relatedItemImg | thumb: imgSize }}"
-                                                                data-srcset="{{ relatedItemImg | thumb: imgSize }} 1x, {{ relatedItemImg | thumb: imgSize | thumb: '@2x' }} 2x"
-                                                                class="lazy d-block mx-auto img-fluid aspect-ratio-item">
-                                                        </picture>
-
-                                                    {% else %}
-
-                                                        {%- capture imgSrc -%}
-                                                            {% render 'placeholder-svg', type: 'image', base64: true %}
-                                                        {%- endcapture -%}
-
-                                                        <img
-                                                            class="lazy d-block mx-auto img-fluid aspect-ratio-item svg-placeholder"
-                                                            alt="{{ relatedItem.title }}"
-                                                            data-src="{{ imgSrc }}">
-
-                                                    {% endif %}
-
-                                                </div>
-
-                                            </div>
-
-                                        </a>
-
-                                        <div class="flex-grow-1">
-
-                                            <a href="{{ relatedItem | link }}" class="fw-bold d-block mt-3">
-                                                {{ relatedItem.title }}
-                                            </a>
-
-                                            {% if store.customer_has_purchase_right and relatedItem.default_or_selected_variant.in_preview == false %}
-
-                                                <div>
-
-                                                    {% if relatedItem.default_or_selected_variant.price != relatedItem.default_or_selected_variant.original_price %}
-
-                                                        <span class="text-sale-price me-1">
-                                                            {{- settings.taxFreeShopping == true | yepnope: relatedItem.default_or_selected_variant.net_price, relatedItem.default_or_selected_variant.price | money_with_currency -}}
-                                                        </span>
-
-                                                        <span class="text-decoration-line-through text-muted" data-product-original-price-dynamic>
-                                                            {{- settings.taxFreeShopping == true | yepnope: relatedItem.default_or_selected_variant.original_net_price, relatedItem.default_or_selected_variant.original_price | money_with_currency -}}
-                                                        </span>
-
-                                                    {% else %}
-
-                                                        <span class="text-price">
-                                                            {{- settings.taxFreeShopping == true | yepnope: relatedItem.default_or_selected_variant.net_price, relatedItem.default_or_selected_variant.price | money_with_currency -}}
-                                                        </span>
-
-                                                    {% endif %}
-                                                    
-                                                </div>
-
-                                            {% endif %}
-
-                                        </div>
-
-                                        {% if store.customer_has_purchase_right and relatedItem.is_directly_buyable %}
-
-                                            <button
-                                                type="button"
-                                                class="btn btn-secondary btn-sm"
-                                                data-cart-add="{{ relatedItem.id }}"
-                                                data-cart-quantity="{{ relatedItem.min_quantity }}">
-                                                {{- 'cart.quick_add' | t -}}
-                                            </button>
-
-                                        {% else %}
-
-                                            <a href="{{ relatedItem | link }}" class="btn btn-secondary btn-sm">
-                                                {{- 'general.product_view' | t -}}
-                                            </a>
-
-                                        {% endif %}
-
-                                    </div>
-
-                                {% endfor %}
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                {% endif %}
+                </div>
 
             </div>
 
         </div>
 
-        {%- if rendered_partial != 'sections/product-template' -%}
+        <div data-dynamic-partial="additional">
 
             {% if product.similar.size > 0 or request.design_mode %}
 
@@ -2168,13 +2182,14 @@
                             {%- endif -%}
                             name: {{ product.title | json }},
                             manufacturer: {{ product.manufacturer.title | json }},
-                            currency: {{ store.currency.iso_code | json }}
+                            currency: {{ store.currency.iso_code | json }},
+                            breadcrumbs: {{ product.breadcrumbs | map: 'title' | json }}
                         }
                     }));
                 });
             </script>
 
-        {%- endif -%}
+        </div>
 
     {% endif %}
 
@@ -2182,7 +2197,19 @@
 
 {%- if rendered_partial == 'sections/product-template' -%}
 
-    {{- sectionContent -}}
+    {% if section.settings.showBreadcrumbs %}
+        {%- assign sectionBreadcrumbs = product.breadcrumbs -%}
+    {% endif %}
+
+    <div class="section-inner">
+
+        {% render 'section-header', sectionBreadcrumbs: sectionBreadcrumbs %}
+
+        <div class="section-content">
+            {{- sectionContent -}}
+        </div>
+
+    </div>
 
 {%- else -%}
 
@@ -2895,6 +2922,32 @@
                         },
                         "default": true,
                         "conditions": ["customDisplayInformation eq true"]
+                    },
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "Legacy settings",
+                            "fi": "Vanhat asetukset"
+                        }
+                    },
+                    {
+                        "type": "label",
+                        "label": {
+                            "en": "These settings are ment for backwards compatibility and should not be used if you are new merchant.",
+                            "fi": "Nämä asetukset on tarkoitettu taaksepäin yhteensopivuuteen ja niitä ei tulisi käyttää, jos olet uusi kauppias."
+                        }
+                    },
+                    {
+                        "type": "spacer"
+                    },
+                    {
+                        "id": "showRelatedProductsAsOptions",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Show related products as options",
+                            "fi": "Näytä liittyvät tuotteet valintoina"
+                        },
+                        "default": false
                     }
                 ]
             }

@@ -1,19 +1,19 @@
-// Catalog
+// Search
 // -----------------------------------------------------------------------------------------
 
-.section-catalog {
+.section-search {
 
-    .catalog-filters .form-check-label {
+    .search-filters .form-check-label {
         display: flex;
         justify-content: space-between;
     }
 
-    .catalog-filters {
+    .search-filters {
 
-        .catalog-filter-dropdown {
+        .search-filter-dropdown {
             display: inline-flex;
 
-            .catalog-filter-btn {
+            .search-filter-btn {
                 @include font-size($font-size-base);
                 border: 1px solid var(--style-border-color);
                 border-radius: 0;
@@ -31,13 +31,13 @@
                     }
                 }
 
-                .catalog-filter-btn-text {
+                .search-filter-btn-text {
                     font-weight: $font-weight-normal;
                     margin-right: spacer(2);
                 }
             }
 
-            .catalog-filter-dropdown-menu {
+            .search-filter-dropdown-menu {
                 margin-top: spacer(2);
                 min-width: 250px;
                 border-radius: 0;
@@ -46,20 +46,20 @@
             }
         }
 
-        .catalog-filters-list {
+        .search-filters-list {
             display: flex;
             flex-direction: column;
             margin-bottom: 0;
             padding-left: 0;
             list-style: none;
 
-            .catalog-filters-list-item {
+            .search-filters-list-item {
                 display: flex;
                 flex-direction: column;
                 border-bottom: 1px solid var(--style-border-color);
                 padding-bottom: spacer(4);
 
-                & + .catalog-filters-list-item {
+                & + .search-filters-list-item {
                     padding-top: spacer(4);
                 }
 
@@ -68,15 +68,15 @@
                     padding-bottom: 0;
                 }
 
-                .catalog-filters-list-item-header {
+                .search-filters-list-item-header {
                     display: flex;
 
-                    .catalog-filters-list-item-header-text {
+                    .search-filters-list-item-header-text {
                         font-weight: $font-weight-bold;
                         margin-right: auto;
                     }
 
-                    .catalog-filters-list-collapse-toggle {
+                    .search-filters-list-collapse-toggle {
                         display: flex;
                         justify-content: space-between;
                         width: 100%;
@@ -94,7 +94,7 @@
                     }
                 }
 
-                .catalog-filters-list-item-content {
+                .search-filters-list-item-content {
                     
                     > div:first-of-type {
                         padding-top: spacer(4);
@@ -111,7 +111,7 @@
         }
     }
 
-    .catalog-activated-filters {
+    .search-activated-filters {
         margin-top: calc(spacer(3) * -1);
 
         .item {
@@ -125,17 +125,17 @@
                 padding: spacer(1) spacer(2);
                 @include font-size($font-size-base * 0.95);
 
-                &.catalog-remove-filter {
+                &.search-remove-filter {
                     margin-right: spacer(2);
                     color: var(--style-text-color);
                     background-color: var(--style-bg-accent-color);
 
-                    .catalog-activated-filter-icon {
+                    .search-activated-filter-icon {
                         margin-left: spacer(1);
                     }
                 }
 
-                &.catalog-reset-filters {
+                &.search-reset-filters {
                     margin-left: -#{spacer(2)};
                     color: var(--style-text-color);
                     background-color: var(--style-bg-color);
@@ -144,9 +144,9 @@
         }
     }
 
-    .catalog-dynamic-content {
+    .search-dynamic-content {
 
-        &.catalog-dynamic-content-loading {
+        &.search-dynamic-content-loading {
             opacity: 0.6 !important;
             pointer-events: none !important;
         }
@@ -297,78 +297,10 @@
                 }
             }
 
-            .catalog-filters {
+            .search-filters {
                 height: 100%;
                 overflow-y: scroll;
             }
-        }
-    }
-
-    .sidebar-menu {
-        line-height: 20px;
-        padding-left: 0;
-        list-style: none;
-
-        &.active-item {
-
-            > .sidebar-menu-item-link,
-            > .sidebar-menu-item-text {
-                color: var(--style-accent-color);
-            }
-        }
-
-        &.no-active-child-links {
-
-            > .sidebar-menu-item {
-
-                > .sidebar-menu-item-link > .sidebar-menu-item-text,
-                > .sidebar-menu-item-text {
-                    font-weight: $font-weight-bold;
-                    border-bottom-width: 2px;
-                }
-            }
-        }
-
-        .sidebar-menu-item {
-            color: var(--style-link-color);
-
-            &.has-active-item {
-                font-weight: $font-weight-bold;
-
-                .sidebar-menu-item-text {
-                    border-bottom-width: 2px;
-                }
-            }
-
-            .sidebar-menu-item-link {
-                display: block;
-                margin-bottom: .75rem;
-
-                &:hover {
-                    color: var(--style-link-color);
-
-                    .sidebar-menu-item-text {
-                        border-bottom-color: var(--style-link-color);
-                    }
-                }
-
-                .sidebar-menu-item-text {
-                    display: inline-block;
-                    padding-bottom: 2px;
-                }
-            }
-
-            .sidebar-menu-item-text {
-                display: block;
-                padding-bottom: .75rem;
-                border-bottom: 1px solid transparent;
-                transition: border .15s ease-in-out;
-            }
-        }
-
-        .sidebar-menu-child-links-container {
-            padding-left: spacer(3);
-            list-style: none;
         }
     }
 }
