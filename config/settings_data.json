@@ -239,9 +239,9 @@
                                 "settings": {
                                     "announcementLink": {
                                         "type": "url",
-                                        "record_id": "",
+                                        "record_id": "15623553",
                                         "text": "<b> Ilmainen toimitus yli 100\u20ac ostoksiin!  -  Aina ilmainen palautus!  -  Nopea toimitus parissa arkip\u00e4iv\u00e4ss\u00e4!<\/b>",
-                                        "url": "",
+                                        "url": "\/tuoteryhma\/kaiuttimet",
                                         "target": "_self"
                                     }
                                 }
@@ -251,9 +251,9 @@
                                 "settings": {
                                     "announcementLink": {
                                         "type": "url",
-                                        "record_id": "",
+                                        "record_id": "15623488",
                                         "text": "<b>Nyt kaikista normaalihintaisista tuotteista -30% koodilla: CELESTA30<\/b>",
-                                        "url": "",
+                                        "url": "\/tuoteryhma\/kuulokkeet",
                                         "target": "_self"
                                     }
                                 }
@@ -348,9 +348,9 @@
                                             "subtitle": "L\u00f6yd\u00e4 uusin ja innovatiivisin elektroniikka meilt\u00e4. Tutki laajaa valikoimaamme puhelimia, kaiuttimia, kuulokkeita ja droneja, jotka viev\u00e4t teknologian uudelle tasolle.",
                                             "btnLink": {
                                                 "type": "url",
-                                                "record_id": "",
+                                                "record_id": "15623553",
                                                 "text": "Shoppaile nyt",
-                                                "url": "",
+                                                "url": "\/tuoteryhma\/kaiuttimet",
                                                 "target": "_self"
                                             },
                                             "img": {
@@ -371,9 +371,9 @@
                                             "subtitle": "Koe huippumoderni suorituskyky ja tyylik\u00e4s muotoilu markkinoiden uusimmista \u00e4lypuhelimista. Olipa tarpeesi mik\u00e4 tahansa, meilt\u00e4 l\u00f6yd\u00e4t t\u00e4ydellisen puhelimen, joka sopii el\u00e4m\u00e4ntyyliisi.",
                                             "btnLink": {
                                                 "type": "url",
-                                                "record_id": "",
+                                                "record_id": "15623488",
                                                 "text": "Shoppaile nyt",
-                                                "url": "",
+                                                "url": "\/tuoteryhma\/kuulokkeet",
                                                 "target": "_self"
                                             },
                                             "img": {
@@ -394,9 +394,9 @@
                                             "subtitle": "\u00c4l\u00e4 j\u00e4\u00e4 paitsi eksklusiivisista alennuksista ja erikoistarjouksista! Rekister\u00f6idy nyt ja saat tiedon uusista tuotteista ja tarjouksista suoraan s\u00e4hk\u00f6postiisi.",
                                             "btnLink": {
                                                 "type": "url",
-                                                "record_id": "",
+                                                "record_id": "15623553",
                                                 "text": "Shoppaile nyt",
-                                                "url": "",
+                                                "url": "\/tuoteryhma\/kaiuttimet",
                                                 "target": "_self"
                                             },
                                             "img": {
@@ -587,7 +587,7 @@
                         "blocks": []
                     },
                     {
-                        "id": "3fc05d5c99a7b660573a074dc02801dc",
+                        "id": "ea13bea4971794cab7261b642b110dbd",
                         "title": "Mainoskollaasi",
                         "name": "promotion-collage",
                         "settings": {
@@ -595,12 +595,13 @@
                             "sectionOverline": "",
                             "sectionTitle": "Suosituimmat kategoriat",
                             "sectionSubtitle": "",
+                            "sectionDescription": "",
                             "imgAspectRatio": "1:1",
-                            "sectionHeaderTextAlign": "start",
+                            "sectionHeaderTextAlign": "nil",
                             "textHorizontalAlign": "center",
                             "textVerticalAlign": "end",
                             "btnStyle": "nil",
-                            "imgDimming": "0",
+                            "imgDimming": "10",
                             "imgBlur": "0",
                             "sectionOverlineTag": "h3",
                             "sectionTitleTag": "h2",
@@ -608,9 +609,10 @@
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
                             "sectionAdditionalTitles": false,
-                            "sectionPaddingMode": "custom",
-                            "sectionPaddingTop": "3",
-                            "sectionPaddingBottom": "3",
+                            "sectionAdditionalText": false,
+                            "sectionPaddingMode": "auto",
+                            "sectionPaddingTop": "0",
+                            "sectionPaddingBottom": "0",
                             "sectionBgImg": {
                                 "string_value": "",
                                 "src": "",
@@ -622,32 +624,8 @@
                             "sectionBgImgDimming": "0",
                             "sectionBgImgBlur": "0",
                             "setting_blocks": {
-                                "items": [
-                                    {
-                                        "type": "image",
-                                        "settings": {
-                                            "overline": "",
-                                            "title": "Dronet",
-                                            "subtitle": "",
-                                            "btnLink": {
-                                                "type": "url",
-                                                "record_id": "15623683",
-                                                "text": "Shoppaile nyt",
-                                                "url": "\/tuoteryhma\/dronet",
-                                                "target": "_self"
-                                            },
-                                            "img": {
-                                                "string_value": "https:\/\/images.unsplash.com\/photo-1527977966376-1c8408f9f108?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHw5fHxkcm9uZXN8ZW58MHx8MXx8MTcxNDg4NzgyN3ww&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
-                                                "src": "https:\/\/images.unsplash.com\/photo-1527977966376-1c8408f9f108?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHw5fHxkcm9uZXN8ZW58MHx8MXx8MTcxNDg4NzgyN3ww&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
-                                                "offset_top": "50",
-                                                "offset_left": "50",
-                                                "width": "2316",
-                                                "height": "2316"
-                                            },
-                                            "colorScheme": "#ffffff"
-                                        }
-                                    },
-                                    {
+                                "items": {
+                                    "1485272252048968": {
                                         "type": "image",
                                         "settings": {
                                             "overline": "",
@@ -663,15 +641,15 @@
                                             "img": {
                                                 "string_value": "https:\/\/images.unsplash.com\/photo-1612205634140-e7ed2e5b003c?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyfHxtaW5pJTIwc3BlYWtlcnxlbnwwfHwxfHwxNzE0ODg3Njg3fDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
                                                 "src": "https:\/\/images.unsplash.com\/photo-1612205634140-e7ed2e5b003c?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyfHxtaW5pJTIwc3BlYWtlcnxlbnwwfHwxfHwxNzE0ODg3Njg3fDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
-                                                "offset_top": "77",
-                                                "offset_left": "53",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
                                                 "width": "5760",
                                                 "height": "3840"
                                             },
                                             "colorScheme": "#ffffff"
                                         }
                                     },
-                                    {
+                                    "3497938686528596": {
                                         "type": "image",
                                         "settings": {
                                             "overline": "",
@@ -687,17 +665,42 @@
                                             "img": {
                                                 "string_value": "https:\/\/images.unsplash.com\/photo-1491927570842-0261e477d937?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyMHx8aGVhZHBob25lc3xlbnwwfHwxfHwxNzE0ODg4MDU5fDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
                                                 "src": "https:\/\/images.unsplash.com\/photo-1491927570842-0261e477d937?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyMHx8aGVhZHBob25lc3xlbnwwfHwxfHwxNzE0ODg4MDU5fDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
-                                                "offset_top": "61",
-                                                "offset_left": "51",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
                                                 "width": "5760",
                                                 "height": "3840"
                                             },
                                             "colorScheme": "#ffffff"
                                         }
+                                    },
+                                    "3136312542826423": {
+                                        "type": "image",
+                                        "settings": {
+                                            "overline": "",
+                                            "title": "Tarvikkeet",
+                                            "subtitle": "",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "15623553",
+                                                "text": "Shoppaile nyt",
+                                                "url": "\/tuoteryhma\/kaiuttimet",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "https:\/\/images.unsplash.com\/photo-1607764689498-6df800a9a7d8?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyNnx8ZHJvbmVzfGVufDB8fDF8fDE3MTQ4ODc4Mjd8MA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                                "src": "https:\/\/images.unsplash.com\/photo-1607764689498-6df800a9a7d8?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyNnx8ZHJvbmVzfGVufDB8fDF8fDE3MTQ4ODc4Mjd8MA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                                "offset_top": "50",
+                                                "offset_left": "50",
+                                                "width": "2560",
+                                                "height": "3840"
+                                            },
+                                            "colorScheme": "#ffffff"
+                                        }
                                     }
-                                ]
+                                }
                             }
-                        }
+                        },
+                        "blocks": []
                     },
                     {
                         "id": "1e7675b210b639eb6180d1c5e98584c5",
@@ -707,6 +710,7 @@
                             "sectionOverline": "",
                             "sectionTitle": "Asiantuntija suosittelee",
                             "sectionSubtitle": "",
+                            "sectionDescription": "",
                             "sectionQuickLinkResource": {
                                 "type": "url",
                                 "record_id": "",
@@ -742,6 +746,7 @@
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
                             "sectionAdditionalTitles": false,
+                            "sectionAdditionalText": false,
                             "sectionPaddingMode": "auto",
                             "sectionPaddingTop": "0",
                             "sectionPaddingBottom": "0",
@@ -760,13 +765,13 @@
                                     "3136312542826423": {
                                         "type": "text",
                                         "settings": {
-                                            "title": "Kaiuttimet",
-                                            "listType": "recent",
+                                            "title": "Hifin suurille yst\u00e4ville",
+                                            "listType": "category",
                                             "tagId": "",
                                             "category": {
                                                 "type": "category",
-                                                "id": "",
-                                                "name": ""
+                                                "id": "1809668",
+                                                "name": "Kaiuttimet"
                                             },
                                             "manufacturer": {
                                                 "type": "manufacturer",
@@ -797,13 +802,13 @@
                                     "1485272252048968": {
                                         "type": "text",
                                         "settings": {
-                                            "title": "Dronet",
-                                            "listType": "recent",
+                                            "title": "Hiljaisiin kuunteluhetkiin",
+                                            "listType": "category",
                                             "tagId": "",
                                             "category": {
                                                 "type": "category",
-                                                "id": "",
-                                                "name": ""
+                                                "id": "1809663",
+                                                "name": "Kuulokkeet"
                                             },
                                             "manufacturer": {
                                                 "type": "manufacturer",
@@ -830,81 +835,6 @@
                                             "promotionImgDimming": "45",
                                             "showPromotionSlide": false
                                         }
-                                    },
-                                    "4adb932f-1886-4929-9363-8bc07c73441d": {
-                                        "type": "text",
-                                        "settings": {
-                                            "title": "JBL",
-                                            "listType": "recent",
-                                            "tagId": "",
-                                            "category": {
-                                                "type": "category",
-                                                "id": "",
-                                                "name": ""
-                                            },
-                                            "manufacturer": {
-                                                "type": "manufacturer",
-                                                "id": "",
-                                                "name": ""
-                                            },
-                                            "promotionText": "",
-                                            "promotionLinkResource": {
-                                                "type": "url",
-                                                "record_id": "",
-                                                "text": "",
-                                                "url": "",
-                                                "target": "_self"
-                                            },
-                                            "promotionTextColor": "#ffffff",
-                                            "promotionImg": {
-                                                "string_value": "",
-                                                "src": "",
-                                                "offset_top": "",
-                                                "offset_left": "",
-                                                "width": "",
-                                                "height": ""
-                                            },
-                                            "promotionImgDimming": "20",
-                                            "showPromotionSlide": false
-                                        }
-                                    },
-                                    "1fbd7050-3f96-435f-9205-646784a0a24a": {
-                                        "type": "text",
-                                        "settings": {
-                                            "title": "Lahjakortit",
-                                            "listType": "recent",
-                                            "tagId": "",
-                                            "category": {
-                                                "type": "category",
-                                                "id": "",
-                                                "name": ""
-                                            },
-                                            "manufacturer": {
-                                                "type": "manufacturer",
-                                                "id": "",
-                                                "name": ""
-                                            },
-                                            "promotionText": "",
-                                            "promotionLinkResource": {
-                                                "type": "url",
-                                                "record_id": "",
-                                                "text": "",
-                                                "url": "",
-                                                "target": "_self"
-                                            },
-                                            "promotionTextColor": "#ffffff",
-                                            "promotionImg": {
-                                                "string_value": "",
-                                                "src": "",
-                                                "offset_top": "",
-                                                "offset_left": "",
-                                                "width": "",
-                                                "height": ""
-                                            },
-                                            "promotionImgDimming": "20",
-                                            "type": "text",
-                                            "showPromotionSlide": false
-                                        }
                                     }
                                 }
                             }
@@ -922,9 +852,9 @@
                             "datetime": "",
                             "btnLink": {
                                 "type": "url",
-                                "record_id": "",
+                                "record_id": "15605853",
                                 "text": "Shoppaile nyt",
-                                "url": "",
+                                "url": "\/tuotteet",
                                 "target": "_self"
                             },
                             "sectionTextAlign": "center",
@@ -949,13 +879,14 @@
                             "sectionOverline": "",
                             "sectionTitle": "Outlet - Osta alennetuin hinnoin",
                             "sectionSubtitle": "",
+                            "sectionDescription": "",
                             "sectionQuickLinkResource": {
                                 "type": "url",
                                 "record_id": "",
                                 "text": "",
                                 "url": ""
                             },
-                            "listType": "new",
+                            "listType": "recent",
                             "tagId": "",
                             "category": {
                                 "type": "category",
@@ -1015,6 +946,7 @@
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
                             "sectionAdditionalTitles": false,
+                            "sectionAdditionalText": false,
                             "sectionPaddingMode": "auto",
                             "sectionPaddingTop": "0",
                             "sectionPaddingBottom": "0",
@@ -1095,74 +1027,46 @@
                             "sectionBgImgBlur": "0",
                             "setting_blocks": {
                                 "items": {
-                                    "a08282f3-f0f9-4c1a-9036-d604c2094995": {
+                                    "66ff293a-b8b5-40e8-9d07-890fe3698254": {
                                         "type": "product",
                                         "settings": {
                                             "product": {
                                                 "type": "product",
-                                                "id": "6166557",
-                                                "name": "Superdry  Winter Belle -trenssi"
+                                                "id": "26270327",
+                                                "name": "JBL PartyBox Ultimate"
                                             }
                                         }
                                     },
-                                    "aeba24ca-239c-43ef-81ec-a5ef07a45702": {
+                                    "029504b0-ba00-4486-9ba9-ce5ba4f9f0a8": {
                                         "type": "product",
                                         "settings": {
                                             "product": {
                                                 "type": "product",
-                                                "id": "26238838",
-                                                "name": "Painokuvioitu napitettava midimittainen camimekko hibiscus dot"
+                                                "id": "26270311",
+                                                "name": "JBL Authentics 300"
                                             }
                                         }
                                     },
-                                    "20a07292-e34c-4e36-b3f9-40ed6d5f800a": {
+                                    "1ff151ad-e791-45e7-bcc3-d66ea5937cfe": {
                                         "type": "product",
                                         "settings": {
                                             "product": {
                                                 "type": "product",
-                                                "id": "26239533",
-                                                "name": "Painokuvioitu napitettava midimittainen camimekko palm leaf"
+                                                "id": "26270243",
+                                                "name": "JBL Quantum 910 Wireless"
                                             }
                                         }
                                     },
-                                    "bc35d72f-6931-49ff-8312-b473fdc51e6a": {
+                                    "212acc9b-59d4-42bc-9036-fb5a182b88cc": {
                                         "type": "product",
                                         "settings": {
                                             "product": {
                                                 "type": "product",
-                                                "id": "26239528",
-                                                "name": "Painokuvioitu napitettava midimittainen camimekko palm leaf"
-                                            }
-                                        }
-                                    },
-                                    "2a028861-f002-4d7d-a592-14c8f4b68056": {
-                                        "type": "product",
-                                        "settings": {
-                                            "product": {
-                                                "type": "product",
-                                                "id": "26239523",
-                                                "name": "Painokuvioitu napitettava midimittainen camimekko palm leaf"
-                                            }
-                                        }
-                                    },
-                                    "b089789b-e835-43ec-b400-2bf29d84545a": {
-                                        "type": "product",
-                                        "settings": {
-                                            "product": {
-                                                "type": "product",
-                                                "id": "26239538",
-                                                "name": "Painokuvioitu napitettava midimittainen camimekko palm leaf"
-                                            }
-                                        }
-                                    },
-                                    "ef8b55c3-52cb-40e4-ba73-b7ca9bc1f1b9": {
-                                        "type": "product",
-                                        "settings": {
-                                            "product": {
-                                                "type": "product",
-                                                "id": "26238833",
-                                                "name": "Painokuvioitu napitettava midimittainen camimekko hibiscus dot"
-                                            }
+                                                "id": "26270307",
+                                                "name": "JBL Quantum 910P Console Wireless"
+                                            },
+                                            "type": "product",
+                                            "title": "Tuote"
                                         }
                                     }
                                 }
@@ -1177,8 +1081,8 @@
                         "settings": {
                             "product": {
                                 "type": "product",
-                                "id": "26239523",
-                                "name": "Painokuvioitu napitettava midimittainen camimekko palm leaf"
+                                "id": "26270307",
+                                "name": "JBL Quantum 910P Console Wireless"
                             },
                             "showManufacturer": true,
                             "showPromotion": true,
@@ -1214,6 +1118,7 @@
                             "sectionOverline": "",
                             "sectionTitle": "Tuotearvostelut",
                             "sectionSubtitle": "",
+                            "sectionDescription": "",
                             "carouselItemsPerView": "3",
                             "sectionHighlightItems": "nil",
                             "sectionHeaderTextAlign": "start",
@@ -1229,6 +1134,7 @@
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
                             "sectionAdditionalTitles": false,
+                            "sectionAdditionalText": false,
                             "sectionPaddingMode": "custom",
                             "sectionPaddingTop": "5",
                             "sectionPaddingBottom": "7",
@@ -1252,8 +1158,8 @@
                                             "authorInfo": "Lis\u00e4tiedot",
                                             "resource": {
                                                 "type": "url",
-                                                "record_id": "",
-                                                "url": "",
+                                                "record_id": "15678243",
+                                                "url": "\/tuote\/jbl-go-4",
                                                 "target": "_self"
                                             },
                                             "rating": "4",
@@ -1423,8 +1329,8 @@
                         "name": "heading",
                         "settings": {
                             "sectionOverline": "",
-                            "sectionTitle": "L\u00f6yd\u00e4t meid\u00e4n Helsingin ytimest\u00e4",
-                            "sectionSubtitle": "Tule myym\u00e4l\u00e4\u00e4n kokeilemaan ja kuuntelemaan. ",
+                            "sectionTitle": "Tule myym\u00e4l\u00e4\u00e4n kokeilemaan ja kuuntelemaan",
+                            "sectionSubtitle": "L\u00f6yd\u00e4t meid\u00e4n Helsingin ytimest\u00e4",
                             "sectionContainer": "nil",
                             "sectionHeaderTextAlign": "center",
                             "sectionHeaderFontSizeScale": "1.3",
@@ -1433,8 +1339,8 @@
                             "sectionSubtitleTag": "h3",
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
-                            "sectionPaddingMode": "auto",
-                            "sectionPaddingTop": "0",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "4",
                             "sectionPaddingBottom": "0",
                             "sectionBgImg": {
                                 "string_value": "",
@@ -1450,25 +1356,17 @@
                         "blocks": []
                     },
                     {
-                        "id": "647fb58130cf063598cee75e2ab4761b",
-                        "title": "Yhteystiedot ja sijainti",
-                        "name": "contact-information-with-location",
+                        "id": "1f21e580cf2a180cdc094f2425afbe4c",
+                        "title": "Teksti",
+                        "name": "text",
                         "settings": {
-                            "sectionOverline": "",
-                            "sectionTitle": "Poikkea ostoksille",
-                            "sectionSubtitle": "",
-                            "richtext": "<p>Tervetuloa paikan p\u00e4\u00e4lle ostoksille.<\/p><p><strong>Osoite:<\/strong><br>Mannerheimintie 1, 00100 Helsinki, Suomi<\/p><p><strong>Puhelinnumero:<\/strong><br>+358 12 345 6789<\/p><p><strong>Aukioloajat:<\/strong><br>Maanantaista perjantaihin: 9:00-17:00<\/p>",
-                            "iframe": "<iframe src=\"https:\/\/www.google.com\/maps\/embed?pb=!1m18!1m12!1m3!1d3969.512675645471!2d24.939025277008366!3d60.16821254359214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46920bcc7342f08f%3A0x4cd892429924bede!2sMannerheimintie%201%2C%2000100%20Helsinki!5e0!3m2!1sfi!2sfi!4v1714890381659!5m2!1sfi!2sfi\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"><\/iframe>",
+                            "richtext": "<p><strong>Osoite<\/strong>: Mannerheimintie 1, 00100 Helsinki -&nbsp; <strong>Puhelinnumero<\/strong>: +358 12 345 6789<\/p><p><strong>Aukioloajat<\/strong>: Maanantaista perjantaihin: 9:00-17:00<\/p>",
+                            "sectionContainer": "compact",
                             "sectionTextAlign": "center",
-                            "showSocialMediaIcons": false,
-                            "sectionOverlineTag": "h3",
-                            "sectionTitleTag": "h2",
-                            "sectionSubtitleTag": "h3",
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
-                            "sectionAdditionalTitles": false,
                             "sectionPaddingMode": "custom",
-                            "sectionPaddingTop": "5",
+                            "sectionPaddingTop": "2",
                             "sectionPaddingBottom": "0",
                             "sectionBgImg": {
                                 "string_value": "",
@@ -1489,21 +1387,27 @@
                         "name": "team",
                         "settings": {
                             "sectionOverline": "",
-                            "sectionTitle": "Me palvelemme",
+                            "sectionTitle": "",
                             "sectionSubtitle": "",
-                            "memberPerRow": "6",
+                            "sectionDescription": "",
+                            "memberPerRow": "5",
+                            "sectionHeaderTextAlign": "nil",
                             "sectionTextAlign": "center",
+                            "contentAlign": "center",
                             "imgShape": "circle",
                             "imgAspectRatio": "1:1",
                             "imgFit": true,
+                            "gutterMode": "custom",
+                            "gutterWidth": "5",
                             "sectionOverlineTag": "h3",
                             "sectionTitleTag": "h2",
                             "sectionSubtitleTag": "h3",
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
                             "sectionAdditionalTitles": false,
+                            "sectionAdditionalText": true,
                             "sectionPaddingMode": "auto",
-                            "sectionPaddingTop": "0",
+                            "sectionPaddingTop": "4",
                             "sectionPaddingBottom": "0",
                             "sectionBgImg": {
                                 "string_value": "",
@@ -1528,8 +1432,8 @@
                                                 "width": "1080",
                                                 "height": "1080"
                                             },
-                                            "name": "Marcus Rodriguez",
-                                            "role": "Graafinen suunnittelija",
+                                            "name": "Markus Virtanen",
+                                            "role": "HIFI-spesialisti",
                                             "additionalInformation": ""
                                         }
                                     },
@@ -1544,8 +1448,8 @@
                                                 "width": "1080",
                                                 "height": "1080"
                                             },
-                                            "name": "Emily Hansen",
-                                            "role": "Markkinointiasiantuntija",
+                                            "name": "Emma Korhonen",
+                                            "role": "\u00c4\u00e4nentoiston asiantuntija, yritt\u00e4j\u00e4",
                                             "additionalInformation": ""
                                         }
                                     },
@@ -1560,13 +1464,38 @@
                                                 "width": "1080",
                                                 "height": "1080"
                                             },
-                                            "name": "Olivia Turner",
-                                            "role": "Asiakastukiedustaja",
+                                            "name": "Olivia Newton",
+                                            "role": "Ostot ja uutuudet",
                                             "additionalInformation": ""
                                         }
                                     }
                                 }
                             }
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "3a0195ebf7c3b3153df07026c1b24b7c",
+                        "title": "Sijainti",
+                        "name": "location",
+                        "settings": {
+                            "sectionOverline": "",
+                            "sectionTitle": "",
+                            "sectionSubtitle": "",
+                            "richtext": "",
+                            "iframe": "<iframe src=\"https:\/\/www.google.com\/maps\/embed?pb=!1m18!1m12!1m3!1d3969.512675645471!2d24.939025277008366!3d60.16821254359214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46920bcc7342f08f%3A0x4cd892429924bede!2sMannerheimintie%201%2C%2000100%20Helsinki!5e0!3m2!1sfi!2sfi!4v1714890381659!5m2!1sfi!2sfi\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"><\/iframe>",
+                            "sectionTextAlign": "nil",
+                            "iframeFullscreen": true,
+                            "iframeHeight": "60",
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": false,
+                            "style_custom_color": "#f3f5f6",
+                            "sectionAdditionalTitles": false,
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "0",
+                            "sectionPaddingBottom": "0"
                         },
                         "blocks": []
                     }
