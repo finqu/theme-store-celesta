@@ -70,6 +70,7 @@
 
                 .manufacturer-filters-list-item-header {
                     display: flex;
+                    z-index: 1;
 
                     .manufacturer-filters-list-item-header-text {
                         font-weight: $font-weight-bold;

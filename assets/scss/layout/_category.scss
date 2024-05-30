@@ -34,6 +34,7 @@
 
                 .category-filters-list-item-header {
                     display: flex;
+                    z-index: 1;
 
                     .category-filters-list-item-header-text {
                         font-weight: $font-weight-bold;
