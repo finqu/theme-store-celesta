@@ -240,7 +240,7 @@
                                     "announcementLink": {
                                         "type": "url",
                                         "record_id": "15623553",
-                                        "text": "<b> Ilmainen toimitus yli 500\u20ac ostoksiin!  -  Aina ilmainen palautus!  -  Nopea toimitus parissa arkip\u00e4iv\u00e4ss\u00e4!<\/b>",
+                                        "text": "<b> Ilmainen toimitus yli 500 \u20ac ostoksiin!  -  Aina ilmainen palautus!  -  Nopea toimitus parissa arkip\u00e4iv\u00e4ss\u00e4!<\/b>",
                                         "url": "\/tuoteryhma\/kaiuttimet",
                                         "target": "_self"
                                     }
@@ -349,6 +349,7 @@
                             "style_custom_color": "#f3f5f6",
                             "sectionAdditionalTitles": false,
                             "sectionMinHeight": "60",
+                            "sectionMinHeightMobile": "40",
                             "setting_blocks": {
                                 "items": [
                                     {
@@ -1526,8 +1527,8 @@
                         "id": "product-template",
                         "blocks": [],
                         "settings": {
-                            "detailsFreeShippingLimit": "100",
-                            "detailsShippingAndReturnRichtext": "<p id=\"isPasted\"><strong>Ilmainen toimitus yli 100&euro; tilauksille!<\/strong><\/p><p>Nauti ilmaisesta toimituksesta, kun tilauksesi ylitt&auml;&auml; 100&euro;! Kaikkiin pienempiin tilauksiin lis&auml;t&auml;&auml;n standardi toimitusmaksu, joka n&auml;ytet&auml;&auml;n kassalla.<\/p><p><strong>Aina ilmainen palautus!<\/strong><\/p><p>Meille on t&auml;rke&auml;&auml;, ett&auml; olet tyytyv&auml;inen ostoksiisi. Siksi tarjoamme aina ilmaisen palautuksen, mik&auml;li haluat vaihtaa tai palauttaa tuotteen. Palautusoikeus on voimassa 30 p&auml;iv&auml;&auml; tilauksen vastaanottamisesta.<\/p>",
+                            "detailsFreeShippingLimit": "500",
+                            "detailsShippingAndReturnRichtext": "<p id=\"isPasted\"><strong>Ilmainen toimitus yli 500 &euro; tilauksille!<\/strong><\/p><p>Nauti ilmaisesta toimituksesta, kun tilauksesi ylitt&auml;&auml; 500 &euro;! Kaikkiin pienempiin tilauksiin lis&auml;t&auml;&auml;n standardi toimitusmaksu, joka n&auml;ytet&auml;&auml;n kassalla.<\/p><p><strong>Aina ilmainen palautus!<\/strong><\/p><p>Meille on t&auml;rke&auml;&auml;, ett&auml; olet tyytyv&auml;inen ostoksiisi. Siksi tarjoamme aina ilmaisen palautuksen, mik&auml;li haluat vaihtaa tai palauttaa tuotteen. Palautusoikeus on voimassa 30 p&auml;iv&auml;&auml; tilauksen vastaanottamisesta.<\/p>",
                             "detailsPaymentRichtext": "<p id=\"isPasted\"><strong>Turvallista ostamista!<\/strong><\/p><p>Meille on t&auml;rke&auml;&auml;, ett&auml; ostokokemuksesi on sek&auml; miellytt&auml;v&auml; ett&auml; turvallinen. Siksi tarjoamme laajan valikoiman suosituimpia ja luotettavia maksutapoja:<br><br><\/p><ul><li><strong>Verkkopankit<\/strong>: Maksa suoraan omasta verkkopankistasi.<\/li><li><strong>Korttimaksut<\/strong>: Maksa k&auml;tev&auml;sti Visa, MasterCard tai American Express -korteilla.<\/li><li><strong>Klarna<\/strong>: Osta Klarnalla, jolloin voit p&auml;&auml;tt&auml;&auml; maksatko heti, my&ouml;hemmin tai osissa.<\/li><\/ul>",
                             "showBreadcrumbs": true,
                             "showBuyNowButton": true,
@@ -1780,22 +1781,30 @@
                             "sectionPaddingMode": "auto",
                             "sectionPaddingTop": "0",
                             "sectionPaddingBottom": "0",
-                            "sectionHeight": "40"
+                            "sectionHeight": "40",
+                            "sectionHeightMobile": "40"
                         },
                         "blocks": []
                     },
                     {
-                        "id": "dee601b3d4d02f1f883c076c1cadcd33",
-                        "title": "Teksti",
-                        "name": "text",
+                        "id": "929cabed83a1f2ae277f5716f9efaed8",
+                        "title": "Johdanto",
+                        "name": "intro",
                         "settings": {
-                            "richtext": "<p>INTRO - Helsinki myym&auml;l&auml;<\/p><p>Tervetuloa Celesta Helsinkiin, joka palvelee sinua aivan keskustassa<\/p>",
+                            "sectionOverline": "",
+                            "sectionTitle": "Helsinki myym\u00e4l\u00e4",
+                            "sectionSubtitle": "Tervetuloa Celesta Helsinkiin, joka palvelee sinua aivan keskustassa",
+                            "sectionDescription": "",
                             "sectionContainer": "nil",
-                            "sectionTextAlign": "nil",
+                            "sectionHeaderTextAlign": "nil",
+                            "sectionHeaderFontSizeScale": "1",
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
-                            "sectionPaddingMode": "auto",
-                            "sectionPaddingTop": "0",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "5",
                             "sectionPaddingBottom": "0",
                             "sectionBgImg": {
                                 "string_value": "",
@@ -1869,17 +1878,24 @@
                         "blocks": []
                     },
                     {
-                        "id": "47303e3811b7dc4d936e851dfc7d445b",
-                        "title": "Teksti",
-                        "name": "text",
+                        "id": "39a44f71500dcf5d2bbee91a29a7db31",
+                        "title": "Johdanto",
+                        "name": "intro",
                         "settings": {
-                            "richtext": "<p>INTRO - Myym&auml;l&auml;palvelut<\/p><p>Monipuoliset palvelut kotimaiselta asiantuntijalta<\/p>",
+                            "sectionOverline": "",
+                            "sectionTitle": "Myym\u00e4l\u00e4palvelut",
+                            "sectionSubtitle": "Monipuoliset palvelut kotimaiselta asiantuntijalta",
+                            "sectionDescription": "",
                             "sectionContainer": "nil",
-                            "sectionTextAlign": "nil",
+                            "sectionHeaderTextAlign": "nil",
+                            "sectionHeaderFontSizeScale": "1",
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
-                            "sectionPaddingMode": "auto",
-                            "sectionPaddingTop": "0",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "5",
                             "sectionPaddingBottom": "0",
                             "sectionBgImg": {
                                 "string_value": "",
@@ -2265,7 +2281,8 @@
                             "sectionPaddingMode": "auto",
                             "sectionPaddingTop": "0",
                             "sectionPaddingBottom": "0",
-                            "sectionHeight": "40"
+                            "sectionHeight": "40",
+                            "sectionHeightMobile": "40"
                         },
                         "blocks": []
                     },
