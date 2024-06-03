@@ -1493,7 +1493,7 @@
 
                             {% if showDelivery %}
 
-                                <div class="product-delivery d-flex align-items-center mt-4 text-title">
+                                <div class="product-delivery d-flex align-items-center mt-2 text-title">
 
                                     {% if product.default_or_selected_variant.deliverytime and product.default_or_selected_variant.deliverytime.max.days > 0 %}
 
@@ -1533,7 +1533,7 @@
 
                             {% if product.return_policy_time_limit %}
 
-                                <div class="product-return-time d-flex align-items-center mt-4 text-title">
+                                <div class="product-return-time d-flex align-items-center mt-2 text-title">
 
                                     {%- render 'icon', icon: 'arrow-return', class: 'svg-icon-fw svg-icon-lg' -%}
 
