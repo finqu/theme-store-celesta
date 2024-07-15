@@ -290,7 +290,7 @@
 
                             <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay{%- if rendered_partial != 'sections/category-template' -%} style="--aos-order: {{ forloop.index }}"{% endif %}{% endif %}>
 
-                                {%- render 'product-card-grid', product: product, url: url -%}
+                                {%- render 'product-card-grid', product: product, url: url, productPerRow: productPerRow -%}
 
                             </div>
 
@@ -302,7 +302,7 @@
 
                             <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay{%- if rendered_partial != 'sections/category-template' -%} style="--aos-order: {{ forloop.index }}"{% endif %}{% endif %}>
 
-                                {%- render 'product-card-grid' -%}
+                                {%- render 'product-card-grid', productPerRow: productPerRow -%}
 
                             </div>
 
@@ -682,8 +682,6 @@
                                                         <input type="checkbox" id="input-{{ value.param_name }}-{{ value.value }}" class="input-{{ value.param_name | replace: '.', '-' | handle }} form-check-input" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked="true"{% endif %}>
 
                                                         <label for="input-{{ value.param_name }}-{{ value.value }}" class="form-check-label"></label>
-
-                                                        <label for="input-{{ value.param_name }}-{{ value.value }}" class="form-check-label">
 
                                                             <span>{{ value.label }}</span>
 

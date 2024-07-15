@@ -797,6 +797,16 @@ body {
                             @include font-size($font-size-base * 2.3);
                         }
                     }
+
+                    &:has(.site-mobile-header-item-search) {
+
+                        .site-mobile-header-item-logo {
+
+                            .site-mobile-header-logo-text {
+                                max-width: 30vw;
+                            }
+                        }
+                    }
         
                     .site-mobile-header-item-counter {
                         position: absolute;
