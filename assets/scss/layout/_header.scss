@@ -499,7 +499,7 @@ body {
                         .site-header-sublevel {
                             position: absolute;
                             left: 100%;
-                            top: -#{subtract(spacer(4), 0.015)};
+                            top: -#{spacer(4)};
                             visibility: hidden;
                             width: 100%;
                             display: none;

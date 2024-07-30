@@ -178,6 +178,10 @@
             {%- assign showWishlistCondition = true -%}
         {%- endif -%}
 
+        {%- if settings.productShowSku and product.default_or_selected_variant.sku -%}
+            {%- assign showSku = true -%}
+        {%- endif -%}
+
         {%- assign generalImages = product.images | where: 'attached_to_variant', false -%}
 
         <div class="product-container position-relative">
@@ -741,7 +745,7 @@
 
                         </div>
 
-                        {% if showManufacturer or product.default_or_selected_variant.sku %}
+                        {% if showManufacturer or showSku %}
 
                             <div class="d-flex">
 
@@ -755,7 +759,7 @@
 
                                     </div>
 
-                                    {% if product.default_or_selected_variant.sku %}
+                                    {% if showSku %}
 
                                         <div class="border-end mx-3"></div>
 
@@ -763,7 +767,7 @@
 
                                 {% endif %}
 
-                                {% if product.default_or_selected_variant.sku %}
+                                {% if showSku %}
 
                                     <div class="product-sku">
 
@@ -982,6 +986,12 @@
 
                                                         <span class="product-stock-balance-low-on-stock">
                                                             {{- 'product.low_on_stock_dynamic' | t: amount: product.default_or_selected_variant.stock -}}
+                                                        </span>
+
+                                                    {%- elsif product.default_or_selected_variant.stock < 1 and product.default_or_selected_variant.inventory_policy == 'continue' -%}
+
+                                                        <span class="product-stock-balance-backorder">
+                                                            {{- 'product.backorder' | t -}}
                                                         </span>
 
                                                     {%- else -%}
@@ -1279,6 +1289,12 @@
 
                                                     <span class="product-stock-balance-low-on-stock">
                                                         {{- 'product.low_on_stock_dynamic' | t: amount: product.default_or_selected_variant.stock -}}
+                                                    </span>
+
+                                                {%- elsif product.default_or_selected_variant.stock < 1 and product.default_or_selected_variant.inventory_policy == 'continue' -%}
+
+                                                    <span class="product-stock-balance-backorder">
+                                                        {{- 'product.backorder' | t -}}
                                                     </span>
 
                                                 {%- else -%}
