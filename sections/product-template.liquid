@@ -1040,7 +1040,7 @@
                                                     <div class="product-quantity-container mb-4 d-flex flex-column flex-md-row">
 
                                                         <label for="product-quantity-input" class="form-label fw-bold me-2 d-inline-block min-w-px-100 mb-md-0">
-                                                            {{- 'general.quantity' | t -}}:
+                                                            {{- 'general.quantity' | t -}}{% if section.settings.showQuantityUnit %} ({{ product.default_or_selected_variant.unit }}){% endif %}:
                                                         </label>
 
                                                         <div class="product-inline-quantity max-w-px-120 min-h-px-40 d-inline-flex">
@@ -2778,6 +2778,16 @@
                             "fi": "Näytä määrävalinta"
                         },
                         "default": false
+                    },
+                    {
+                        "id": "showQuantityUnit",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Show unit of quantity",
+                            "fi": "Näytä määräyksikkö"
+                        },
+                        "default": false,
+                        "conditions": ["showQuantitySelect eq true"]
                     },
                     {
                         "id": "showProductQuestionForm",
