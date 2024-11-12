@@ -133,6 +133,7 @@
             "accessibilityShowBackToTopButton": true,
             "accessibilityShowWishlist": true,
             "cartShowAddNotification": true,
+            "taxInformation": true,
             "taxFreeShopping": false,
             "cookiePolicyLayout": "simple",
             "cookiePolicyPosition": "middle",
@@ -154,11 +155,13 @@
             "productShowPromotionBadge": true,
             "productShowDiscountBadge": true,
             "productShowOutOfStockBadge": false,
+            "productShowBackorderBadge": false,
             "productShowDiscountPercentage": true,
             "productFloorDiscountPercentage": true,
             "productWrapName": false,
             "productShowAddToCart": true,
             "productShowStockBalance": true,
+            "productShowStockBalanceAsNumber": false,
             "productShowSku": false,
             "articleImageAspectRatio": "1:1",
             "articleImageAspectRatioFit": "cover",
@@ -572,6 +575,7 @@
                             "showPromotionBadge": true,
                             "showDiscountBadge": true,
                             "showOutOfStockBadge": true,
+                            "showBackorderBadge": true,
                             "showAddToCart": true,
                             "showStockBalance": false,
                             "showVariants": true,
@@ -662,7 +666,7 @@
                                                 "width": "5760",
                                                 "height": "3840"
                                             },
-                                            "colorScheme": "#ffffff"
+                                            "colorSchemeCustomColor": "#ffffff"
                                         }
                                     },
                                     "3497938686528596": {
@@ -686,7 +690,7 @@
                                                 "width": "5760",
                                                 "height": "3840"
                                             },
-                                            "colorScheme": "#ffffff"
+                                            "colorSchemeCustomColor": "#ffffff"
                                         }
                                     },
                                     "3136312542826423": {
@@ -710,7 +714,7 @@
                                                 "width": "2560",
                                                 "height": "3840"
                                             },
-                                            "colorScheme": "#ffffff"
+                                            "colorSchemeCustomColor": "#ffffff"
                                         }
                                     }
                                 }
@@ -745,6 +749,7 @@
                             "showPromotionBadge": true,
                             "showDiscountBadge": true,
                             "showOutOfStockBadge": true,
+                            "showBackorderBadge": true,
                             "showAddToCart": true,
                             "showStockBalance": false,
                             "showVariants": true,
@@ -926,6 +931,7 @@
                             "showPromotionBadge": true,
                             "showDiscountBadge": true,
                             "showOutOfStockBadge": true,
+                            "showBackorderBadge": true,
                             "showAddToCart": true,
                             "showStockBalance": false,
                             "showVariants": true,
@@ -1013,6 +1019,7 @@
                             "showPromotionBadge": true,
                             "showDiscountBadge": true,
                             "showOutOfStockBadge": true,
+                            "showBackorderBadge": true,
                             "showAddToCart": true,
                             "showStockBalance": true,
                             "showVariants": true,
@@ -1550,6 +1557,7 @@
                             "showPromotionBadge": true,
                             "showDiscountBadge": true,
                             "showOutOfStockBadge": true,
+                            "showBackorderBadge": true,
                             "showStockBalance": true,
                             "showRelatedProductsAsOptions": false
                         },
@@ -1690,6 +1698,7 @@
                             "showPromotionBadge": true,
                             "showDiscountBadge": true,
                             "showOutOfStockBadge": true,
+                            "showBackorderBadge": true,
                             "showAddToCart": true,
                             "showStockBalance": true,
                             "showVariants": true,
@@ -2458,6 +2467,7 @@
                 "accessibilityShowBackToTopButton": true,
                 "accessibilityShowWishlist": true,
                 "cartShowAddNotification": true,
+                "taxInformation": true,
                 "taxFreeShopping": false,
                 "cookiePolicyLayout": "simple",
                 "cookiePolicyPosition": "middle",
@@ -2479,11 +2489,13 @@
                 "productShowPromotionBadge": true,
                 "productShowDiscountBadge": true,
                 "productShowOutOfStockBadge": false,
+                "productShowBackorderBadge": false,
                 "productShowDiscountPercentage": true,
                 "productFloorDiscountPercentage": true,
                 "productWrapName": false,
                 "productShowAddToCart": true,
                 "productShowStockBalance": true,
+                "productShowStockBalanceAsNumber": false,
                 "productShowSku": false,
                 "articleImageAspectRatio": "1:1",
                 "articleImageAspectRatioFit": "cover",
@@ -2804,7 +2816,7 @@
                                                     "width": "",
                                                     "height": ""
                                                 },
-                                                "colorScheme": "#ffffff"
+                                                "colorSchemeCustomColor": "#ffffff"
                                             }
                                         },
                                         {
@@ -2826,7 +2838,7 @@
                                                     "width": "",
                                                     "height": ""
                                                 },
-                                                "colorScheme": "#ffffff"
+                                                "colorSchemeCustomColor": "#ffffff"
                                             }
                                         },
                                         {
@@ -2848,7 +2860,7 @@
                                                     "width": "",
                                                     "height": ""
                                                 },
-                                                "colorScheme": "#ffffff"
+                                                "colorSchemeCustomColor": "#ffffff"
                                             }
                                         }
                                     ]
