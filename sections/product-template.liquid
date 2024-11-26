@@ -186,10 +186,6 @@
             {%- assign showStockBalanceAsNumber = true -%}
         {%- endif -%}
 
-        {%- if settings.accessibilityShowWishlist and section.settings.showBuyNowButton and product.default_or_selected_variant.notifications_supported == false -%}
-            {%- assign showWishlistCondition = true -%}
-        {%- endif -%}
-
         {%- if settings.productShowSku and product.default_or_selected_variant.sku -%}
             {%- assign showSku = true -%}
         {%- endif -%}
@@ -849,7 +845,7 @@
 
                         {% if store.customer_has_purchase_right %}
                         
-                            {% if product.is_available %}
+                            {% if product.default_or_selected_variant.is_available %}
 
                                 <div class="product-form mt-4">
 
@@ -972,9 +968,13 @@
 
                                                 </div>
 
-                                                {% if section.settings.showLowestPrice and product.default_or_selected_variant.previous_lower_price and product.default_or_selected_variant.discount_information != nil %}
+                                                {% if section.settings.showLowestPrice and product.default_or_selected_variant.discount_information != nil %}
 
-                                                    {% assign itemLowestPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.previous_lower_price.net_price, product.default_or_selected_variant.previous_lower_price.price | money_with_currency %}
+                                                    {%- if product.default_or_selected_variant.previous_lower_price -%}
+                                                        {% assign itemLowestPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.previous_lower_price.net_price, product.default_or_selected_variant.previous_lower_price.price | money_with_currency %}
+                                                    {%- else -%}
+                                                        {% assign itemLowestPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.net_price, product.default_or_selected_variant.price  | money_with_currency %}
+                                                    {%- endif -%}
 
                                                     <div class="product-lowest-price mt-2">
                                                         {{- 'product.lowest_price_dynamic' | t, amount: itemLowestPrice -}}
@@ -1091,6 +1091,10 @@
 
                                         {% if section.settings.showBuyNowButton %}
 
+                                            {%- if settings.accessibilityShowWishlist -%}
+                                                {%- assign showWishlistCondition = true -%}
+                                            {%- endif -%}
+
                                             <div class="product-action-buy-now d-flex mt-2">
 
                                                 <button
@@ -1202,113 +1206,117 @@
 
                                 <div class="product-form mt-4">
 
-                                    <div class="product-pricing mb-4 d-md-flex">
+                                    {% if product.default_or_selected_variant.in_preview == false %}
 
-                                        <label class="form-label fw-bold me-2 d-inline-block min-w-px-100">
-                                            {{- 'general.price' | t -}}:
-                                        </label>
+                                        <div class="product-pricing mb-4 d-md-flex">
 
-                                        <div class="w-100">
+                                            <label class="form-label fw-bold me-2 d-inline-block min-w-px-100">
+                                                {{- 'general.price' | t -}}:
+                                            </label>
 
-                                            {% if showPromotion %}
+                                            <div class="w-100">
 
-                                                <div class="product-promotion mb-2">
-            
-                                                    <span class="text-sale-price">
-                                                        {{ product.default_or_selected_variant.promotion.title | strip }}{% if product.default_or_selected_variant.promotion.description %}: {{ product.default_or_selected_variant.promotion.description }}{% endif %}
-                                                    </span>
-            
-                                                </div>
-            
-                                            {% endif %}
+                                                {% if showPromotion %}
 
-                                            <div class="product-price-container d-flex flex-wrap column-gap-3 row-gap-2">
-
-                                                {% if product.default_or_selected_variant.discount_information != nil %}
-
-                                                    <span class="product-sale-price-text text-sale-price" data-product-price-dynamic>
-                                                        {{ settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.net_price, product.default_or_selected_variant.price | money_with_currency }}
-                                                    </span>
-
-                                                    <span class="product-price text-decoration-line-through text-muted" data-product-original-price-dynamic>
-                                                        {{ settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.original_net_price, product.default_or_selected_variant.original_price | money_with_currency }}
-                                                    </span>
-
-                                                {% else %}
-
-                                                    <span class="product-price text-price" data-product-price-dynamic>
-                                                        {{ settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.net_price, product.default_or_selected_variant.price | money_with_currency }}
-                                                    </span>
-
+                                                    <div class="product-promotion mb-2">
+                
+                                                        <span class="text-sale-price">
+                                                            {{ product.default_or_selected_variant.promotion.title | strip }}{% if product.default_or_selected_variant.promotion.description %}: {{ product.default_or_selected_variant.promotion.description }}{% endif %}
+                                                        </span>
+                
+                                                    </div>
+                
                                                 {% endif %}
 
-                                                {% if settings.taxInformation %}
+                                                <div class="product-price-container d-flex flex-wrap column-gap-3 row-gap-2">
 
-                                                    {% assign itemTaxPercent = settings.taxFreeShopping == true | yepnope: 0, product.default_or_selected_variant.rate %}
+                                                    {% if product.default_or_selected_variant.discount_information != nil %}
 
-                                                    <span class="product-vat-text text-muted ms-auto">
-                                                        {{- 'product.vat_included_dynamic' | t, amount: itemTaxPercent -}}
-                                                    </span>
+                                                        <span class="product-sale-price-text text-sale-price" data-product-price-dynamic>
+                                                            {{ settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.net_price, product.default_or_selected_variant.price | money_with_currency }}
+                                                        </span>
+
+                                                        <span class="product-price text-decoration-line-through text-muted" data-product-original-price-dynamic>
+                                                            {{ settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.original_net_price, product.default_or_selected_variant.original_price | money_with_currency }}
+                                                        </span>
+
+                                                    {% else %}
+
+                                                        <span class="product-price text-price" data-product-price-dynamic>
+                                                            {{ settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.net_price, product.default_or_selected_variant.price | money_with_currency }}
+                                                        </span>
+
+                                                    {% endif %}
+
+                                                    {% if settings.taxInformation %}
+
+                                                        {% assign itemTaxPercent = settings.taxFreeShopping == true | yepnope: 0, product.default_or_selected_variant.rate %}
+
+                                                        <span class="product-vat-text text-muted ms-auto">
+                                                            {{- 'product.vat_included_dynamic' | t, amount: itemTaxPercent -}}
+                                                        </span>
+
+                                                    {% endif %}
+
+                                                </div>
+
+                                                {% if section.settings.showLowestPrice and product.default_or_selected_variant.previous_lower_price and product.default_or_selected_variant.discount_information != nil %}
+
+                                                    {% assign itemLowestPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.previous_lower_price.net_price, product.default_or_selected_variant.previous_lower_price.price | money_with_currency %}
+
+                                                    <div class="product-lowest-price mt-2">
+                                                        {{- 'product.lowest_price_dynamic' | t, amount: itemLowestPrice -}}
+                                                    </div>
 
                                                 {% endif %}
 
                                             </div>
 
-                                            {% if section.settings.showLowestPrice and product.default_or_selected_variant.previous_lower_price and product.default_or_selected_variant.discount_information != nil %}
-
-                                                {% assign itemLowestPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.previous_lower_price.net_price, product.default_or_selected_variant.previous_lower_price.price | money_with_currency %}
-
-                                                <div class="product-lowest-price mt-2">
-                                                    {{- 'product.lowest_price_dynamic' | t, amount: itemLowestPrice -}}
-                                                </div>
-
-                                            {% endif %}
-
                                         </div>
 
-                                    </div>
+                                        {% if showStockBalance %}
 
-                                    {% if showStockBalance %}
+                                            <div class="product-stock-balance mb-4">
+                                                
+                                                <label class="form-label fw-bold me-2 d-block d-md-inline-block min-w-px-100">
+                                                    {{- 'product.stock_balance_available' | t -}}:
+                                                </label>
 
-                                        <div class="product-stock-balance mb-4">
-                                            
-                                            <label class="form-label fw-bold me-2 d-block d-md-inline-block min-w-px-100">
-                                                {{- 'product.stock_balance_available' | t -}}:
-                                            </label>
+                                                {%- if product.default_or_selected_variant.is_out_of_stock -%}
 
-                                            {%- if product.default_or_selected_variant.is_out_of_stock -%}
+                                                    <span class="product-stock-balance-out-of-stock">
+                                                        {{- 'product.out_of_stock' | t -}}
+                                                    </span>
 
-                                                <span class="product-stock-balance-out-of-stock">
-                                                    {{- 'product.out_of_stock' | t -}}
-                                                </span>
+                                                {%- elsif product.default_or_selected_variant.is_low_on_stock and product.default_or_selected_variant.stock and product.default_or_selected_variant.inventory_policy == 'deny' -%}
 
-                                            {%- elsif product.default_or_selected_variant.is_low_on_stock and product.default_or_selected_variant.stock and product.default_or_selected_variant.inventory_policy == 'deny' -%}
+                                                    <span class="product-stock-balance-low-on-stock">
+                                                        {{- 'product.low_on_stock_dynamic' | t: amount: product.default_or_selected_variant.stock -}}
+                                                    </span>
 
-                                                <span class="product-stock-balance-low-on-stock">
-                                                    {{- 'product.low_on_stock_dynamic' | t: amount: product.default_or_selected_variant.stock -}}
-                                                </span>
+                                                {%- elsif product.default_or_selected_variant.stock < 1 and product.default_or_selected_variant.inventory_policy == 'continue' -%}
 
-                                            {%- elsif product.default_or_selected_variant.stock < 1 and product.default_or_selected_variant.inventory_policy == 'continue' -%}
+                                                    <span class="product-stock-balance-backorder">
+                                                        {{- 'product.backorder' | t -}}
+                                                    </span>
 
-                                                <span class="product-stock-balance-backorder">
-                                                    {{- 'product.backorder' | t -}}
-                                                </span>
+                                                {%- else -%}
 
-                                            {%- else -%}
+                                                    <span class="product-stock-balance-in-stock">
 
-                                                <span class="product-stock-balance-in-stock">
+                                                        {%- if showStockBalanceAsNumber and product.default_or_selected_variant.stock -%}
+                                                            {{- 'product.in_stock_dynamic' | t: amount: product.default_or_selected_variant.stock, unit: product.default_or_selected_variant.unit -}}
+                                                        {%- else -%}
+                                                            {{- 'product.in_stock' | t -}}
+                                                        {%- endif -%}
+                                                        
+                                                    </span>
 
-                                                    {%- if showStockBalanceAsNumber and product.default_or_selected_variant.stock -%}
-                                                        {{- 'product.in_stock_dynamic' | t: amount: product.default_or_selected_variant.stock, unit: product.default_or_selected_variant.unit -}}
-                                                    {%- else -%}
-                                                        {{- 'product.in_stock' | t -}}
-                                                    {%- endif -%}
-                                                    
-                                                </span>
+                                                {%- endif -%}
 
-                                            {%- endif -%}
+                                            </div>
 
-                                        </div>
+                                        {% endif %}
 
                                     {% endif %}
 
@@ -1332,7 +1340,7 @@
 
                                     {% endunless %}
 
-                                    {% if product.default_or_selected_variant.notifications_supported %}
+                                    {% if product.default_or_selected_variant.notifications_supported and product.default_or_selected_variant.is_out_of_stock %}
 
                                         <div class="product-availability-notification d-flex">
 
@@ -1359,7 +1367,11 @@
 
                                         </div>
 
-                                    {% elsif product.default_or_selected_variant.in_preview == false %}
+                                    {% elsif product.default_or_selected_variant.is_out_of_stock and product.default_or_selected_variant.in_preview == false %}
+
+                                        {%- if settings.accessibilityShowWishlist -%}
+                                            {%- assign showWishlistCondition = true -%}
+                                        {%- endif -%}
 
                                         <div class="product-info-out-of-stock">
 
@@ -2064,8 +2076,6 @@
 
                                     {% for relatedItem in product.related %}
 
-                                        {%- assign relatedItemImg = relatedItem.first_available_variant.image | default: relatedItem.image -%}
-
                                         <div class="d-flex align-items-center gap-g pt-g {% unless forloop.first %} border-top{% endunless %}">
 
                                             <a href="{{ relatedItem | link }}">
@@ -2074,13 +2084,13 @@
 
                                                     <div class="aspect-ratio-container">
 
-                                                        {% if relatedItemImg %}
+                                                        {% if relatedItem.image %}
 
                                                             <picture>
                                                                 <img
                                                                     alt="{{ relatedItem.title }}"
-                                                                    data-src="{{ relatedItemImg | thumb: imgSize }}"
-                                                                    data-srcset="{{ relatedItemImg | thumb: imgSize }} 1x, {{ relatedItemImg | thumb: imgSize | thumb: '@2x' }} 2x"
+                                                                    data-src="{{ relatedItem.image | thumb: imgSize }}"
+                                                                    data-srcset="{{ relatedItem.image | thumb: imgSize }} 1x, {{ relatedItem.image | thumb: imgSize | thumb: '@2x' }} 2x"
                                                                     class="lazy d-block mx-auto img-fluid aspect-ratio-item">
                                                             </picture>
 
