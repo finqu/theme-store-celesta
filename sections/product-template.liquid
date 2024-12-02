@@ -956,7 +956,7 @@
 
                                                     {% endif %}
 
-                                                    {% if settings.taxInformation %}
+                                                    {% if settings.taxInformation and product.default_or_selected_variant.bundle_contents == false %}
 
                                                         {% assign itemTaxPercent = settings.taxFreeShopping == true | yepnope: 0, product.default_or_selected_variant.rate %}
 
@@ -1248,7 +1248,7 @@
 
                                                     {% endif %}
 
-                                                    {% if settings.taxInformation %}
+                                                    {% if settings.taxInformation and product.default_or_selected_variant.bundle_contents == false %}
 
                                                         {% assign itemTaxPercent = settings.taxFreeShopping == true | yepnope: 0, product.default_or_selected_variant.rate %}
 
@@ -1260,9 +1260,13 @@
 
                                                 </div>
 
-                                                {% if section.settings.showLowestPrice and product.default_or_selected_variant.previous_lower_price and product.default_or_selected_variant.discount_information != nil %}
+                                                {% if section.settings.showLowestPrice and product.default_or_selected_variant.discount_information != nil %}
 
-                                                    {% assign itemLowestPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.previous_lower_price.net_price, product.default_or_selected_variant.previous_lower_price.price | money_with_currency %}
+                                                    {%- if product.default_or_selected_variant.previous_lower_price -%}
+                                                        {% assign itemLowestPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.previous_lower_price.net_price, product.default_or_selected_variant.previous_lower_price.price | money_with_currency %}
+                                                    {%- else -%}
+                                                        {% assign itemLowestPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.net_price, product.default_or_selected_variant.price  | money_with_currency %}
+                                                    {%- endif -%}
 
                                                     <div class="product-lowest-price mt-2">
                                                         {{- 'product.lowest_price_dynamic' | t, amount: itemLowestPrice -}}
@@ -1642,6 +1646,20 @@
                                 </div>
 
                             {% endif %}
+
+                        {% endif %}
+
+                        {% if product.default_or_selected_variant.bundle_contents %}
+
+                            <div class="product-bundle-contents mt-4">
+
+                                <span class="d-block mb-2">
+                                    {{- 'product.bundle_includes' | t -}}
+                                </span>
+
+                                {% render 'product-bundle-contents', items: product.default_or_selected_variant.bundle_contents, sectionHandle: '#finqu-section-product-template' %}
+
+                            </div>
 
                         {% endif %}
 
