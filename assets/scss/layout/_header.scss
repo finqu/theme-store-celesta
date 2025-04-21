@@ -402,7 +402,10 @@ body {
                 right: var(--site-header-cart-mini-offset-right, 0);
                 will-change: top;
                 z-index: 5;
-                padding-top: 7px;
+
+                &:has(.cart-mini-expanded) {
+                    padding-top: 7px;
+                }
             }
 
             .site-header-logo-text {
