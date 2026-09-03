@@ -1,0 +1,146 @@
+{
+    "name": {
+        "en": "Footer Group",
+        "fi": "Alatunnisteryhmä"
+    },
+    "type": "footer",
+    "max_sections": 5,
+    "allowed_sections": [
+        "footer",
+        "footer-link-bar",
+        "footer-localization-bar",
+        "footer-social-bar"
+    ],
+    "default_sections": [
+        {
+            "name": "footer",
+            "title": {
+                "en": "Footer",
+                "fi": "Alatunniste"
+            },
+            "settings": {
+                "footerBottomBorder": "",
+                "footerBottomBorderFluid": "",
+                "footerGap": "4.3rem",
+                "footerLayout": "2",
+                "footerLogoImg": {
+                    "height": "",
+                    "offset_left": "",
+                    "offset_top": "",
+                    "src": "",
+                    "string_value": "",
+                    "width": ""
+                },
+                "footerLogoStatus": true,
+                "footerMenu1": "footer",
+                "footerMenu1Title": {
+                    "type": "translation",
+                    "key": "placeholder.quick_links",
+                    "string_value": "Quick links"
+                },
+                "footerMenu2": "",
+                "footerMenu2Title": "",
+                "footerMenu3": "",
+                "footerMenu3Title": "",
+                "footerPaymentMethodsImg": {
+                    "height": "",
+                    "offset_left": "",
+                    "offset_top": "",
+                    "src": "",
+                    "string_value": "",
+                    "width": ""
+                },
+                "footerPaymentMethodsStatus": true,
+                "footerTextArea2Content": "<p>Celesta</p>",
+                "footerTextArea2Status": true,
+                "footerTopBorder": true,
+                "footerTopBorderFluid": "",
+                "sectionColorScheme": "custom",
+                "style_custom_color": "#f3f5f6",
+                "style_custom_text_color": "#677279",
+                "sectionPaddingMode": "custom",
+                "sectionPadding": {
+                    "apply_to_all_sides": false,
+                    "padding": {
+                        "top": 3.6,
+                        "right": 0,
+                        "bottom": 3.6,
+                        "left": 0
+                    }
+                },
+                "footerLocalizationStatus": true,
+                "style_custom_content_color": "#ffffff",
+                "style_custom_content_text_color": "",
+                "sectionBorderRadius": "0",
+                "sectionBgImg": "",
+                "sectionBgImgFit": "cover",
+                "sectionBgImgPosHorizontal": "center",
+                "sectionBgImgPosVertical": "center",
+                "sectionBgImgDimming": "0",
+                "sectionBgImgBlur": "0"
+            },
+            "blocks": [
+                {
+                    "id": "b8706ffa4849238b13fe3d6223dd10f5",
+                    "name": "heading",
+                    "container": "left",
+                    "settings": {
+                        "title": {
+                            "type": "translation",
+                            "key": "placeholder.about_us",
+                            "string_value": "About us"
+                        },
+                        "titleStyle": "h3"
+                    }
+                },
+                {
+                    "id": "4c2678ca80126a1a9d9194e1722e515c",
+                    "name": "text",
+                    "container": "left",
+                    "settings": {
+                        "richtext": {
+                            "type": "translation",
+                            "key": "placeholder.about_us_content",
+                            "string_value": "<p id=\"isPasted\">Welcome to our online store! We’re proud to offer you a smooth and delightful shopping experience. Committed to customer satisfaction, we aim to bring you the latest trends, unbeatable prices, and exceptional service.</p>"
+                        }
+                    }
+                },
+                {
+                    "id": "0da05c00f4115dcb8779d2c68f937b0b",
+                    "name": "social-media-buttons",
+                    "container": "left"
+                },
+                {
+                    "id": "9f5c277e77fc1df15f70698eabee572e",
+                    "name": "heading",
+                    "container": "right",
+                    "settings": {
+                        "title": {
+                            "type": "translation",
+                            "key": "marketing.newsletter_popup.overline",
+                            "string_value": "Newsletter"
+                        },
+                        "titleStyle": "h3"
+                    }
+                },
+                {
+                    "id": "7c787d1a6999e7691f771b2a19bd5bcc",
+                    "name": "text",
+                    "container": "right",
+                    "settings": {
+                        "richtext": {
+                            "type": "translation",
+                            "key": "placeholder.footer_newsletter",
+                            "string_value": "<p id=\"isPasted\">Subscribe to our newsletter to get updates on new arrivals, special offers, and events.</p>"
+                        }
+                    }
+                },
+                {
+                    "id": "d09fd91d2951051cab611f74914b2af3",
+                    "name": "newsletter",
+                    "container": "right"
+                }
+            ]
+        }
+    ]
+}

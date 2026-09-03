@@ -11,11 +11,6 @@ body {
 
 .section-site-announcement {
 
-    & + .section-site-header .site-header-items-container,
-    & + .section-site-header .site-mobile-header {
-        border-top: 1px solid var(--style-border-color);
-    }
-
     .site-announcement-text {
         font-weight: $font-weight-medium;
     }
@@ -565,14 +560,14 @@ body {
                             padding-bottom: 0;
 
                             .site-header-submenu-item-title {
-                                padding-top: calc(spacer(2) * var(--site-header-submenu-ui-scale, 1));
-                                padding-bottom: calc(spacer(2) * var(--site-header-submenu-ui-scale, 1));
+                                padding-top: calc(spacer(2) * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1)));
+                                padding-bottom: calc(spacer(2) * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1)));
 
                                 .site-header-submenu-item-title-text {
-                                    font-size: calc(var(--bs-body-font-size) * var(--site-header-submenu-ui-scale, 1));
-                                    line-height: calc(var(--bs-body-line-height) * var(--site-header-submenu-ui-scale, 1));
+                                    font-size: calc(var(--bs-body-font-size) * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1)));
+                                    line-height: calc(var(--bs-body-line-height) * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1)));
                                     @if $navigation-letter-spacing != '0' {
-                                        letter-spacing: calc($navigation-letter-spacing * var(--site-header-submenu-ui-scale, 1));
+                                        letter-spacing: calc($navigation-letter-spacing * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1)));
                                     }
                                 }
                             }
@@ -580,14 +575,14 @@ body {
                             .site-header-submenu-item-menu {
 
                                 .site-header-submenu-item-menu-item {
-                                    padding: calc(spacer(2) * var(--site-header-submenu-ui-scale, 1)) 0;
+                                    padding: calc(spacer(2) * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1))) 0;
 
                                     .site-header-submenu-item-menu-item-text {
-                                        font-size: calc(var(--bs-body-font-size) * 0.85 * var(--site-header-submenu-ui-scale, 1));
-                                        line-height: calc(var(--bs-body-line-height) * var(--site-header-submenu-ui-scale, 1));
+                                        font-size: calc(var(--bs-body-font-size) * 0.85 * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1)));
+                                        line-height: calc(var(--bs-body-line-height) * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1)));
                                         text-transform: var(--site-header-submenu-item-menu-item-text-transform, none);
                                         @if $navigation-letter-spacing != '0' {
-                                            letter-spacing: calc($navigation-letter-spacing * var(--site-header-submenu-ui-scale, 1));
+                                            letter-spacing: calc($navigation-letter-spacing * var(--site-header-submenu-ui-scale, var(--style-navigation-submenu-font-scale, 1)));
                                         }
                                     }
                                 }

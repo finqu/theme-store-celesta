@@ -143,12 +143,22 @@ body {
 				}
 
 				#product-thumb-media-swiper {
+					flex: 0 0 130px;
+					width: 130px;
+					min-width: 130px;
+					max-width: 130px;
 					height: var(--style-product-thumb-media-swiper-height, auto);
 					will-change: height;
 
 					.swiper-slide {
 						border: 2px solid transparent;
-						height: auto;
+						box-sizing: border-box;
+						height: auto !important;
+						width: 100% !important;
+
+						.aspect-ratio-container {
+							width: 100%;
+						}
 
 						&.swiper-slide-thumb-active  {
 							border-color: var(--style-border-accent-color);
@@ -233,7 +243,7 @@ body {
 					}
 				}
 
-				> .product-review-rating {
+				.product-review-rating {
 
 					#product-show-reviews {
 						display: flex;
@@ -284,92 +294,103 @@ body {
 			}
 		}
 
-		.product-reviews {
+	}
 
-			.product-review-icons {
-				display: inline-flex;
-		
-				.product-review-icon {
-					@include font-size($font-size-base * 1.3);
-					margin-right: spacer(1);
-					line-height: 0;
-		
-					&:last-child {
-						margin-right: 0;
-					}
-				}
-			}
+	.product-reviews {
 
-			.product-reviews-content {
-				max-height: 600px;
-				overflow: auto;
-
-				&.has-content {
-					margin-top: spacer(4);
-				}
-			}
-
-			.product-review-rating {
-
-				label {
-
-					.svg-icon {
-						color: var(--style-text-muted-color);
-					}
-				}
-
-				> input:checked ~ label,
-				&:not(:checked) > label:hover,
-				&:not(:checked) > label:hover ~ label,
-				> input:checked + label:hover,
-				> input:checked ~ label:hover,
-				> label:hover ~ input:checked ~ label,
-				> input:checked ~ label:hover ~ label {
-
-					.svg-icon {
-						color: var(--style-review-icon-color);
-					}
-				}
-			}
-
-			.product-review-rating {
-				display: inline-flex;
-				flex-direction: row-reverse;
+		.product-review-icons {
+			display: inline-flex;
+	
+			.product-review-icon {
+				@include font-size($font-size-base * 1.3);
+				margin-right: spacer(1);
 				line-height: 0;
-
-				> input {
-					display: none;
+	
+				&:last-child {
+					margin-right: 0;
 				}
+			}
+		}
 
-				> label {
-					@include font-size($font-size-base * 1.8);
-					padding-right: spacer(2);
-					margin-bottom: 0;
-					line-height: 0;
-					cursor: pointer;
+		.product-reviews-content {
+			max-height: 600px;
+			overflow: auto;
 
-					&:last-child {
-						padding-left: 0;
-					}
+			&.has-content {
+				margin-top: spacer(4);
+			}
+		}
+
+		.product-review-rating {
+
+			label {
+
+				.svg-icon {
+					color: var(--style-text-muted-color);
 				}
 			}
 
-			.product-review {
+			> input:checked ~ label,
+			&:not(:checked) > label:hover,
+			&:not(:checked) > label:hover ~ label,
+			> input:checked + label:hover,
+			> input:checked ~ label:hover,
+			> label:hover ~ input:checked ~ label,
+			> input:checked ~ label:hover ~ label {
 
-				& + .product-review {
-					margin-top: spacer(4);
-				}
-
-				.product-review-title {
-					@include font-size($font-size-base * 1.2);
-					font-weight: $font-weight-bold;
-					margin-bottom: spacer(3);
-				}
-
-				.product-review-content {
-					margin-top: spacer(3);
+				.svg-icon {
+					color: var(--style-review-icon-color);
 				}
 			}
+		}
+
+		.product-review-rating {
+			display: inline-flex;
+			flex-direction: row-reverse;
+			line-height: 0;
+
+			> input {
+				display: none;
+			}
+
+			> label {
+				@include font-size($font-size-base * 1.8);
+				padding-right: spacer(2);
+				margin-bottom: 0;
+				line-height: 0;
+				cursor: pointer;
+
+				&:last-child {
+					padding-left: 0;
+				}
+			}
+		}
+
+		.product-review {
+
+			& + .product-review {
+				margin-top: spacer(4);
+			}
+
+			.product-review-title {
+				@include font-size($font-size-base * 1.2);
+				font-weight: $font-weight-bold;
+				margin-bottom: spacer(3);
+			}
+
+			.product-review-content {
+				margin-top: spacer(3);
+			}
+		}
+	}
+
+	// Delivery/return sit below the form with a plain hr (prod Celesta), not
+	// inside a product-highlights box.
+	.product-info {
+
+		hr {
+			margin-top: spacer(4);
+			margin-bottom: spacer(3);
 		}
 	}
 }
